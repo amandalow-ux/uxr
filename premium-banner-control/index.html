@@ -2161,7 +2161,7 @@
     .premium-video {
       flex-shrink: 0;
       width: 220px;
-      height: 300px;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       border-radius: 12px;
       scroll-snap-align: start;
@@ -3393,7 +3393,7 @@
 
     /* ---------- Featured meal: tall hero variant (1:1 poster) ---------- */
     .product-card--featured-tall .img-wrap {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 16 / 9;
     }
 
     .category-header {
@@ -6411,7 +6411,7 @@
        Opened when user taps "Apply" on the HelloFresh Cash banner
        in the cart Order total section.
        ========================================================== */
-    /* Zest Drawer, type=bottom — tokens: bg #FAF8F3, padding 24, topLeft/topRight radius 8, handle radius 4 */
+    /* HF_CASH_FEATURE_DISABLED: .hf-cash-drawer CSS
     .hf-cash-drawer {
       background: #FAF8F3;
       border-top-left-radius: 8px;
@@ -6464,7 +6464,6 @@
       flex-direction: column;
       gap: 8px;
     }
-    /* Zest Button, size=lg — tokens: borderRadius 8, padding 24/12 */
     .hf-cash-drawer .drawer-btn {
       width: 100%;
       padding: 12px 24px;
@@ -6476,27 +6475,26 @@
       cursor: pointer;
       text-align: center;
     }
-    /* Zest Button variant=primary, appearance=brand */
     .hf-cash-drawer .drawer-btn--primary {
       background: #232323;
       color: #ffffff;
       border: none;
     }
     .hf-cash-drawer .drawer-btn--primary:active { background: #4B4B4B; }
-    /* Zest Button variant=secondary, appearance=brand */
     .hf-cash-drawer .drawer-btn--secondary {
       background: transparent;
       color: #232323;
       border: 1px solid #232323;
     }
     .hf-cash-drawer .drawer-btn--secondary:active { background: #D2D2D2; }
+    HF_CASH_FEATURE_DISABLED */
 
     /* ==========================================================
        CART FEEDBACK BAR (HF Cash applied confirmation)
        Appears just below the cart header after the user applies
        HelloFresh Cash from the apply drawer.
        ========================================================== */
-    /* Zest FeedbackBar, variant=positive — tokens: bg #cbf5e7, padding 16/12, gapSm 8, gapLg 16, borderRadius 0 */
+    /* HF_CASH_FEATURE_DISABLED: .cart-feedback-bar CSS
     .cart-feedback-bar {
       display: flex;
       align-items: center;
@@ -6525,7 +6523,6 @@
       line-height: 1.4;
       color: #242424;
     }
-    /* Zest Button, variant=secondary, size=sm — tokens: borderRadius 8, padding 24/8 */
     .cart-feedback-bar__undo {
       padding: 8px 24px;
       border-radius: 8px;
@@ -6540,8 +6537,9 @@
       flex-shrink: 0;
     }
     .cart-feedback-bar__undo:active { background: #D2D2D2; }
+    HF_CASH_FEATURE_DISABLED */
 
-    /* HF Cash row + Amount due row + disclaimer inside price summary */
+    /* HF_CASH_FEATURE_DISABLED: .price-row--hf-cash CSS
     .price-row--hf-cash { margin-top: var(--spacing-sm); }
     .price-row--hf-cash .price-row__title,
     .price-row--hf-cash .price-row__price {
@@ -6550,6 +6548,7 @@
       font-size: 16px;
     }
     .price-row--hf-cash .price-row__price { color: var(--color-promo-foreground); }
+    HF_CASH_FEATURE_DISABLED */
     .price-row--amount-due {
       margin-top: var(--spacing-sm);
     }
@@ -6875,6 +6874,18 @@
     .product-item__custom-remove svg {
       width: 14px;
       height: 14px;
+    }
+    .product-item__premium-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xxs);
+    }
+    .product-item__premium-label {
+      flex: 1;
+      font-family: var(--font-family-secondary);
+      font-size: 12px;
+      line-height: 1.35;
+      color: var(--color-neutral-foreground-medium);
     }
     /* Thumbnail is clickable — opens PDP */
     .product-item__thumbnail-btn {
@@ -7284,7 +7295,7 @@
       color: var(--color-neutral-foreground-strongest);
     }
 
-    /* ---------- Sticky HelloFresh Cash nudge (above checkout CTA) ---------- */
+    /* HF_CASH_FEATURE_DISABLED: .sticky-cash-nudge CSS
     .sticky-cash-nudge {
       flex-shrink: 0;
       display: flex;
@@ -7325,8 +7336,9 @@
       color: var(--color-neutral-foreground-strongest);
       cursor: pointer;
     }
+    HF_CASH_FEATURE_DISABLED */
 
-    /* ---------- Free shipping progress bar (sticky above checkout) ---------- */
+    /* FREE_SHIPPING_FEATURE_DISABLED: .free-shipping-progress CSS
     .free-shipping-progress {
       flex-shrink: 0;
       background: var(--bottom-nav-background);
@@ -7358,6 +7370,7 @@
       transition: width 0.3s ease;
       width: 0%;
     }
+    FREE_SHIPPING_FEATURE_DISABLED */
 
     /* ---------- FloatingStoreButton / Checkout bar ---------- */
     .cart-checkout-bar {
@@ -10820,6 +10833,7 @@
       font-weight: 700;
       color: #232323;
     }
+    /* HF_CASH_FEATURE_DISABLED: .mca-web__price-row--hf-cash CSS
     .mca-web__price-row--hf-cash {
       display: none;
       justify-content: space-between;
@@ -10830,6 +10844,7 @@
     }
     .mca-web__price-row--hf-cash.visible { display: flex; }
     .mca-web__price-row--hf-cash .price { color: #C11A2B; }
+    HF_CASH_FEATURE_DISABLED */
     .mca-web__price-row--amount-due {
       display: none;
       justify-content: space-between;
@@ -10839,6 +10854,7 @@
       color: #232323;
     }
     .mca-web__price-row--amount-due.visible { display: flex; }
+    /* HF_CASH_FEATURE_DISABLED: .mca-web__hf-cash-disclaimer CSS
     .mca-web__hf-cash-disclaimer {
       display: none;
       justify-content: space-between;
@@ -10859,6 +10875,7 @@
       cursor: pointer;
       flex-shrink: 0;
     }
+    HF_CASH_FEATURE_DISABLED */
 
     /* Web savings banner (Zest BannerMessage benefits, shaped) */
     .mca-web__savings {
@@ -10884,7 +10901,7 @@
     .mca-web__savings-text { flex: 1; font-weight: 700; }
     .mca-web__savings-cta { font-weight: 700; text-decoration: underline; padding-right: 8px; }
 
-    /* Web HF Cash banner (Zest BannerMessage filled, mint) */
+    /* HF_CASH_FEATURE_DISABLED: .mca-web__hfcash-banner CSS
     .mca-web__hfcash-banner {
       display: flex;
       align-items: center;
@@ -10910,6 +10927,7 @@
       flex-shrink: 0;
     }
     .mca-web__hfcash-banner-btn:active { background: #D2D2D2; }
+    HF_CASH_FEATURE_DISABLED */
 
     /* Web Confirm button (Zest Button primary, lg) */
     .mca-web__confirm {
@@ -11393,8 +11411,7 @@
         </button>
       </div>
 
-      <!-- Free-shipping-unlocked feedback bar (green). Fires on Store /
-           Market when the cart crosses the 4-meal free-shipping threshold. -->
+      <!-- FREE_SHIPPING_FEATURE_DISABLED: Free shipping unlocked toast
       <div class="order-saved-toast" id="freeShippingUnlockedToast" role="status" aria-live="polite" hidden>
         <span class="order-saved-toast__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7h11v8H3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 10h4l3 3v2h-7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7.5" cy="17" r="1.75" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="17" r="1.75" stroke="currentColor" stroke-width="2"/></svg>
@@ -11404,6 +11421,7 @@
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
+      FREE_SHIPPING_FEATURE_DISABLED -->
 
       <!-- ================================================
            PAGE 1: HOME
@@ -13105,7 +13123,7 @@
             </div>
           </div>
 
-          <!-- HF Cash applied feedback bar (appears after user applies HF Cash) -->
+          <!-- HF_CASH_FEATURE_DISABLED: Cart feedback bar
           <div class="cart-feedback-bar" id="hfCashFeedbackBar" data-zest-component="FeedbackBar" data-zest-variant="positive" role="status" aria-live="polite" hidden>
             <span class="cart-feedback-bar__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0002 14C13.1048 14 14.0002 13.1046 14.0002 12C14.0002 10.8954 13.1048 10 12.0002 10C10.8956 10 10.0002 10.8954 10.0002 12C10.0002 13.1046 10.8956 14 12.0002 14Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6L3.00017 18H21.0001V16.0179C21.0002 16.0119 21.0002 16.006 21.0002 16C21.0002 15.994 21.0002 15.9881 21.0001 15.9821V8.01787L21.0002 8L21.0001 7.98213V6H3ZM19.0001 14V10C17.8956 9.99996 17.0002 9.10454 17.0002 8H7.00018C7.00018 9.10457 6.10475 10 5.00018 10L5.00011 14C6.10468 14 7.00018 14.8954 7.00018 16H17.0002C17.0002 14.8955 17.8956 14 19.0001 14Z" fill="currentColor"/></svg>
@@ -13113,6 +13131,7 @@
             <span class="cart-feedback-bar__text">HelloFresh Cash applied</span>
             <button type="button" class="cart-feedback-bar__undo" id="hfCashFeedbackUndo" data-zest-component="Button" data-zest-variant="secondary" data-zest-appearance="brand" data-zest-size="sm">Undo</button>
           </div>
+          HF_CASH_FEATURE_DISABLED -->
 
           <!-- Scrollable content -->
           <div class="cart-scroll">
@@ -13139,11 +13158,17 @@
                     <div class="product-item__row">
                       <span class="product-item__name" data-testid="product-item-name">Garlic Herb Butter Scallops</span>
                     </div>
+                    <!-- CUSTOMISATION_ROW_FEATURE_DISABLED: customisation row for m1
                     <div class="product-item__custom-row">
                       <p class="product-item__custom product-item__custom--editable" data-testid="product-item-custom" role="button" tabindex="0" aria-label="Edit customization for Garlic Herb Butter Scallops"><svg class="product-item__custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4L20 12M16 12H20V8M12 20L4 12M8 12H4V16"/></svg>2 x Sea Scallops</p>
                       <button type="button" class="product-item__custom-remove" aria-label="Remove customization for Garlic Herb Butter Scallops" data-testid="product-item-custom-remove">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
                       </button>
+                      <span class="product-item__price" data-testid="product-item-price">+$13.98</span>
+                    </div>
+                    CUSTOMISATION_ROW_FEATURE_DISABLED -->
+                    <div class="product-item__premium-row">
+                      <span class="product-item__premium-label">Premium</span>
                       <span class="product-item__price" data-testid="product-item-price">+$13.98</span>
                     </div>
                     <div class="number-stepper" role="group" aria-label="Quantity" data-zest-component="NumberStepper">
@@ -13361,6 +13386,7 @@
                 <span class="price-row__title" id="summary-addons-label">Add-ons</span>
                 <span class="price-row__price" id="summary-addons-value">$0.00</span>
               </div>
+              <!-- FREE_SHIPPING_FEATURE_DISABLED: Shipping price row
               <div class="price-row" data-testid="price-row-shipping">
                 <span class="price-row__title">Shipping</span>
                 <span class="price-row__price" id="shipping-value">
@@ -13368,12 +13394,13 @@
                   <span id="shipping-free" class="price-row__price--free">FREE</span>
                 </span>
               </div>
+              FREE_SHIPPING_FEATURE_DISABLED -->
               <div class="price-row price-row--total" data-testid="price-row-total">
                 <span class="price-row__title">Total</span>
                 <span class="price-row__price" id="cart-total">$91.90</span>
               </div>
 
-              <!-- HelloFresh Cash reassurance banner -->
+              <!-- HF_CASH_FEATURE_DISABLED: HelloFresh Cash reassurance banner + applied rows
               <div class="benefit-banner benefit-banner--info" data-zest-component="BannerMessage" data-zest-variant="filled" data-zest-type="static" role="group" aria-label="$10 HelloFresh Cash available">
                 <span class="benefit-banner__icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0002 14C13.1048 14 14.0002 13.1046 14.0002 12C14.0002 10.8954 13.1048 10 12.0002 10C10.8956 10 10.0002 10.8954 10.0002 12C10.0002 13.1046 10.8956 14 12.0002 14Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6L3.00017 18H21.0001V16.0179C21.0002 16.0119 21.0002 16.006 21.0002 16C21.0002 15.994 21.0002 15.9881 21.0001 15.9821V8.01787L21.0002 8L21.0001 7.98213V6H3ZM19.0001 14V10C17.8956 9.99996 17.0002 9.10454 17.0002 8H7.00018C7.00018 9.10457 6.10475 10 5.00018 10L5.00011 14C6.10468 14 7.00018 14.8954 7.00018 16H17.0002C17.0002 14.8955 17.8956 14 19.0001 14Z" fill="currentColor"/></svg>
@@ -13382,7 +13409,6 @@
                 <button type="button" class="benefit-banner__btn" data-zest-component="Button" data-zest-variant="secondary" data-zest-size="sm" onclick="openHfCashDrawer(this)">Apply</button>
               </div>
 
-              <!-- HF Cash applied rows (shown after user applies HF Cash) -->
               <div class="price-row price-row--hf-cash" id="hf-cash-row" data-testid="price-row-hf-cash" hidden>
                 <span class="price-row__title">HelloFresh Cash <sup>*</sup></span>
                 <span class="price-row__price" id="hf-cash-value">−$10.00</span>
@@ -13395,11 +13421,12 @@
                 <span class="price-summary__disclaimer-text"><sup>*</sup> Your HelloFresh Cash has been applied to this order.</span>
                 <button type="button" class="price-summary__disclaimer-undo" id="hf-cash-disclaimer-undo">Undo</button>
               </div>
+              HF_CASH_FEATURE_DISABLED -->
             </div>
 
           </div>
 
-          <!-- Sticky HF Cash nudge (sits above the CTA; prioritized over free-shipping progress) -->
+          <!-- HF_CASH_FEATURE_DISABLED: Sticky HF Cash nudge
           <div class="sticky-cash-nudge" id="stickyCashNudge" hidden>
             <span class="sticky-cash-nudge__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0002 14C13.1048 14 14.0002 13.1046 14.0002 12C14.0002 10.8954 13.1048 10 12.0002 10C10.8956 10 10.0002 10.8954 10.0002 12C10.0002 13.1046 10.8956 14 12.0002 14Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6L3.00017 18H21.0001V16.0179C21.0002 16.0119 21.0002 16.006 21.0002 16C21.0002 15.994 21.0002 15.9881 21.0001 15.9821V8.01787L21.0002 8L21.0001 7.98213V6H3ZM19.0001 14V10C17.8956 9.99996 17.0002 9.10454 17.0002 8H7.00018C7.00018 9.10457 6.10475 10 5.00018 10L5.00011 14C6.10468 14 7.00018 14.8954 7.00018 16H17.0002C17.0002 14.8955 17.8956 14 19.0001 14Z" fill="currentColor"/></svg>
@@ -13407,8 +13434,9 @@
             <span class="sticky-cash-nudge__text">$10 HelloFresh Cash available</span>
             <button type="button" class="sticky-cash-nudge__cta" onclick="scrollCartToHfCashBanner(this)">View</button>
           </div>
+          HF_CASH_FEATURE_DISABLED -->
 
-          <!-- Free shipping progress bar (sticky above Confirm when threshold not yet met) -->
+          <!-- FREE_SHIPPING_FEATURE_DISABLED: Free shipping progress bar
           <div class="free-shipping-progress" id="freeShippingProgress" hidden>
             <p class="free-shipping-progress__label" id="freeShippingLabel">
               Add <strong id="freeShippingAmount">$9.56</strong> more to get free shipping
@@ -13417,6 +13445,7 @@
               <div class="free-shipping-progress__fill" id="freeShippingFill"></div>
             </div>
           </div>
+          FREE_SHIPPING_FEATURE_DISABLED -->
 
           <!-- Floating store button / checkout bar -->
           <div class="cart-checkout-bar" data-zest-component="custom" data-zest-note="FloatingStoreButtonWrapper">
@@ -13783,11 +13812,7 @@
         </div>
       </aside>
 
-      <!-- ================================================
-           HF CASH APPLY DRAWER (Bottom Sheet)
-           Opened when the "Apply" CTA on the HelloFresh Cash
-           reassurance banner is tapped in Cart > Order total.
-           ================================================ -->
+      <!-- HF_CASH_FEATURE_DISABLED: HF Cash apply drawer + scrim
       <div class="drawer-scrim" id="hfCashScrim" hidden></div>
       <aside class="drawer hf-cash-drawer" id="hfCashDrawer" role="dialog" aria-modal="true" aria-labelledby="hfCashTitle" hidden
              data-zest-component="Drawer" data-zest-type="bottom" data-zest-note="HF Cash apply drawer">
@@ -13804,6 +13829,7 @@
           </div>
         </div>
       </aside>
+      HF_CASH_FEATURE_DISABLED -->
 
       <!-- ================================================
            DOUBLE PROTEIN ONBOARDING BOTTOM SHEET
@@ -14934,7 +14960,7 @@
        data and price totals.
        ================================================ -->
   <div class="mca-web-overlay" id="mcaWebOverlay" hidden>
-    <!-- HF Cash applied feedback bar (web variant) — full viewport width, auto-dismisses -->
+    <!-- HF_CASH_FEATURE_DISABLED: MCA web feedback bar
     <div class="mca-web__feedback-bar" id="mcaWebFeedbackBar" data-zest-component="FeedbackBar" data-zest-variant="positive" role="status" aria-live="polite">
       <span class="mca-web__feedback-bar-text">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12.0002 14C13.1048 14 14.0002 13.1046 14.0002 12C14.0002 10.8954 13.1048 10 12.0002 10C10.8956 10 10.0002 10.8954 10.0002 12C10.0002 13.1046 10.8956 14 12.0002 14Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6L3.00017 18H21.0001V16.0179C21.0002 16.0119 21.0002 16.006 21.0002 16C21.0002 15.994 21.0002 15.9881 21.0001 15.9821V8.01787L21.0002 8L21.0001 7.98213V6H3ZM19.0001 14V10C17.8956 9.99996 17.0002 9.10454 17.0002 8H7.00018C7.00018 9.10457 6.10475 10 5.00018 10L5.00011 14C6.10468 14 7.00018 14.8954 7.00018 16H17.0002C17.0002 14.8955 17.8956 14 19.0001 14Z" fill="currentColor"/></svg>
@@ -14942,6 +14968,7 @@
       </span>
       <button type="button" class="mca-web__feedback-bar-undo" id="mcaWebFeedbackUndo" data-zest-component="Button" data-zest-variant="secondary" data-zest-appearance="brand" data-zest-size="sm">Undo</button>
     </div>
+    HF_CASH_FEATURE_DISABLED -->
 
     <div class="mca-web">
       <button type="button" class="mca-web__close" id="mcaWebClose" aria-label="Close" data-zest-component="IconButton" data-zest-variant="tertiary">
@@ -15081,7 +15108,7 @@
             <span><span id="mcaWebTotalDisplay">$91.90</span></span>
           </div>
 
-          <!-- HF Cash applied rows (web) -->
+          <!-- HF_CASH_FEATURE_DISABLED: MCA web HF Cash rows, disclaimer, banner
           <div class="mca-web__price-row mca-web__price-row--hf-cash" id="mcaWebHfCashRow" data-testid="price-row-hf-cash">
             <span>HelloFresh Cash <sup>*</sup></span>
             <span class="price" id="mcaWebHfCashValue">−$10.00</span>
@@ -15094,13 +15121,12 @@
             <span><sup>*</sup> Your HelloFresh Cash has been applied to this order.</span>
             <button type="button" id="mcaWebHfCashDisclaimerUndo">Undo</button>
           </div>
-
-          <!-- HF Cash banner -->
           <div class="mca-web__hfcash-banner" id="mcaWebHfCashBanner" data-zest-component="BannerMessage" data-zest-variant="filled" data-zest-type="static" role="group" aria-label="$10 HelloFresh Cash available">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12.0002 14C13.1048 14 14.0002 13.1046 14.0002 12C14.0002 10.8954 13.1048 10 12.0002 10C10.8956 10 10.0002 10.8954 10.0002 12C10.0002 13.1046 10.8956 14 12.0002 14Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6L3.00017 18H21.0001V16.0179C21.0002 16.0119 21.0002 16.006 21.0002 16C21.0002 15.994 21.0002 15.9881 21.0001 15.9821V8.01787L21.0002 8L21.0001 7.98213V6H3ZM19.0001 14V10C17.8956 9.99996 17.0002 9.10454 17.0002 8H7.00018C7.00018 9.10457 6.10475 10 5.00018 10L5.00011 14C6.10468 14 7.00018 14.8954 7.00018 16H17.0002C17.0002 14.8955 17.8956 14 19.0001 14Z" fill="currentColor"/></svg>
             <span class="mca-web__hfcash-banner-text">$10 HelloFresh Cash available</span>
             <button type="button" class="mca-web__hfcash-banner-btn" id="mcaWebApplyHfCash" data-zest-component="Button" data-zest-variant="secondary" data-zest-appearance="brand" data-zest-size="sm">Apply</button>
           </div>
+          HF_CASH_FEATURE_DISABLED -->
 
           <button type="button" class="mca-web__confirm" data-zest-component="Button" data-zest-variant="primary" data-zest-appearance="brand" data-zest-size="lg">Confirm</button>
 
@@ -44859,7 +44885,7 @@
       }, 250);
     }
 
-    /* Apply / undo HF Cash on the web cart. Mirrors the mobile state. */
+    /* HF_CASH_FEATURE_DISABLED: applyMcaWebHfCash / undoMcaWebHfCash
     let mcaWebFeedbackTimer = null;
     function applyMcaWebHfCash() {
       const HF = 10.00;
@@ -44874,7 +44900,6 @@
       if (feedbackBar) feedbackBar.classList.add('visible');
       const banner = document.getElementById('mcaWebHfCashBanner');
       if (banner) banner.style.display = 'none';
-      // Auto-dismiss the feedback bar after 4s
       if (mcaWebFeedbackTimer) clearTimeout(mcaWebFeedbackTimer);
       mcaWebFeedbackTimer = setTimeout(() => {
         feedbackBar?.classList.remove('visible');
@@ -44893,6 +44918,7 @@
         mcaWebFeedbackTimer = null;
       }
     }
+    HF_CASH_FEATURE_DISABLED */
 
     /* Embed-mode bootstrap — the Double protein "Show all" overlay loads
        this same page in iframes with ?dp=<state>. When detected, we hide
@@ -46066,17 +46092,12 @@
     }
     if (orderSavedToastClose) orderSavedToastClose.addEventListener('click', hideOrderSavedToast);
 
-    /* Free-shipping-unlocked feedback bar.
-       Same animation pattern as the order-saved toast, but fires once when
-       the cart crosses the 4-meal free-shipping threshold while the user is
-       on the Store or Market screen. Auto-dismisses after 3s. */
+    /* FREE_SHIPPING_FEATURE_DISABLED: showFreeShippingUnlockedToast / hideFreeShippingUnlockedToast
     const freeShippingUnlockedToastEl = document.getElementById('freeShippingUnlockedToast');
     const freeShippingUnlockedToastClose = document.getElementById('freeShippingUnlockedToastClose');
     let freeShippingUnlockedToastTimer = null;
     function showFreeShippingUnlockedToast() {
       if (!freeShippingUnlockedToastEl) return;
-      // Suppress the concurrent "Order saved" toast so only the stronger
-      // free-shipping message is shown on the threshold-crossing add.
       hideOrderSavedToast();
       freeShippingUnlockedToastEl.hidden = false;
       requestAnimationFrame(() => freeShippingUnlockedToastEl.classList.add('visible'));
@@ -46093,6 +46114,7 @@
     }
     if (freeShippingUnlockedToastClose) freeShippingUnlockedToastClose.addEventListener('click', hideFreeShippingUnlockedToast);
     window.__showFreeShippingUnlockedToast = showFreeShippingUnlockedToast;
+    FREE_SHIPPING_FEATURE_DISABLED */
 
     /* Returns the current total meal count in the cart
        (meals + specialty rows, excludes add-ons). */
@@ -48276,6 +48298,7 @@
        Triggered from the "$10 HelloFresh Cash available"
        banner in the cart Order total section.
        ================================================== */
+    /* HF_CASH_FEATURE_DISABLED: drawer vars, open/close/apply/undo/scroll functions + event listeners
     const hfCashScrimEl = document.getElementById('hfCashScrim');
     const hfCashDrawerEl = document.getElementById('hfCashDrawer');
     const hfCashCloseBtn = document.getElementById('hfCashClose');
@@ -48295,11 +48318,6 @@
       if (title) { title.setAttribute('tabindex', '-1'); title.focus({ preventScroll: true }); }
     }
 
-    // Auto-dismiss the sticky HF Cash nudge once the user scrolls down
-    // and the Order total section enters the viewport. Mirrors the
-    // "View" CTA dismissal so the nudge stops shadowing the checkout
-    // CTA after the user has reached the same banner inside the price
-    // summary on their own.
     (function initStickyCashNudgeAutoDismiss() {
       const scrollEl = document.querySelector('#page-cart .cart-scroll');
       if (!scrollEl) return;
@@ -48307,16 +48325,11 @@
         const nudge = document.getElementById('stickyCashNudge');
         if (!nudge || nudge.hidden) return;
         if (nudge.dataset.dismissed === 'true') return;
-        // Don't dismiss before the user has actually scrolled — on a
-        // short cart, the Order total may already be visible at rest.
         if (scrollEl.scrollTop <= 0) return;
         const summary = document.getElementById('cart-price-summary');
         if (!summary) return;
         const scrollRect = scrollEl.getBoundingClientRect();
         const summaryRect = summary.getBoundingClientRect();
-        // Trigger as soon as the Order total heading enters the visible
-        // portion of the cart scroll viewport (its top is above the
-        // bottom of the viewport).
         if (summaryRect.top < scrollRect.bottom) {
           nudge.dataset.dismissed = 'true';
           nudge.hidden = true;
@@ -48325,9 +48338,6 @@
       scrollEl.addEventListener('scroll', checkAndDismiss, { passive: true });
     })();
 
-    // Sticky nudge "View" action: scroll the cart to the in-cart HF Cash
-    // banner (inside the Order total section) and dismiss the nudge so it
-    // doesn't keep shadowing the checkout CTA after the user has seen it.
     function scrollCartToHfCashBanner(originButton) {
       const nudge = document.getElementById('stickyCashNudge');
       if (nudge) {
@@ -48370,7 +48380,6 @@
       if (e.key === 'Escape' && !hfCashDrawerEl.hidden) closeHfCashDrawer();
     });
 
-    /* --------- HF Cash applied state --------- */
     const HF_CASH_AMOUNT = 10.00;
     const hfCashFeedbackBar = document.getElementById('hfCashFeedbackBar');
     const hfCashFeedbackUndo = document.getElementById('hfCashFeedbackUndo');
@@ -48393,8 +48402,6 @@
       hfCashDisclaimerEl.hidden = false;
       if (hfCashBanner) hfCashBanner.hidden = true;
       if (typeof window.__recalcCart === 'function') window.__recalcCart();
-      // Scroll to the disclaimer so the confirmation footnote lands in view
-      // after the drawer closes.
       requestAnimationFrame(() => {
         const scrollEl = document.querySelector('#page-cart .cart-scroll');
         if (scrollEl) {
@@ -48427,8 +48434,8 @@
     hfCashFeedbackUndo.addEventListener('click', undoHfCash);
     hfCashDisclaimerUndo.addEventListener('click', undoHfCash);
 
-    // Expose for recalcCart to read
     window.__hfCash = { get applied() { return hfCashApplied; }, amount: HF_CASH_AMOUNT };
+    HF_CASH_FEATURE_DISABLED */
 
     /* ==================================================
        Stepper-plus click: open drawer for customizable
@@ -48492,12 +48499,13 @@
        Option A free-shipping rule: meals >= 4 unlocks free shipping.
        ================================================== */
     (function () {
+      /* FREE_SHIPPING_FEATURE_DISABLED: shipping constants + state vars
       const SHIPPING = 10.99;
       const FREE_SHIPPING_MEAL_COUNT = 4;
       const PLAN_SIZE = 3;
-
       let wasFreeShippingUnlocked = false;
       let recalcInitialized = false;
+      FREE_SHIPPING_FEATURE_DISABLED */
 
       const mealsListEl = document.getElementById('cart-items-list');
       const addonsListEl = document.getElementById('cart-addons-list');
@@ -48535,9 +48543,7 @@
         const priceHtml = priceText
           ? `<span class="product-item__price" data-testid="product-item-price">${priceText}</span>`
           : '';
-        // Price sits on the custom-summary row (inline with the swap/2x
-        // reason text) for meals, and on the title row for add-ons that
-        // have no summary line.
+        /* CUSTOMISATION_ROW_FEATURE_DISABLED: customRow template + titleRowPrice
         const customRow = customSummary
           ? `<div class="product-item__custom-row">
               <p class="product-item__custom product-item__custom--editable" data-testid="product-item-custom" role="button" tabindex="0" aria-label="Edit customization for ${name}">${customSummary}</p>
@@ -48548,6 +48554,10 @@
             </div>`
           : '';
         const titleRowPrice = customSummary ? '' : priceHtml;
+        CUSTOMISATION_ROW_FEATURE_DISABLED */
+        const premiumRow = priceText
+          ? `<div class="product-item__premium-row"><span class="product-item__premium-label">Premium</span>${priceHtml}</div>`
+          : '';
         el.innerHTML = `
           <div class="product-item__inner">
             <button type="button" class="product-item__thumbnail-btn" aria-label="Open ${name} details">
@@ -48558,9 +48568,8 @@
           <div class="product-item__title-container">
             <div class="product-item__row">
               <span class="product-item__name" data-testid="product-item-name">${name}</span>
-              ${titleRowPrice}
             </div>
-            ${customRow}
+            ${premiumRow}
             <div class="number-stepper" role="group" aria-label="Quantity" data-zest-component="NumberStepper">
               <button type="button" class="number-stepper__button stepper-dec" aria-label="Decrease">${SVG_MINUS}</button>
               <span class="number-stepper__value qty">${qty}</span>
@@ -49021,11 +49030,8 @@
         });
 
         const goodsSubtotal = mealsSubtotal + specialtyTotal + addonsTotal;
+        /* FREE_SHIPPING_FEATURE_DISABLED: freeShippingUnlocked calc, toast trigger, state update
         const freeShippingUnlocked = totalMeals >= FREE_SHIPPING_MEAL_COUNT;
-
-        // Fire the unlocked toast once when crossing the threshold
-        // while the user is on the Store or Market screen. Skip the
-        // very first recalc so the seeded cart state doesn't trigger it.
         if (recalcInitialized && freeShippingUnlocked && !wasFreeShippingUnlocked) {
           const activePage = document.querySelector('.page.active');
           const activeId = activePage && activePage.id;
@@ -49037,8 +49043,8 @@
         }
         wasFreeShippingUnlocked = freeShippingUnlocked;
         recalcInitialized = true;
-
-        const shippingCost = freeShippingUnlocked ? 0 : SHIPPING;
+        FREE_SHIPPING_FEATURE_DISABLED */
+        const shippingCost = 10.99;
         const benefitDiscount = totalMeals > 0 ? 12.98 : 0;
         const total = Math.max(0, goodsSubtotal + shippingCost - benefitDiscount);
 
@@ -49059,11 +49065,13 @@
         const checkoutBtn = $('checkout-btn');
         const hfCashValueElLocal = $('hf-cash-value');
         const amountDueValueElLocal = $('amount-due-value');
+        /* FREE_SHIPPING_FEATURE_DISABLED: shipping/progress DOM refs
         const shippingOriginal = $('shipping-original');
         const shippingFree = $('shipping-free');
         const freeShippingProgress = $('freeShippingProgress');
         const freeShippingFill = $('freeShippingFill');
         const freeShippingLabel = $('freeShippingLabel');
+        FREE_SHIPPING_FEATURE_DISABLED */
 
         const totalCartCount = totalMeals + addonsCount;
         if (headerCount) {
@@ -49094,6 +49102,7 @@
         if (cartTotal) cartTotal.textContent = '$' + total.toFixed(2);
         if (checkoutTotal) checkoutTotal.textContent = total.toFixed(2);
 
+        /* FREE_SHIPPING_FEATURE_DISABLED: shipping FREE label toggle
         if (shippingOriginal && shippingFree) {
           if (freeShippingUnlocked) {
             shippingOriginal.classList.add('price-row__price--strikethrough');
@@ -49103,6 +49112,7 @@
             shippingFree.hidden = true;
           }
         }
+        FREE_SHIPPING_FEATURE_DISABLED */
 
         const hfCash = window.__hfCash;
         const hfApplied = hfCash && hfCash.applied;
@@ -49123,6 +49133,7 @@
             manuallyDismissed;
         }
 
+        /* FREE_SHIPPING_FEATURE_DISABLED: progress bar update block
         if (freeShippingProgress) {
           const showProgress = hfApplied && totalMeals >= PLAN_SIZE && !freeShippingUnlocked;
           freeShippingProgress.hidden = !showProgress;
@@ -49139,6 +49150,7 @@
             }
           }
         }
+        FREE_SHIPPING_FEATURE_DISABLED */
 
         if (checkoutBtn) {
           const disabled = totalMeals === 0;
