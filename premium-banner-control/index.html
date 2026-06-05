@@ -2445,6 +2445,10 @@
       border-radius: 12px;
       padding: 10px;
       align-items: stretch;
+      cursor: pointer;
+    }
+    .premium-irish-page .pip-recipe:hover .pip-recipe__name {
+      text-decoration: underline;
     }
     .premium-irish-page .pip-recipe__img {
       position: relative;
@@ -2475,6 +2479,47 @@
       justify-content: center;
       box-shadow: 0 1px 3px rgba(0,0,0,0.15);
       color: #1d1d1d;
+    }
+    .premium-irish-page .pip-recipe__stepper {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      display: none;
+      align-items: stretch;
+      background: #fff;
+      border: 1px solid #232323;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+    .premium-irish-page .pip-recipe.is-selected .pip-recipe__stepper { display: inline-flex; }
+    .premium-irish-page .pip-recipe.is-selected .pip-recipe__add { display: none; }
+    .premium-irish-page .pip-recipe__stepper button {
+      width: 26px;
+      height: 24px;
+      background: #efe9de;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      cursor: pointer;
+      padding: 0;
+    }
+    .premium-irish-page .pip-recipe__stepper button svg { width: 10px; height: 10px; }
+    .premium-irish-page .pip-recipe__qty {
+      width: 26px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-left: 1px solid #232323;
+      border-right: 1px solid #232323;
+      font-family: var(--font-family-secondary);
+      font-size: 12px;
+      font-weight: 700;
+      color: #111;
     }
     .premium-irish-page .pip-recipe__body {
       flex: 1;
@@ -3462,7 +3507,7 @@
     }
     /* Featured variant in category list (mirrors .product-card--featured-tall) */
     .category-list-card--featured-tall .img-wrap {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 16 / 9;
     }
     .category-list-card .favorite-btn {
       position: absolute;
@@ -6886,6 +6931,7 @@
       font-size: 12px;
       line-height: 1.35;
       color: var(--color-neutral-foreground-medium);
+      text-transform: uppercase;
     }
     /* Thumbnail is clickable — opens PDP */
     .product-item__thumbnail-btn {
@@ -8164,6 +8210,55 @@
       font-weight: 700;
       font-size: 15px;
       cursor: pointer;
+    }
+    .pdp-qty-stepper {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      border: 1.5px solid #111;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #111;
+      min-height: 48px;
+    }
+    .pdp-qty-stepper[hidden] { display: none; }
+    .pdp-qty-stepper button {
+      width: 48px;
+      border: none;
+      background: #111;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .pdp-qty-stepper button svg { width: 16px; height: 16px; }
+    .pdp-qty-val {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.25;
+      padding: 4px 8px;
+      border-left: 1px solid rgba(255,255,255,0.18);
+      border-right: 1px solid rgba(255,255,255,0.18);
+    }
+    .pdp-qty-label-main {
+      font-family: var(--font-family-secondary);
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .pdp-qty-label-sub {
+      font-family: var(--font-family-secondary);
+      font-size: 11px;
+      color: rgba(255,255,255,0.8);
+    }
+    .pdp-footer:has(#pdpQtyStepper:not([hidden])) .footer-price,
+    .pdp-footer:has(#pdpQtyStepper:not([hidden])) #pdpAddBtn {
+      display: none;
     }
 
     /* Nested page: "Your top rated" (full-screen list) */
@@ -12064,7 +12159,7 @@
               </div>
             </article>
 
-            <article class="product-card product-card--featured-tall" data-zest-component="Card" data-zest-variant="meal" data-product="honey-dijon-dill-steak" data-price="9.99" data-customizable="true" data-filters="specialty american beef high-protein under-45 wheat" data-sort-time="35" data-sort-calories="680" data-sort-protein="45" data-has-video="true">
+            <article class="product-card product-card--featured-tall" data-zest-component="Card" data-zest-variant="meal" data-product="honey-dijon-dill-steak" data-price="13.98" data-customizable="true" data-filters="specialty american beef high-protein under-45 wheat" data-sort-time="35" data-sort-calories="680" data-sort-protein="45" data-has-video="true">
               <div class="img-wrap">
                 <video src="https://assets.mixkit.co/videos/46673/46673-720.mp4" autoplay loop muted playsinline preload="auto" aria-label="Honey Dijon Dill Steak cooking video"></video>
                 <span class="specialty-reason">Premium Pick</span>
@@ -12089,10 +12184,13 @@
                 </div>
               </div>
               <div class="card-footer">
-                <div class="plan-line">
+                <div class="plan-line plan-line--surcharge">
                   <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
                   <span class="servings-count">2</span>
-                  <span class="plan-text">Included in plan</span>
+                  <span class="surcharge-price">
+                    <span class="surcharge-price__amount">+$3.99</span>
+                    <span class="surcharge-price__unit">per serving</span>
+                  </span>
                 </div>
                 <button type="button" class="add-btn stepper-plus" aria-label="Add Honey Dijon Dill Steak to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
               </div>
@@ -13167,8 +13265,8 @@
                       <span class="product-item__price" data-testid="product-item-price">+$13.98</span>
                     </div>
                     CUSTOMISATION_ROW_FEATURE_DISABLED -->
-                    <div class="product-item__premium-row">
-                      <span class="product-item__premium-label">Premium</span>
+                    <div class="product-item__custom-row">
+                      <p class="product-item__custom" data-testid="product-item-custom"><svg class="product-item__custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4L20 12M16 12H20V8M12 20L4 12M8 12H4V16"/></svg>2 x Sea Scallops</p>
                       <span class="product-item__price" data-testid="product-item-price">+$13.98</span>
                     </div>
                     <div class="number-stepper" role="group" aria-label="Quantity" data-zest-component="NumberStepper">
@@ -13509,6 +13607,14 @@
             <span class="per">per serving</span>
           </div>
           <button class="btn-add-to-box" id="pdpAddBtn" data-zest-component="Button" data-zest-variant="primary">Add to box</button>
+          <div class="pdp-qty-stepper" id="pdpQtyStepper" hidden role="group" aria-label="Quantity">
+            <button type="button" id="pdpStepperDec" aria-label="Decrease quantity"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 7h10v2H3z"/></svg></button>
+            <div class="pdp-qty-val" id="pdpQtyVal">
+              <span class="pdp-qty-label-main">1 in your box</span>
+              <span class="pdp-qty-label-sub"></span>
+            </div>
+            <button type="button" id="pdpStepperInc" aria-label="Increase quantity"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M7 3h2v4h4v2H9v4H7V9H3V7h4z"/></svg></button>
+          </div>
         </div>
       </section>
 
@@ -43376,15 +43482,16 @@
       if (!page || !viewAll) return;
 
       const recipes = [
-        { badge: 'PREMIUM', name: 'Creamy Chicken Sausage & Kale Cavatappi', sub: 'with Garlic, Lemon & Parmesan', time: '30 min', calories: '750 kcal', protein: '19g protein', price: '+$12.99', img: 'images/real/creamy-mushroom-gemelli.jpg' },
-        { badge: 'PREMIUM', name: 'Rigatoni with Beef & Zucchini Ragu', sub: 'with Shredded Carrots, Buttery Breadcrumbs', time: '30 min', calories: '621 kcal', protein: '21g protein', price: '+$12.99', img: 'images/real/beef-meatballs-onion-gravy.jpg' },
-        { badge: 'BESTSELLER', highlight: 'time', name: 'Creamy Lemon-Herb Pork Chops', sub: 'with Balsamic-Glazed Brussels', time: '20 min', calories: '750 kcal', protein: '19g protein', price: '+$12.99', img: 'images/real/hoisin-pork-tenderloin.jpg' },
-        { badge: 'PREMIUM', highlight: 'protein', name: 'Chicken Bacon Ranch Loaded Potatoes', sub: 'with Cheddar & Scallions', time: '30 min', calories: '750 kcal', protein: '39g protein', price: '+$12.99', img: 'images/real/crispy-parmesan-chicken.jpg' },
-        { badge: 'PREMIUM', highlight: 'calories', name: 'Mushroom, Carrot & Bok Choy Stir-Fry', sub: 'with Crispy Rice, Fried Onions & Sesame', time: '30 min', calories: '621 kcal', protein: '21g protein', price: '+$12.99', img: 'images/real/sesame-soy-beef-bowls.jpg' },
-        { badge: 'PREMIUM', name: 'Creamy Chicken Sausage & Kale Cavatappi', sub: 'with Garlic, Lemon & Parmesan', time: '30 min', calories: '750 kcal', protein: '19g protein', price: '+$12.99', img: 'images/real/creamy-mushroom-gemelli.jpg' },
+        { slug: 'hoisin-pork-tenderloin',       unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Hoisin Pork Tenderloin',         sub: 'with Jasmine Rice & Bok Choy',            time: '30 min', calories: '650 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/hoisin-pork-tenderloin.jpg' },
+        { slug: 'beef-meatballs-onion-gravy',   unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Beef Meatballs with Onion Gravy', sub: 'with Mashed Potatoes & Green Beans',      time: '35 min', calories: '720 kcal', protein: '34g protein', price: '+$3.99', img: 'images/real/beef-meatballs-onion-gravy.jpg' },
+        { slug: 'steak-parmesan-potatoes',      unitPrice: 13.98, badge: 'BESTSELLER', highlight: 'time',     name: 'Steak & Parmesan Potatoes',       sub: 'with Broccolini & Herb Butter',           time: '30 min', calories: '710 kcal', protein: '42g protein', price: '+$3.99', img: 'images/real/steak-parmesan-potatoes.jpg' },
+        { slug: 'crispy-parmesan-chicken',      unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'protein',  name: 'Crispy Parmesan Chicken',         sub: 'with Roasted Potatoes & Garlicky Greens', time: '30 min', calories: '720 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/crispy-parmesan-chicken.jpg' },
+        { slug: 'sesame-soy-beef-bowls',        unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'calories', name: 'Sesame Soy Beef Bowls',           sub: 'with Jasmine Rice & Pickled Cucumber',    time: '25 min', calories: '610 kcal', protein: '36g protein', price: '+$3.99', img: 'images/real/sesame-soy-beef-bowls.jpg' },
+        { slug: 'almond-crusted-dijon-chicken', unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Almond-Crusted Dijon Chicken',    sub: 'with Roasted Sweet Potato & Arugula',     time: '35 min', calories: '680 kcal', protein: '40g protein', price: '+$3.99', img: 'images/real/almond-crusted-dijon-chicken.jpg' },
       ];
 
-      const plusIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+      const plusIcon  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+      const minusIcon = '<svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 7h10v2H3z"/></svg>';
 
       function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
@@ -43393,10 +43500,15 @@
           const badgeClass = r.badge === 'BESTSELLER' ? 'pip-recipe__badge--bestseller' : '';
           const cls = (key) => 'pip-metric' + (r.highlight === key ? ' pip-metric--highlight' : '');
           return `
-          <div class="pip-recipe">
+          <div class="pip-recipe" data-product="${escapeHtml(r.slug)}" data-price="${r.unitPrice}">
             <div class="pip-recipe__img">
               <img src="${r.img}" alt="${escapeHtml(r.name)}">
               <button type="button" class="pip-recipe__add" aria-label="Add ${escapeHtml(r.name)}">${plusIcon}</button>
+              <div class="pip-recipe__stepper" role="group" aria-label="Quantity">
+                <button type="button" class="pip-recipe__stepper-dec" aria-label="Decrease">${minusIcon}</button>
+                <span class="pip-recipe__qty">1</span>
+                <button type="button" class="pip-recipe__stepper-inc" aria-label="Increase"><svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 3h2v4h4v2H9v4H7V9H3V7h4z"/></svg></button>
+              </div>
             </div>
             <div class="pip-recipe__body">
               <span class="pip-recipe__badge ${badgeClass}">${escapeHtml(r.badge)}</span>
@@ -43427,6 +43539,8 @@
         page.classList.remove('is-scrolled');
         page.hidden = true;
       }
+      window.__closePipPage = closePage;
+      window.__openPipPage = openPage;
 
       viewAll.addEventListener('click', openPage);
       viewAll.addEventListener('keydown', (e) => {
@@ -43444,12 +43558,80 @@
         }, { passive: true });
       }
 
-      // Add-to-cart buttons (simple toast)
+      // Card body click → open PDP
       grid.addEventListener('click', (e) => {
-        const btn = e.target.closest('.pip-recipe__add');
-        if (!btn) return;
-        if (typeof showToast === 'function') {
-          showToast('Added to cart');
+        if (e.target.closest('.pip-recipe__add')) return;
+        const card = e.target.closest('.pip-recipe');
+        if (!card) return;
+        const slug = card.dataset.product;
+        if (!slug || typeof window.openPdp !== 'function') return;
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof window.__closePipPage === 'function') window.__closePipPage();
+        window.__pdpReturnToPip = true;
+        const cartRow = document.querySelector(`.product-item[data-slug="${CSS.escape(slug)}"]`);
+        const variantId = cartRow ? cartRow.dataset.mealId : null;
+        window.openPdp(slug, variantId ? { existingVariantId: variantId } : undefined);
+      });
+
+      // Stepper dec / inc + add button
+      grid.addEventListener('click', (e) => {
+        const card = e.target.closest('.pip-recipe');
+        if (!card) return;
+
+        // Stepper decrement
+        if (e.target.closest('.pip-recipe__stepper-dec')) {
+          e.stopPropagation();
+          const slug = card.dataset.product;
+          const rows = document.querySelectorAll(
+            `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id="${CSS.escape(slug)}"]`
+          );
+          if (rows.length) {
+            const row = rows[0];
+            const qtyEl = row.querySelector('.qty');
+            const current = parseInt(qtyEl?.textContent || '1', 10);
+            if (current <= 1) { row.remove(); }
+            else { qtyEl.textContent = current - 1; }
+            if (typeof recalcCart === 'function') recalcCart();
+            if (typeof syncStoreCardsFromCart === 'function') syncStoreCardsFromCart();
+          }
+          return;
+        }
+
+        // Stepper increment
+        if (e.target.closest('.pip-recipe__stepper-inc')) {
+          e.stopPropagation();
+          const slug = card.dataset.product;
+          const rows = document.querySelectorAll(
+            `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id="${CSS.escape(slug)}"]`
+          );
+          if (rows.length) {
+            const qtyEl = rows[0].querySelector('.qty');
+            qtyEl.textContent = (parseInt(qtyEl.textContent || '1', 10)) + 1;
+            if (typeof recalcCart === 'function') recalcCart();
+            if (typeof syncStoreCardsFromCart === 'function') syncStoreCardsFromCart();
+          }
+          return;
+        }
+
+        // Add button (first add)
+        if (e.target.closest('.pip-recipe__add')) {
+          const slug = card.dataset.product;
+          const unitPrice = parseFloat(card.dataset.price || '0') || 0;
+          if (!slug || !window.__cart) return;
+          e.stopPropagation();
+          const cfg = (typeof MEAL_CUSTOMIZATIONS !== 'undefined') ? MEAL_CUSTOMIZATIONS[slug] : null;
+          const name = cfg ? cfg.name : (card.querySelector('.pip-recipe__name')?.textContent || slug);
+          const image = cfg ? cfg.image : (card.querySelector('img')?.getAttribute('src') || '');
+          const surcharge = unitPrice > 9.99;
+          window.__cart.addOrIncrement({
+            id: slug, slug, name, image, unitPrice,
+            servings: 2, kind: 'meal',
+            surcharge, showPrice: surcharge,
+            customSummary: ''
+          });
+          if (typeof syncStoreCardsFromCart === 'function') syncStoreCardsFromCart();
+          if (typeof showToast === 'function') showToast('Added to cart');
         }
       });
     })();
@@ -46849,10 +47031,7 @@
         name: "Honey Dijon Dill Steak",
         subtitle: "with Roasted Potatoes & Green Beans",
         image: "images/real/honey-dijon-dill-steak.jpg",
-        // basePrice == PLAN_MEAL_PRICE so the card's pre-customized surcharge
-        // rolls entirely into the default swap's doubleDelta (steak premium +
-        // double portion). Mirrors miso-salmon-ramen / firecracker-meatballs.
-        basePrice: 9.99,
+        basePrice: 13.98,
         isSpecialty: true,
         swapOptions: [
           { id: "default",    title: "Sirloin steak",         weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 3.99, doubleKcalDelta: 400, doubleProteinDelta: 26 },
@@ -46921,7 +47100,7 @@
         name: "Crispy Parmesan Chicken",
         subtitle: "with Roasted Potatoes & Garlicky Greens",
         image: "images/real/crispy-parmesan-chicken.jpg",
-        basePrice: 9.99,
+        basePrice: 13.98,
         swapOptions: [
           { id: "default", title: "Chicken breast", weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 4.99, doubleKcalDelta: 320, doubleProteinDelta: 28 },
           { id: "tofu",    title: "Tofu",           weight: "300g", delta: 0,    image: null },
@@ -46937,7 +47116,7 @@
         name: "Sesame Soy Beef Bowls",
         subtitle: "with Jasmine Rice & Charred Broccoli",
         image: "images/real/sesame-soy-beef-bowls.jpg",
-        basePrice: 9.99,
+        basePrice: 13.98,
         swapOptions: [
           { id: "default", title: "Ground beef",    weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 4.49, doubleKcalDelta: 380, doubleProteinDelta: 24 },
           { id: "chicken", title: "Chicken breast", weight: "300g", delta: 0,    image: null },
@@ -46969,7 +47148,7 @@
         name: "Hoisin Pork Tenderloin",
         subtitle: "with Jasmine Rice & Sesame Snap Peas",
         image: "images/real/hoisin-pork-tenderloin.jpg",
-        basePrice: 9.99,
+        basePrice: 13.98,
         swapOptions: [
           { id: "default", title: "Pork tenderloin", weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 4.99, doubleKcalDelta: 360, doubleProteinDelta: 26 },
           { id: "chicken", title: "Chicken breast",  weight: "300g", delta: 0,    image: null },
@@ -46985,7 +47164,7 @@
         name: "Almond-Crusted Dijon Chicken",
         subtitle: "with Roasted Potatoes & Honey-Glazed Carrots",
         image: "images/real/almond-crusted-dijon-chicken.jpg",
-        basePrice: 9.99,
+        basePrice: 13.98,
         swapOptions: [
           { id: "default", title: "Chicken breast", weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 4.49, doubleKcalDelta: 320, doubleProteinDelta: 28 },
           { id: "tofu",    title: "Tofu",           weight: "300g", delta: 0,    image: null },
@@ -47001,10 +47180,7 @@
         name: "Steak with Parmesan Potatoes",
         subtitle: "with Garlic Butter & Roasted Asparagus",
         image: "images/real/steak-parmesan-potatoes.jpg",
-        // basePrice == PLAN_MEAL_PRICE so the card's pre-customized surcharge
-        // rolls entirely into the default swap's doubleDelta (steak premium +
-        // double portion). Mirrors miso-salmon-ramen / firecracker-meatballs.
-        basePrice: 9.99,
+        basePrice: 13.98,
         isSpecialty: true,
         swapOptions: [
           { id: "default", title: "Sirloin steak",   weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 5.99, doubleKcalDelta: 400, doubleProteinDelta: 26 },
@@ -47086,7 +47262,7 @@
         name: "Beef Meatballs in Onion Gravy",
         subtitle: "with Creamy Mashed Potatoes & Green Beans",
         image: "images/real/beef-meatballs-onion-gravy.jpg",
-        basePrice: 9.99,
+        basePrice: 13.98,
         swapOptions: [
           { id: "default", title: "Beef meatballs",  weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 4.49, doubleKcalDelta: 380, doubleProteinDelta: 24 },
           { id: "chicken", title: "Chicken breast",  weight: "300g", delta: 0,    image: null },
@@ -48035,8 +48211,10 @@
         <p class="pdp-section-disclaimer">You'll receive the right amount of this item to go with the recipe.</p>
       `;
 
-      pdpAddBtn.textContent = existingVariantId ? 'Update' : 'Add to box';
+      pdpAddBtn.hidden = false;
+      document.getElementById('pdpQtyStepper').hidden = true;
       updatePdpFooter();
+      updatePdpQtyControl();
     }
 
     function updatePdpFooter() {
@@ -48060,6 +48238,45 @@
       } else {
         pdpTotalEl.textContent = '';
         if (priceWrap) priceWrap.hidden = true;
+      }
+    }
+
+    function updatePdpQtyControl() {
+      if (!pdpState) return;
+      const { slug, cfg, selectedSwap, selectedAddOns, doubleSelected } = pdpState;
+      const rows = document.querySelectorAll(
+        `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id^="${CSS.escape(slug)}"]`
+      );
+      let qty = 0;
+      rows.forEach(r => {
+        const q = parseInt(r.querySelector('.qty')?.textContent || '0', 10);
+        if (!isNaN(q)) qty += q;
+      });
+
+      const addBtn = document.getElementById('pdpAddBtn');
+      const stepper = document.getElementById('pdpQtyStepper');
+      if (!addBtn || !stepper) return;
+
+      if (qty > 0) {
+        const swap = cfg.swapOptions.find(o => o.id === selectedSwap) || cfg.swapOptions[0];
+        const swapDelta = swap.delta || 0;
+        const doubleDelta = (doubleSelected && swap.doubleDelta != null) ? swap.doubleDelta : 0;
+        let addonSum = 0;
+        cfg.addOns.forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
+        const total = cfg.basePrice + swapDelta + doubleDelta + addonSum;
+        const surcharge = total - PLAN_MEAL_PRICE;
+
+        const mainEl = document.getElementById('pdpQtyVal')?.querySelector('.pdp-qty-label-main');
+        const subEl  = document.getElementById('pdpQtyVal')?.querySelector('.pdp-qty-label-sub');
+        if (mainEl) mainEl.textContent = `${qty} in your box`;
+        if (subEl)  subEl.textContent  = surcharge > 0 ? `(2 servings ${fmtDelta(surcharge)})` : '';
+
+        stepper.hidden = false;
+        addBtn.hidden = true;
+      } else {
+        stepper.hidden = true;
+        addBtn.hidden = false;
+        addBtn.textContent = 'Add to box';
       }
     }
 
@@ -48156,8 +48373,13 @@
 
     function closePdp() {
       const origin = (pdpState && pdpState.originScreen) || 'store';
+      const returnToPip = !!window.__pdpReturnToPip;
+      window.__pdpReturnToPip = false;
       pdpState = null;
       switchScreen(origin);
+      if (returnToPip && typeof window.__openPipPage === 'function') {
+        window.__openPipPage();
+      }
     }
 
     if (pdpBackBtn) pdpBackBtn.addEventListener('click', closePdp);
@@ -48194,13 +48416,9 @@
         if (!pdpState) return;
         const { existingVariantId } = pdpState;
 
-        // If editing an existing cart row, remove it (and any associated
-        // pairing rows that came from the drawer) before adding the
-        // updated variant so we don't leave a stale row behind.
         if (existingVariantId) {
           const row = document.querySelector(`.product-item[data-meal-id="${CSS.escape(existingVariantId)}"]`);
           if (row && row.parentNode) row.parentNode.removeChild(row);
-          // Also remove any pairing-* rows tied to this meal's addOns
           pdpState.cfg.addOns.forEach(ad => {
             const pairingRow = document.querySelector(`.product-item[data-meal-id="pairing-${CSS.escape(ad.id)}"]`);
             if (pairingRow && pairingRow.parentNode) pairingRow.parentNode.removeChild(pairingRow);
@@ -48209,7 +48427,48 @@
         }
 
         addCustomizedMealToCart(pdpState);
-        closePdp();
+        pdpState.existingVariantId = null;
+        updatePdpQtyControl();
+      });
+    }
+
+    const pdpStepperDec = document.getElementById('pdpStepperDec');
+    const pdpStepperInc = document.getElementById('pdpStepperInc');
+
+    if (pdpStepperDec) {
+      pdpStepperDec.addEventListener('click', () => {
+        if (!pdpState) return;
+        const slug = pdpState.slug;
+        const row = document.querySelector(
+          `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id^="${CSS.escape(slug)}"]`
+        );
+        if (!row) return;
+        const qtyEl = row.querySelector('.qty');
+        const current = parseInt(qtyEl?.textContent || '1', 10);
+        if (current <= 1) {
+          row.remove();
+        } else {
+          qtyEl.textContent = current - 1;
+        }
+        if (typeof window.__recalcCart === 'function') window.__recalcCart();
+        if (typeof syncStoreCardsFromCart === 'function') syncStoreCardsFromCart();
+        updatePdpQtyControl();
+      });
+    }
+
+    if (pdpStepperInc) {
+      pdpStepperInc.addEventListener('click', () => {
+        if (!pdpState) return;
+        const slug = pdpState.slug;
+        const row = document.querySelector(
+          `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id^="${CSS.escape(slug)}"]`
+        );
+        if (!row) return;
+        const qtyEl = row.querySelector('.qty');
+        qtyEl.textContent = (parseInt(qtyEl.textContent || '1', 10)) + 1;
+        if (typeof window.__recalcCart === 'function') window.__recalcCart();
+        if (typeof syncStoreCardsFromCart === 'function') syncStoreCardsFromCart();
+        updatePdpQtyControl();
       });
     }
 
@@ -48555,9 +48814,21 @@
           : '';
         const titleRowPrice = customSummary ? '' : priceHtml;
         CUSTOMISATION_ROW_FEATURE_DISABLED */
-        const premiumRow = priceText
-          ? `<div class="product-item__premium-row"><span class="product-item__premium-label">Premium</span>${priceHtml}</div>`
-          : '';
+        let subtitleRow = '';
+        let titleRowSuffix = '';
+        if (customSummary) {
+          subtitleRow = `<div class="product-item__custom-row">
+            <p class="product-item__custom" data-testid="product-item-custom">${customSummary}</p>
+            ${priceHtml}
+          </div>`;
+        } else if (priceText && surcharge) {
+          subtitleRow = `<div class="product-item__premium-row">
+            <span class="product-item__premium-label">PREMIUM</span>
+            <span class="product-item__price" data-testid="product-item-price">${priceText}</span>
+          </div>`;
+        } else if (priceText) {
+          titleRowSuffix = priceHtml;
+        }
         el.innerHTML = `
           <div class="product-item__inner">
             <button type="button" class="product-item__thumbnail-btn" aria-label="Open ${name} details">
@@ -48567,9 +48838,9 @@
           </div>
           <div class="product-item__title-container">
             <div class="product-item__row">
-              <span class="product-item__name" data-testid="product-item-name">${name}</span>
+              <span class="product-item__name" data-testid="product-item-name">${name}</span>${titleRowSuffix}
             </div>
-            ${premiumRow}
+            ${subtitleRow}
             <div class="number-stepper" role="group" aria-label="Quantity" data-zest-component="NumberStepper">
               <button type="button" class="number-stepper__button stepper-dec" aria-label="Decrease">${SVG_MINUS}</button>
               <span class="number-stepper__value qty">${qty}</span>
@@ -48803,6 +49074,9 @@
           card.classList.toggle('is-selected', qty > 0);
           if (card.classList.contains('fav-card')) {
             syncFavCardState(card, qty, customizedRow);
+          } else if (card.classList.contains('pip-recipe')) {
+            const qtyEl = card.querySelector('.pip-recipe__qty');
+            if (qtyEl) qtyEl.textContent = Math.max(1, qty);
           } else {
             renderCardFooterStepper(card, qty, customizedRow);
             syncCardPlanLine(card, customizedRow);
