@@ -3298,18 +3298,28 @@
       color: #111;
     }
     .product-card .card-footer .add-btn {
-      border: 1.5px solid #111;
-      background: #FFFFFF;
-      border-radius: 9px;
-      padding: 7px 22px;
-      font-family: var(--font-family-cta);
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 1;
-      color: #111;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: #232323;
+      color: #fff;
+      font-size: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
+      flex-shrink: 0;
     }
-    .product-card .card-footer .add-btn:active { background: var(--color-elevation-level1); }
+    .product-card .card-footer .add-btn::after {
+      content: '+';
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1;
+      color: #fff;
+    }
+    .product-card .card-footer .add-btn:active { background: #444; }
     .product-card .card-footer .qty-stepper {
       display: flex;
       align-items: center;
@@ -3666,18 +3676,28 @@
       color: #777;
     }
     .category-list-card .card-footer .add-btn {
-      border: 1.5px solid #111;
-      background: #FFFFFF;
-      border-radius: 9px;
-      padding: 7px 22px;
-      font-family: var(--font-family-cta);
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 1;
-      color: #111;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: #232323;
+      color: #fff;
+      font-size: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
+      flex-shrink: 0;
     }
-    .category-list-card .card-footer .add-btn:active { background: var(--color-elevation-level1); }
+    .category-list-card .card-footer .add-btn::after {
+      content: '+';
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1;
+      color: #fff;
+    }
+    .category-list-card .card-footer .add-btn:active { background: #444; }
     .category-list-card .card-footer .qty-stepper {
       display: flex;
       align-items: center;
@@ -4008,21 +4028,66 @@
       color: var(--color-neutral-foreground-strongest);
       margin-top: 2px;
     }
-    .reorder-card .add-btn {
-      margin: 4px 10px 10px;
-      padding: 6px 12px;
-      background: #FFFFFF;
-      color: var(--color-neutral-foreground-strongest);
-      border: 1px solid var(--color-neutral-foreground-strongest);
-      border-radius: var(--radius-md);
-      font-family: var(--font-family-cta);
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      align-self: flex-end;
-      box-shadow: none;
+    .reorder-card .card-footer {
+      padding: 4px 10px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
-    .reorder-card .add-btn:active { background: var(--color-elevation-level1); }
+    .reorder-card .add-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: #232323;
+      color: #fff;
+      font-size: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .reorder-card .add-btn::after {
+      content: '+';
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1;
+      color: #fff;
+    }
+    .reorder-card .add-btn:active { background: #444; }
+    .reorder-card .card-footer .qty-stepper {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #111;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #111;
+    }
+    .reorder-card .card-footer .qty-stepper button {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: #111;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-family: var(--font-family-secondary);
+    }
+    .reorder-card .card-footer .qty-stepper .qty-val {
+      min-width: 22px;
+      text-align: center;
+      font-family: var(--font-family-secondary);
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+      padding: 0 2px;
+    }
 
     /* Carousel controls for reorder (< >) */
     .market-carousel-controls {
@@ -8090,6 +8155,7 @@
       background: #FFFFFF;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      padding-bottom: 0;
     }
     .pdp-hero {
       position: relative;
@@ -8125,7 +8191,7 @@
     }
     .pdp-hero__back svg { width: 20px; height: 20px; }
     .pdp-body {
-      padding: 20px 16px 120px;
+      padding: 20px 16px 80px;
     }
     .pdp-title {
       font-family: var(--font-family-secondary);
@@ -8202,7 +8268,7 @@
     .pdp-footer .btn-add-to-box {
       flex: 1;
       padding: 14px 16px;
-      border-radius: 999px;
+      border-radius: 12px;
       background: var(--color-brand-background-default, #007838);
       color: #FFFFFF;
       border: none;
@@ -12845,7 +12911,9 @@
                 <div class="name">Pork Lumpia</div>
                 <div class="price">$4.19</div>
               </div>
-              <button class="add-btn stepper-plus" aria-label="Add Pork Lumpia">Add</button>
+              <div class="card-footer">
+                <button class="add-btn stepper-plus" aria-label="Add Pork Lumpia">Add</button>
+              </div>
             </article>
             <article class="reorder-card" data-product="chocolate-chip-cookie-skillet" data-price="3.99">
               <div class="img-wrap"><img src="images/market-chocolate-chip-cookie-skillet.jpg" alt="Chocolate Chip Cookie Skillet"></div>
@@ -12853,7 +12921,9 @@
                 <div class="name">Chocolate Chip Cookie Skillet</div>
                 <div class="price">$3.99</div>
               </div>
-              <button class="add-btn stepper-plus" aria-label="Add Chocolate Chip Cookie Skillet">Add</button>
+              <div class="card-footer">
+                <button class="add-btn stepper-plus" aria-label="Add Chocolate Chip Cookie Skillet">Add</button>
+              </div>
             </article>
             <article class="reorder-card" data-product="cinnamon-rolls" data-price="4.49">
               <div class="img-wrap"><img src="images/market-cinnamon-roll.jpg" alt="Cinnamon Rolls"></div>
@@ -12861,7 +12931,9 @@
                 <div class="name">Cinnamon Rolls</div>
                 <div class="price">$4.49</div>
               </div>
-              <button class="add-btn stepper-plus" aria-label="Add Cinnamon Rolls">Add</button>
+              <div class="card-footer">
+                <button class="add-btn stepper-plus" aria-label="Add Cinnamon Rolls">Add</button>
+              </div>
             </article>
             <article class="reorder-card" data-product="creamy-mashed-potatoes" data-price="3.49">
               <div class="img-wrap"><img src="images/market-mashed-potatoes.jpg" alt="Creamy Mashed Potatoes"></div>
@@ -12869,7 +12941,9 @@
                 <div class="name">Creamy Mashed Potatoes</div>
                 <div class="price">$3.49</div>
               </div>
-              <button class="add-btn stepper-plus" aria-label="Add Creamy Mashed Potatoes">Add</button>
+              <div class="card-footer">
+                <button class="add-btn stepper-plus" aria-label="Add Creamy Mashed Potatoes">Add</button>
+              </div>
             </article>
           </div>
 
@@ -43560,7 +43634,7 @@
 
       // Card body click → open PDP
       grid.addEventListener('click', (e) => {
-        if (e.target.closest('.pip-recipe__add')) return;
+        if (e.target.closest('.pip-recipe__add') || e.target.closest('.pip-recipe__stepper')) return;
         const card = e.target.closest('.pip-recipe');
         if (!card) return;
         const slug = card.dataset.product;
@@ -43592,8 +43666,8 @@
             const current = parseInt(qtyEl?.textContent || '1', 10);
             if (current <= 1) { row.remove(); }
             else { qtyEl.textContent = current - 1; }
-            if (typeof recalcCart === 'function') recalcCart();
-            if (typeof syncStoreCardsFromCart === 'function') syncStoreCardsFromCart();
+            if (typeof window.__recalcCart === 'function') window.__recalcCart();
+            if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
           }
           return;
         }
@@ -43608,8 +43682,8 @@
           if (rows.length) {
             const qtyEl = rows[0].querySelector('.qty');
             qtyEl.textContent = (parseInt(qtyEl.textContent || '1', 10)) + 1;
-            if (typeof recalcCart === 'function') recalcCart();
-            if (typeof syncStoreCardsFromCart === 'function') syncStoreCardsFromCart();
+            if (typeof window.__recalcCart === 'function') window.__recalcCart();
+            if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
           }
           return;
         }
@@ -43630,7 +43704,7 @@
             surcharge, showPrice: surcharge,
             customSummary: ''
           });
-          if (typeof syncStoreCardsFromCart === 'function') syncStoreCardsFromCart();
+          if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
           if (typeof showToast === 'function') showToast('Added to cart');
         }
       });
@@ -44895,7 +44969,7 @@
         return standardRow + doubleRow;
       }).join('');
 
-      const addOnCardsHtml = cfg.addOns.map(ad => {
+      const addOnCardsHtml = (cfg.addOns || []).map(ad => {
         const isSelected = selectedAddOns.has(ad.id);
         return `
           <label class="addon-card ${isSelected ? 'selected' : ''}" data-addon-id="${ad.id}">
@@ -44945,7 +45019,7 @@
         <div class="swap-list" role="radiogroup" aria-label="Customize your meal">
           ${swapRowsHtml}
         </div>
-        ${cfg.addOns.length ? `
+        ${(cfg.addOns && cfg.addOns.length) ? `
           <h2 class="pdp-section-title">Tastes even better with</h2>
           <div class="addon-carousel">
             ${addOnCardsHtml}
@@ -47373,7 +47447,7 @@
         return standardRow + doubleRow;
       }).join('');
 
-      const addOnCardsHtml = cfg.addOns.map(ad => {
+      const addOnCardsHtml = (cfg.addOns || []).map(ad => {
         const isSelected = selectedAddOns.has(ad.id);
         return `
           <label class="addon-card ${isSelected ? 'selected' : ''}" data-addon-id="${ad.id}">
@@ -47432,7 +47506,7 @@
       const swapDelta = swap.delta || 0;
       const doubleDelta = (doubleSelected && swap.doubleDelta != null) ? swap.doubleDelta : 0;
       let addonSum = 0;
-      cfg.addOns.forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
+      (cfg.addOns || []).forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
       const total = cfg.basePrice + swapDelta + doubleDelta + addonSum;
       const surcharge = total - PLAN_MEAL_PRICE;
       const priceWrap = customizeTotalEl.parentElement;
@@ -47472,6 +47546,11 @@
       }
     }
 
+    function hasRealCustomizations(cfg) {
+      return (cfg.swapOptions && cfg.swapOptions.length > 1) ||
+             (cfg.addOns && cfg.addOns.length > 0);
+    }
+
     function openCustomizeDrawer(slug, cfg, originButton, opts) {
       opts = opts || {};
       const defaultSwapOpt = (cfg.swapOptions.find(o => o.isDefault) || cfg.swapOptions[0]);
@@ -47508,7 +47587,7 @@
       }
       // Also infer add-ons from standalone pairing rows, mirroring the PDP.
       if (selectedAddOns.size === 0) {
-        cfg.addOns.forEach(ad => {
+        (cfg.addOns || []).forEach(ad => {
           if (document.querySelector(`.product-item[data-meal-id="pairing-${CSS.escape(ad.id)}"]`)) {
             selectedAddOns.add(ad.id);
           }
@@ -47643,7 +47722,7 @@
       // as their own rows, not bundled into the meal price.
       const pairings = [];
       if (hasPairings) {
-        cfg.addOns.forEach(ad => {
+        (cfg.addOns || []).forEach(ad => {
           if (selectedAddOns.has(ad.id)) {
             pairings.push({ id: ad.id, name: ad.name, image: ad.image, unitPrice: ad.delta });
           }
@@ -48153,7 +48232,7 @@
         return standardRow + doubleRow;
       }).join('');
 
-      const addOnCardsHtml = cfg.addOns.map(ad => {
+      const addOnCardsHtml = (cfg.addOns || []).map(ad => {
         const isSelected = selectedAddOns.has(ad.id);
         return `
           <label class="addon-card ${isSelected ? 'selected' : ''}" data-addon-id="${ad.id}">
@@ -48189,12 +48268,15 @@
         }
       }
 
+      const hasSwapChoices = cfg.swapOptions && cfg.swapOptions.length > 1;
+      const hasAddOns = cfg.addOns && cfg.addOns.length > 0;
       pdpBody.innerHTML = `
         <h1 class="pdp-title" id="pdpTitle">${cfg.name}</h1>
-        <p class="pdp-subtitle">${cfg.subtitle}</p>
+        <p class="pdp-subtitle">${cfg.subtitle || ''}</p>
         ${buildPdpQuickInfoHtml(quickInfoMeta)}
         ${buildPdpDietaryTagsHtml(meta)}
 
+        ${hasSwapChoices ? `
         <h2 class="pdp-section-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4L20 12M16 12H20V8M12 20L4 12M8 12H4V16"/></svg>
           Make it yours
@@ -48203,12 +48285,15 @@
         <div class="swap-list" role="radiogroup" aria-label="Make it yours">
           ${swapRowsHtml}
         </div>
+        ` : ''}
 
+        ${hasAddOns ? `
         <h2 class="pdp-section-title">Tastes even better with</h2>
         <div class="addon-carousel">
           ${addOnCardsHtml}
         </div>
         <p class="pdp-section-disclaimer">You'll receive the right amount of this item to go with the recipe.</p>
+        ` : ''}
       `;
 
       pdpAddBtn.hidden = false;
@@ -48224,7 +48309,7 @@
       const swapDelta = swap.delta || 0;
       const doubleDelta = (doubleSelected && swap.doubleDelta != null) ? swap.doubleDelta : 0;
       let addonSum = 0;
-      cfg.addOns.forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
+      (cfg.addOns || []).forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
       // PDP footer shows per-serving surcharge vs PLAN_MEAL_PRICE (matches
       // the "+$X.XX per serving" copy on the product card), not the gross
       // per-serving price. When surcharge <= 0 the price hides entirely so
@@ -48262,7 +48347,7 @@
         const swapDelta = swap.delta || 0;
         const doubleDelta = (doubleSelected && swap.doubleDelta != null) ? swap.doubleDelta : 0;
         let addonSum = 0;
-        cfg.addOns.forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
+        (cfg.addOns || []).forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
         const total = cfg.basePrice + swapDelta + doubleDelta + addonSum;
         const surcharge = total - PLAN_MEAL_PRICE;
 
@@ -48280,14 +48365,37 @@
       }
     }
 
+    function openPdpForAnyCard(card, slug) {
+      if (typeof MEAL_CUSTOMIZATIONS !== 'undefined' && MEAL_CUSTOMIZATIONS[slug]) {
+        openPdp(slug);
+        return;
+      }
+      const nameEl = card.querySelector('.product-name') || card.querySelector('.name');
+      const name = (nameEl ? nameEl.textContent : '').trim();
+      const imgEl = card.querySelector('img');
+      const price = parseFloat(card.dataset.price || '0') || 0;
+      const metaEl = card.querySelector('.product-meta');
+      openPdp(slug, {
+        syntheticCfg: {
+          name: name,
+          subtitle: metaEl ? metaEl.textContent.trim() : '',
+          image: imgEl ? imgEl.getAttribute('src') : '',
+          basePrice: price,
+          swapOptions: [{ id: 'default', title: name, weight: null, delta: 0, isDefault: true }],
+          addOns: [],
+        }
+      });
+    }
+    window.openPdpForAnyCard = openPdpForAnyCard;
+
     function openPdp(slug, opts) {
-      const cfg = MEAL_CUSTOMIZATIONS[slug];
+      const options = opts || {};
+      const cfg = options.syntheticCfg || MEAL_CUSTOMIZATIONS[slug];
       if (!cfg) {
         // Fallback: no config for this slug — just show a toast.
         showToast('Details not available');
         return;
       }
-      const options = opts || {};
       const existingVariantId = options.existingVariantId || null;
 
       // Default state
@@ -48320,7 +48428,7 @@
         }
         // Also detect pairing rows (from drawer pairings split)
         if (selectedAddOns.size === 0) {
-          cfg.addOns.forEach(ad => {
+          (cfg.addOns || []).forEach(ad => {
             if (document.querySelector(`.product-item[data-meal-id="pairing-${CSS.escape(ad.id)}"]`)) {
               selectedAddOns.add(ad.id);
             }
@@ -48419,7 +48527,7 @@
         if (existingVariantId) {
           const row = document.querySelector(`.product-item[data-meal-id="${CSS.escape(existingVariantId)}"]`);
           if (row && row.parentNode) row.parentNode.removeChild(row);
-          pdpState.cfg.addOns.forEach(ad => {
+          (pdpState.cfg.addOns || []).forEach(ad => {
             const pairingRow = document.querySelector(`.product-item[data-meal-id="pairing-${CSS.escape(ad.id)}"]`);
             if (pairingRow && pairingRow.parentNode) pairingRow.parentNode.removeChild(pairingRow);
           });
@@ -48451,7 +48559,7 @@
           qtyEl.textContent = current - 1;
         }
         if (typeof window.__recalcCart === 'function') window.__recalcCart();
-        if (typeof syncStoreCardsFromCart === 'function') syncStoreCardsFromCart();
+        if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
         updatePdpQtyControl();
       });
     }
@@ -48467,7 +48575,7 @@
         const qtyEl = row.querySelector('.qty');
         qtyEl.textContent = (parseInt(qtyEl.textContent || '1', 10)) + 1;
         if (typeof window.__recalcCart === 'function') window.__recalcCart();
-        if (typeof syncStoreCardsFromCart === 'function') syncStoreCardsFromCart();
+        if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
         updatePdpQtyControl();
       });
     }
@@ -48708,7 +48816,7 @@
       // Skip the cart screen's own + button (handled by bindStepper)
       if (plus.closest('.cart-scroll')) return;
       e.stopPropagation();
-      const card = plus.closest('.product-card, .category-list-card, .fav-card');
+      const card = plus.closest('.product-card, .category-list-card, .fav-card, .reorder-card');
       const slug = card && card.dataset.product;
       const isCustomizable = card && card.dataset.customizable === 'true';
       const cfg = slug ? MEAL_CUSTOMIZATIONS[slug] : null;
@@ -48732,12 +48840,26 @@
         }
       }
 
-      // Customizable meal → always open the drawer first (even with HP
-      // filter active). The drawer preselects 2x when HP is on, so the user
-      // sees the pre-customized state and can confirm or adjust before the
-      // card flips to the selected state.
-      if (isCustomizable && cfg) {
+      // Customizable meal with real choices → open the drawer first.
+      // Single-default meals (one swap, no add-ons) add immediately.
+      if (isCustomizable && cfg && hasRealCustomizations(cfg)) {
         openCustomizeDrawer(slug, cfg, plus);
+        return;
+      }
+      if (isCustomizable && cfg) {
+        const defaultSwap = cfg.swapOptions.find(o => o.isDefault) || cfg.swapOptions[0];
+        addCustomizedMealToCart({
+          cfg, slug,
+          selectedSwap: defaultSwap.id,
+          selectedAddOns: new Set(),
+          doubleSelected: false,
+        });
+        refreshStoreBadge();
+        if (getCartMealCount() >= 2) {
+          showOrderSavedToast();
+        } else {
+          showToast('Added to cart');
+        }
         return;
       }
 
@@ -48751,6 +48873,25 @@
           showToast('Added to cart');
         }
       }
+    });
+
+    /* ==================================================
+       Card body tap → opens PDP.
+       Only fires when the tap is on the image/title area —
+       footer, buttons, and fav controls are excluded.
+       ================================================== */
+    document.addEventListener('click', (e) => {
+      if (e.target.closest(
+        '.card-footer, .favorite-btn, .add-btn, .qty-stepper, ' +
+        '.card-stepper-dec, .card-stepper-inc, .fav-card__customize, ' +
+        '.fav-card__add, .fav-card__stepper'
+      )) return;
+      const card = e.target.closest('.category-list-card, .product-card, .reorder-card');
+      if (!card) return;
+      const slug = card.dataset.product;
+      if (!slug) return;
+      e.stopPropagation();
+      openPdpForAnyCard(card, slug);
     });
 
     /* ==================================================
@@ -49706,15 +49847,35 @@
         }
       }
 
+      function syncCartRow() {
+        const slug = card.dataset.product;
+        const row = document.querySelector(`.product-item[data-slug="${CSS.escape(slug)}"]`);
+        if (row) {
+          const qtyEl = row.querySelector('.qty');
+          if (qty <= 0) { row.remove(); }
+          else if (qtyEl) { qtyEl.textContent = qty; }
+        } else if (qty > 0 && window.__cart) {
+          const name = card.querySelector('.your-meals-card__name')?.textContent || slug;
+          const img = card.querySelector('.your-meals-card__img img')?.src || '';
+          const unitPrice = parseFloat(card.querySelector('.your-meals-card__tag--price')?.dataset.unitPrice || '0');
+          window.__cart.addOrIncrement({ id: slug, slug, name, image: img, unitPrice, servings: 2, kind: 'meal', surcharge: unitPrice > 9.99 });
+          return;
+        }
+        if (typeof window.__recalcCart === 'function') window.__recalcCart();
+        if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+      }
+
       decBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (qty > 0) qty -= 1;
         render();
+        syncCartRow();
       });
       incBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         qty += 1;
         render();
+        syncCartRow();
         incBtn.style.transform = 'scale(1.15)';
         setTimeout(() => incBtn.style.transform = '', 150);
       });
@@ -49723,6 +49884,7 @@
           e.stopPropagation();
           qty = 1;
           render();
+          syncCartRow();
         });
       }
       render();
