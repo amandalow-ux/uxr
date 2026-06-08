@@ -2845,6 +2845,113 @@
       z-index: 3;
     }
 
+    /* ---------- Merch Widget card (inline in store-grid) ---------- */
+    .merch-widget-card {
+      position: relative;
+      background: #067a46;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .merch-widget-card__img {
+      width: 100%;
+      height: 162px;
+      object-fit: cover;
+      display: block;
+    }
+    .merch-widget-card__body {
+      padding: 20px 16px 16px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .merch-widget-card__title {
+      font-family: var(--font-family-primary, 'Agrandir', sans-serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.33;
+      margin: 0;
+      flex: 1;
+      min-width: 0;
+    }
+    .merch-widget-card__arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #faf8f3;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .merch-widget-card__arrow svg {
+      width: 20px;
+      height: 20px;
+      color: #1d1d1d;
+    }
+
+    /* ---------- Merch Collection overlay page ---------- */
+    .merch-collection-page {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      z-index: 1000;
+      overflow: hidden;
+      display: none;
+    }
+    .merch-collection-page.visible { display: block; }
+    .merch-collection-page .merch-header {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: #067a46;
+      padding: 48px 16px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+    .merch-collection-page .merch-header__back {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .merch-collection-page .merch-header__title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+      font-family: var(--font-family-primary, 'Agrandir', sans-serif);
+    }
+    .merch-collection-page .merch-scroll {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .merch-collection-page .merch-scroll::-webkit-scrollbar { display: none; }
+    .merch-collection-page .merch-spacer { height: 90px; }
+    .merch-collection-page .merch-list {
+      padding: 12px 16px 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .merch-collection-page .merch-list .product-card {
+      margin: 0;
+    }
+
     /* ---------- Order confirmation drawer ---------- */
     .order-confirm-drawer {
       position: absolute;
@@ -12238,6 +12345,246 @@
               </div>
             </article>
 
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="garlic-herb-butter-scallops" data-price="12.99" data-customizable="true" data-filters="specialty seafood high-protein under-30 milk" data-sort-time="25" data-sort-calories="580" data-sort-protein="36">
+              <div class="img-wrap">
+                <img src="images/real/garlic-herb-butter-scallops.jpg" alt="Garlic Herb Butter Scallops">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Garlic Herb Butter Scallops</div>
+                <div class="product-subtitle">with Lemon Risotto &amp; Asparagus</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>25 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>580 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>36g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Specialty</span>
+                  <span class="dietary-tag">Seafood</span>
+                  <span class="dietary-tag">High Protein</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line plan-line--surcharge">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="surcharge-price">
+                    <span class="surcharge-price__amount">+$1.50</span>
+                    <span class="surcharge-price__unit">per serving</span>
+                  </span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Garlic Herb Butter Scallops to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="creamy-lemon-garlic-shrimp" data-price="9.99" data-customizable="true" data-filters="pasta-noodles seafood high-protein under-30 milk wheat" data-sort-time="25" data-sort-calories="640" data-sort-protein="34">
+              <div class="img-wrap">
+                <img src="images/real/creamy-lemon-garlic-shrimp-linguine.jpg" alt="Creamy Lemon-Garlic Shrimp Linguine">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Creamy Lemon-Garlic Shrimp Linguine</div>
+                <div class="product-subtitle">with Cherry Tomatoes &amp; Capers</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>25 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>640 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>34g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Seafood</span>
+                  <span class="dietary-tag">High Protein</span>
+                  <span class="dietary-tag">Quick Cook</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="plan-text">Included in plan</span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Creamy Lemon-Garlic Shrimp Linguine to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="chicken-milanese-pesto" data-price="9.99" data-customizable="true" data-filters="pasta-noodles italian chicken high-protein under-30 milk wheat" data-sort-time="30" data-sort-calories="720" data-sort-protein="38">
+              <div class="img-wrap">
+                <img src="images/real/chicken-milanese-pesto-penne.jpg" alt="Chicken Milanese &amp; Pesto Penne">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Chicken Milanese &amp; Pesto Penne</div>
+                <div class="product-subtitle">with Sun-Dried Tomatoes &amp; Parmesan</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>30 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>720 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>38g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">High Protein</span>
+                  <span class="dietary-tag">Italian</span>
+                  <span class="dietary-tag">Family Friendly</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="plan-text">Included in plan</span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Chicken Milanese &amp; Pesto Penne to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="sweet-heat-steak-bowls" data-price="13.99" data-customizable="true" data-filters="specialty american beef high-protein under-30 spicy" data-sort-time="25" data-sort-calories="700" data-sort-protein="42">
+              <div class="img-wrap">
+                <img src="images/real/sweet-heat-steak-rice-bowls.jpg" alt="Sweet Heat Steak &amp; Rice Bowls">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Sweet Heat Steak &amp; Rice Bowls</div>
+                <div class="product-subtitle">with Gochujang Glaze &amp; Pickled Cucumbers</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>25 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>700 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>42g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Specialty</span>
+                  <span class="dietary-tag">High Protein</span>
+                  <span class="dietary-tag">Spicy</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line plan-line--surcharge">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="surcharge-price">
+                    <span class="surcharge-price__amount">+$2.00</span>
+                    <span class="surcharge-price__unit">per serving</span>
+                  </span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Sweet Heat Steak &amp; Rice Bowls to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="loaded-beef-taquitos" data-price="9.99" data-customizable="true" data-filters="handhelds mexican beef family-friendly under-30 wheat" data-sort-time="25" data-sort-calories="750" data-sort-protein="32">
+              <div class="img-wrap">
+                <img src="images/real/loaded-beef-taquitos.jpg" alt="Loaded Beef Taquitos">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Loaded Beef Taquitos</div>
+                <div class="product-subtitle">with Guacamole &amp; Pico de Gallo</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>25 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>750 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>32g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Mexican</span>
+                  <span class="dietary-tag">Family Friendly</span>
+                  <span class="dietary-tag">Quick Cook</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="plan-text">Included in plan</span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Loaded Beef Taquitos to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="aglio-olio-chicken-pasta" data-price="9.99" data-customizable="true" data-filters="pasta-noodles italian chicken under-30 wheat" data-sort-time="20" data-sort-calories="690" data-sort-protein="36">
+              <div class="img-wrap">
+                <img src="images/real/aglio-olio-chicken-pasta.jpg" alt="Aglio E Olio Chicken Pasta">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Aglio E Olio Chicken Pasta</div>
+                <div class="product-subtitle">with Chilli Flakes &amp; Crispy Breadcrumbs</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>20 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>690 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>36g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Italian</span>
+                  <span class="dietary-tag">Quick Cook</span>
+                  <span class="dietary-tag">Easy Prep</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="plan-text">Included in plan</span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Aglio E Olio Chicken Pasta to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="scallops-parmesan-spaghetti" data-price="12.99" data-customizable="true" data-filters="pasta-noodles italian seafood high-protein under-30 milk wheat" data-sort-time="25" data-sort-calories="660" data-sort-protein="34">
+              <div class="img-wrap">
+                <img src="images/real/scallops-parmesan-spaghetti.jpg" alt="Scallops &amp; Parmesan Spaghetti">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Scallops &amp; Parmesan Spaghetti</div>
+                <div class="product-subtitle">with Brown Butter &amp; Crispy Capers</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>25 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>660 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>34g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Seafood</span>
+                  <span class="dietary-tag">Italian</span>
+                  <span class="dietary-tag">High Protein</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line plan-line--surcharge">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="surcharge-price">
+                    <span class="surcharge-price__amount">+$1.50</span>
+                    <span class="surcharge-price__unit">per serving</span>
+                  </span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Scallops &amp; Parmesan Spaghetti to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
             <!-- Premium experience section — "A night in, elevated" date night mosaic -->
             <section class="premium-section" data-zest-component="custom" data-zest-note="Premium experience mosaic">
               <div class="premium-section-head">
@@ -12624,6 +12971,17 @@
                 <button type="button" class="add-btn stepper-plus" aria-label="Add Almond-Crusted Dijon Chicken to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
               </div>
             </article>
+
+            <!-- Merch Widget — "Top 10 meals in the US" collection entry point -->
+            <div class="merch-widget-card" id="merchWidgetCard" role="button" tabindex="0" aria-label="View Top 10 meals in the US collection" data-zest-component="custom" data-zest-note="Merch widget card">
+              <img class="merch-widget-card__img" src="images/real/merch-top10-hero.jpg" alt="Top 10 meals in the US">
+              <div class="merch-widget-card__body">
+                <h3 class="merch-widget-card__title">Top 10 meals in the US</h3>
+                <div class="merch-widget-card__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+              </div>
+            </div>
 
             <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="steak-parmesan-potatoes" data-price="13.99" data-customizable="true" data-filters="specialty american beef high-protein under-45 milk" data-sort-time="35" data-sort-calories="760" data-sort-protein="42">
               <div class="img-wrap">
@@ -13762,6 +14120,24 @@
         </div>
 
         <div class="pip-bottom-gradient" aria-hidden="true"></div>
+      </div>
+
+      <!-- ================================================
+           MERCH COLLECTION — "Top 10 meals in the US"
+           Opens when the Merch Widget card is tapped in the
+           store grid. Follows premium-irish-page pattern.
+           ================================================ -->
+      <div class="merch-collection-page" id="merch-collection-page" role="dialog" aria-modal="true" aria-labelledby="merch-collection-title" hidden>
+        <div class="merch-header">
+          <button type="button" class="merch-header__back" id="merchBackBtn" aria-label="Back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <h2 class="merch-header__title" id="merch-collection-title">Top 10 meals in the US</h2>
+        </div>
+        <div class="merch-scroll" id="merchScroll">
+          <div class="merch-spacer"></div>
+          <div class="merch-list" id="merchRecipeGrid"></div>
+        </div>
       </div>
 
       <!-- Floating Store Button (sibling of pages so it doesn't scroll with content) -->
@@ -43843,6 +44219,118 @@
           }
         });
       });
+    })();
+
+    /* ==================================================
+       Merch Collection — "Top 10 meals in the US" nested page
+       Opens from the Merch Widget card in the store grid.
+       ================================================== */
+    (function () {
+      const page = document.getElementById('merch-collection-page');
+      const widgetCard = document.getElementById('merchWidgetCard');
+      const backBtn = document.getElementById('merchBackBtn');
+      const scroll = document.getElementById('merchScroll');
+      const grid = document.getElementById('merchRecipeGrid');
+      if (!page || !widgetCard) return;
+
+      const recipes = [
+        { slug: 'firecracker-meatballs',       unitPrice: 11.99, name: 'Firecracker Meatballs',            sub: 'with Roasted Green Beans &amp; Jasmine Rice', time: '20 min', prep: '5 min', protein: '35g', tags: ['High Protein', 'Spicy'], img: 'images/real/sweet-spicy-pork-noodle.jpg' },
+        { slug: 'steak-parmesan-potatoes',     unitPrice: 13.99, name: 'Steak with Parmesan Potatoes',     sub: 'with Garlic Butter &amp; Roasted Asparagus',  time: '35 min', prep: '10 min', protein: '42g', tags: ['Specialty', 'High Protein'], img: 'images/real/steak-parmesan-potatoes.jpg' },
+        { slug: 'crispy-parmesan-chicken',     unitPrice: 9.99,  name: 'Crispy Parmesan Chicken',          sub: 'with Lemon-Herb Orzo &amp; Green Beans',      time: '30 min', prep: '10 min', protein: '38g', tags: ['High Protein', 'Italian'], img: 'images/real/crispy-parmesan-chicken.jpg' },
+        { slug: 'korean-bibimbap',             unitPrice: 11.99, name: 'Korean Beef Bibimbap',             sub: 'with Pickled Veg &amp; Gochujang Sauce',      time: '25 min', prep: '10 min', protein: '34g', tags: ['High Protein', 'Spicy'], img: 'images/real/korean-beef-bibimbap.jpg' },
+        { slug: 'chipotle-shrimp-tacos',       unitPrice: 9.99,  name: 'Chipotle Shrimp Tacos',           sub: 'with Cilantro-Lime Slaw &amp; Avocado Crema', time: '20 min', prep: '10 min', protein: '32g', tags: ['Quick', 'Seafood'], img: 'images/real/chipotle-shrimp-tacos.jpg' },
+        { slug: 'sesame-soy-beef-bowls',       unitPrice: 9.99,  name: 'Sesame Soy Beef Bowls',           sub: 'with Jasmine Rice &amp; Quick Pickles',        time: '25 min', prep: '5 min', protein: '36g', tags: ['High Protein', 'Asian'], img: 'images/real/sesame-soy-beef-bowls.jpg' },
+        { slug: 'hoisin-pork-tenderloin',      unitPrice: 9.99,  name: 'Hoisin Pork Tenderloin',          sub: 'with Roasted Sweet Potatoes &amp; Broccoli',  time: '30 min', prep: '10 min', protein: '36g', tags: ['High Protein'], img: 'images/real/hoisin-pork-tenderloin.jpg' },
+        { slug: 'almond-crusted-dijon-chicken', unitPrice: 9.99, name: 'Almond-Crusted Dijon Chicken',    sub: 'with Roasted Potatoes &amp; Honey-Glazed Carrots', time: '30 min', prep: '10 min', protein: '40g', tags: ['High Protein', 'Classic'], img: 'images/real/almond-crusted-dijon-chicken.jpg' },
+        { slug: 'sweet-chili-beef-bowls',      unitPrice: 9.99,  name: 'Sweet Chili Beef Bowls',          sub: 'with Coconut Rice &amp; Charred Snap Peas',   time: '25 min', prep: '5 min', protein: '36g', tags: ['Spicy', 'Asian'], img: 'images/real/sesame-soy-beef-bowls.jpg' },
+        { slug: 'beef-meatballs-onion-gravy',  unitPrice: 9.99,  name: 'Beef Meatballs in Onion Gravy',   sub: 'with Buttered Egg Noodles &amp; Green Beans', time: '30 min', prep: '10 min', protein: '36g', tags: ['Classic', 'Family Friendly'], img: 'images/real/beef-meatballs-onion-gravy.jpg' },
+      ];
+
+      const svgClock = '<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg>';
+      const svgFlame = '<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg>';
+      const svgProtein = '<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg>';
+      const svgPerson = '<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg>';
+
+      function recipeCardHtml(r) {
+        const tagsHtml = (r.tags || []).map(t => '<span class="dietary-tag">' + t + '</span>').join('');
+        const isIncluded = r.unitPrice <= 9.99;
+        const surchargePerServing = isIncluded ? 0 : ((r.unitPrice - 9.99) / 2).toFixed(2);
+        const planLineClass = isIncluded ? 'plan-line' : 'plan-line plan-line--surcharge';
+        const planContent = isIncluded
+          ? '<span class="servings-icon" aria-hidden="true">' + svgPerson + '</span><span class="servings-count">2</span><span class="plan-text">Included in plan</span>'
+          : '<span class="servings-icon" aria-hidden="true">' + svgPerson + '</span><span class="servings-count">2</span><span class="surcharge-price"><span class="surcharge-price__amount">+$' + surchargePerServing + '</span><span class="surcharge-price__unit">per serving</span></span>';
+
+        return '<article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="' + r.slug + '" data-price="' + r.unitPrice + '" data-customizable="true">' +
+          '<div class="img-wrap"><img src="' + r.img + '" alt="' + r.name + '"></div>' +
+          '<div class="card-body">' +
+            '<div class="product-name">' + r.name + '</div>' +
+            '<div class="product-subtitle">' + r.sub + '</div>' +
+            '<div class="product-meta">' +
+              '<span class="icon" aria-hidden="true">' + svgClock + '</span><span>' + r.time + '</span>' +
+              '<span class="dot">•</span>' +
+              '<span class="icon" aria-hidden="true">' + svgFlame + '</span><span>' + r.prep + '</span>' +
+              '<span class="dot">•</span>' +
+              '<span class="icon" aria-hidden="true">' + svgProtein + '</span><span>' + r.protein + '</span>' +
+            '</div>' +
+            '<div class="dietary-tags">' + tagsHtml + '</div>' +
+          '</div>' +
+          '<div class="card-footer">' +
+            '<div class="' + planLineClass + '">' + planContent + '</div>' +
+            '<button type="button" class="add-btn stepper-plus" aria-label="Add ' + r.name + ' to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>' +
+          '</div>' +
+        '</article>';
+      }
+
+      function renderRecipes() {
+        if (grid) grid.innerHTML = recipes.map(recipeCardHtml).join('');
+      }
+
+      renderRecipes();
+
+      function openMerchPage() {
+        page.hidden = false;
+        page.classList.add('visible');
+        if (scroll) scroll.scrollTop = 0;
+        if (typeof window.__syncStoreCardsFromCart === 'function') {
+          window.__syncStoreCardsFromCart();
+        }
+      }
+      function closeMerchPage() {
+        page.classList.remove('visible');
+        page.hidden = true;
+      }
+
+      widgetCard.addEventListener('click', openMerchPage);
+      widgetCard.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMerchPage(); }
+      });
+      if (backBtn) backBtn.addEventListener('click', closeMerchPage);
+
+      function attachMerchReopenListener() {
+        var pdpBack = document.getElementById('pdpBackBtn');
+        if (!pdpBack) return;
+        function handler() {
+          openMerchPage();
+          pdpBack.removeEventListener('click', handler);
+        }
+        pdpBack.addEventListener('click', handler);
+      }
+
+      if (grid) {
+        grid.addEventListener('click', function (e) {
+          if (e.target.closest('.add-btn') || e.target.closest('.card-stepper-inc') || e.target.closest('.card-stepper-dec') || e.target.closest('.qty-stepper')) {
+            return;
+          }
+          var card = e.target.closest('.product-card');
+          if (!card) return;
+          var slug = card.dataset.product;
+          if (!slug) return;
+          e.stopPropagation();
+          attachMerchReopenListener();
+          closeMerchPage();
+          if (typeof openPdp === 'function') openPdp(slug);
+        });
+      }
     })();
 
     /* ==================================================
