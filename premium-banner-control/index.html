@@ -43885,6 +43885,7 @@
       });
       carousel.addEventListener('scroll', updateState, { passive: true });
       updateState();
+      window.__updatePremiumCarouselState = updateState;
     })();
 
     /* ==================================================
@@ -44136,6 +44137,11 @@
 
       // Reset collapsible Store header state on (re)entry
       document.getElementById('page-store').classList.remove('header-collapsed');
+
+      // Re-evaluate premium carousel arrow state now that the store page is visible
+      if (screen === 'store' && typeof window.__updatePremiumCarouselState === 'function') {
+        requestAnimationFrame(window.__updatePremiumCarouselState);
+      }
 
       // Show the floating store CTA only on the Store screen
       const floatingCta = document.getElementById('store-floating-cta');
