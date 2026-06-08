@@ -2515,6 +2515,7 @@
       flex-direction: column;
       min-width: 0;
       padding: 2px 0;
+      cursor: pointer;
     }
     .premium-irish-page .pip-recipe__badge {
       display: inline-block;
@@ -8260,6 +8261,52 @@
       font-size: 15px;
       cursor: pointer;
     }
+    .pdp-footer__stepper {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      background: #232323;
+      color: #fff;
+      border-radius: 999px;
+      overflow: hidden;
+      min-height: 52px;
+    }
+    .pdp-footer__stepper[hidden] { display: none; }
+    .pdp-footer__stepper-btn {
+      width: 56px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .pdp-footer__stepper-label {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 8px 4px;
+      text-align: center;
+    }
+    .pdp-footer__stepper-main {
+      font-family: var(--font-family-secondary);
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .pdp-footer__stepper-sub {
+      font-family: var(--font-family-secondary);
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.2;
+    }
 
     /* Nested page: "Your top rated" (full-screen list) */
     #page-top-rated .page-inner { padding-top: 0; }
@@ -13592,6 +13639,18 @@
             <span class="per">per serving</span>
           </div>
           <button class="btn-add-to-box" id="pdpAddBtn" data-zest-component="Button" data-zest-variant="primary">Add to box</button>
+          <div class="pdp-footer__stepper" id="pdpFooterStepper" role="group" aria-label="Quantity in box" hidden>
+            <button type="button" class="pdp-footer__stepper-btn" id="pdpStepperDec" aria-label="Decrease">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <span class="pdp-footer__stepper-label">
+              <span class="pdp-footer__stepper-main" id="pdpStepperMain">1 in your box</span>
+              <span class="pdp-footer__stepper-sub" id="pdpStepperSub"></span>
+            </span>
+            <button type="button" class="pdp-footer__stepper-btn" id="pdpStepperInc" aria-label="Increase">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -43521,6 +43580,28 @@
         return { value, count };
       }
 
+      const PIP_ADDON_CATALOG = [
+        { id: 'garlic-bread', name: 'Garlic Bread', delta: 3.99, image: 'images/market-garlic-bread.jpg' },
+        { id: 'mac-and-cheese', name: 'White Cheddar Mac & Cheese', delta: 6.99, image: 'images/market-mac-and-cheese.jpg' },
+        { id: 'truffle-spinach-dip', name: 'Truffle Spinach Artichoke Dip', delta: 7.99, image: 'images/market-truffle-spinach-dip.jpg' },
+        { id: 'buffalo-chicken-wings', name: 'Cajun-Style Chicken Wings', delta: 8.99, image: 'images/market-buffalo-chicken-wings.jpg' },
+        { id: 'honey-butter-cornbread', name: 'Honey Butter Cornbread', delta: 4.99, image: 'images/market-honey-butter-cornbread.jpg' },
+        { id: 'mashed-potatoes', name: 'Creamy Mashed Potatoes', delta: 4.49, image: 'images/market-mashed-potatoes.jpg' },
+        { id: 'mini-cheesecake', name: 'Mini Cheesecakes', delta: 5.49, image: 'images/market-mini-cheesecake.jpg' },
+        { id: 'cinnamon-roll', name: 'Cinnamon Rolls', delta: 4.99, image: 'images/market-cinnamon-roll.jpg' },
+      ];
+
+      function pipAddOnsForSlug(slug) {
+        let hash = 0;
+        for (let i = 0; i < slug.length; i++) hash = ((hash << 5) - hash + slug.charCodeAt(i)) | 0;
+        const shuffled = [...PIP_ADDON_CATALOG];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.abs((hash * (i + 1)) % (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled.slice(0, 4);
+      }
+
       function recipeHtml(r) {
         const badgeClass = r.badge === 'BESTSELLER' ? 'pip-recipe__badge--bestseller' : '';
         const cls = (key) => 'pip-metric' + (r.highlight === key ? ' pip-metric--highlight' : '');
@@ -43598,6 +43679,7 @@
         page.classList.add('visible');
         page.classList.remove('is-scrolled');
         if (scroll) scroll.scrollTop = 0;
+        recipes.forEach(r => syncPipQty(r.slug));
       }
       function closePage() {
         page.classList.remove('visible');
@@ -43624,14 +43706,34 @@
       function attachPipReopenListener() {
         const pdpBackBtn = document.getElementById('pdpBackBtn');
         if (!pdpBackBtn) return;
-        const reopenPip = () => {
+        if (window.__pipReopenListener) {
+          pdpBackBtn.removeEventListener('click', window.__pipReopenListener);
+        }
+        window.__pipReopenListener = () => {
           openPage();
-          pdpBackBtn.removeEventListener('click', reopenPip);
+          pdpBackBtn.removeEventListener('click', window.__pipReopenListener);
+          window.__pipReopenListener = null;
         };
-        pdpBackBtn.addEventListener('click', reopenPip);
+        pdpBackBtn.addEventListener('click', window.__pipReopenListener);
       }
 
-      // + button → PDP (or drawer if real customization); image → PDP; stepper inc/dec
+      function syncPipQty(slug) {
+        const rows = document.querySelectorAll(
+          `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id="${CSS.escape(slug)}"]`
+        );
+        let qty = 0;
+        rows.forEach(r => { const q = parseInt(r.querySelector('.qty')?.textContent || '0', 10); if (!isNaN(q)) qty += q; });
+        [gridTop, gridBottom].forEach(g => {
+          if (!g) return;
+          const card = g.querySelector(`[data-product="${CSS.escape(slug)}"]`);
+          if (!card) return;
+          card.classList.toggle('is-selected', qty > 0);
+          const qtyEl = card.querySelector('.pip-recipe__qty');
+          if (qtyEl) qtyEl.textContent = Math.max(1, qty);
+        });
+      }
+
+      // + button → direct add (or drawer if multi-swap); stepper inc/dec; card body → PDP
       [gridTop, gridBottom].forEach(g => {
         if (!g) return;
         g.addEventListener('click', (e) => {
@@ -43649,7 +43751,8 @@
                 image: recipe.img, basePrice: recipe.unitPrice,
                 isSpecialty: true,
                 swapOptions: [{ id: 'default', title: 'Default', weight: '', delta: 0, isDefault: true, image: null }],
-                addOns: []
+                addOns: pipAddOnsForSlug(slug),
+                _pipMeta: { time: parseFloat(recipe.time), calories: parseFloat(recipe.calories), protein: parseFloat(recipe.protein), tags: [] }
               };
             }
             window.__cart?.addOrIncrement({
@@ -43658,9 +43761,7 @@
               kind: 'specialty', surcharge: true,
               customSummary: '', showPrice: true, pairings: []
             });
-            const qtyEl = row.querySelector('.pip-recipe__qty');
-            const cartRow = window.__cart?.findById(slug);
-            if (qtyEl && cartRow) qtyEl.textContent = cartRow.querySelector('.qty')?.textContent || '1';
+            syncPipQty(slug);
             return;
           }
 
@@ -43672,16 +43773,23 @@
             const slug = row.dataset.product;
             const recipe = recipes.find(r => r.slug === slug);
             if (!recipe) return;
-            const cfg = MEAL_CUSTOMIZATIONS[slug];
-            if (cfg) window.__cart?.addOrIncrement({
+            if (!MEAL_CUSTOMIZATIONS[slug]) {
+              MEAL_CUSTOMIZATIONS[slug] = {
+                name: recipe.name, subtitle: recipe.sub,
+                image: recipe.img, basePrice: recipe.unitPrice,
+                isSpecialty: true,
+                swapOptions: [{ id: 'default', title: 'Default', weight: '', delta: 0, isDefault: true, image: null }],
+                addOns: pipAddOnsForSlug(slug),
+                _pipMeta: { time: parseFloat(recipe.time), calories: parseFloat(recipe.calories), protein: parseFloat(recipe.protein), tags: [] }
+              };
+            }
+            window.__cart?.addOrIncrement({
               id: slug, slug, name: recipe.name, image: recipe.img,
               unitPrice: recipe.unitPrice, servings: 2,
               kind: 'specialty', surcharge: true,
               customSummary: '', showPrice: true, pairings: []
             });
-            const qtyEl = row.querySelector('.pip-recipe__qty');
-            const cartRow = window.__cart?.findById(slug);
-            if (qtyEl && cartRow) qtyEl.textContent = cartRow.querySelector('.qty')?.textContent || '1';
+            syncPipQty(slug);
             return;
           }
 
@@ -43691,28 +43799,30 @@
             const row = decBtn.closest('[data-product]');
             if (!row) return;
             const slug = row.dataset.product;
-            const cartRow = window.__cart?.findById(slug);
-            if (cartRow) {
-              const cartMinus = cartRow.querySelector('.stepper-minus');
-              if (cartMinus) cartMinus.click();
-              const qtyEl = row.querySelector('.pip-recipe__qty');
-              const updatedCartRow = window.__cart?.findById(slug);
-              if (updatedCartRow && qtyEl) {
-                const newQty = parseInt(updatedCartRow.querySelector('.qty')?.textContent || '0', 10);
-                qtyEl.textContent = Math.max(1, newQty);
-              }
-              if (!updatedCartRow) {
-                row.classList.remove('is-selected');
-                const qtyEl = row.querySelector('.pip-recipe__qty');
-                if (qtyEl) qtyEl.textContent = '1';
+            const cartRows = document.querySelectorAll(
+              `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id="${CSS.escape(slug)}"]`
+            );
+            if (cartRows.length) {
+              const cartRow = cartRows[cartRows.length - 1];
+              const qtyEl = cartRow.querySelector('.qty');
+              if (qtyEl) {
+                const next = (parseInt(qtyEl.textContent, 10) || 0) - 1;
+                if (next <= 0) {
+                  cartRow.remove();
+                } else {
+                  qtyEl.textContent = next;
+                }
+                if (typeof window.__recalcCart === 'function') window.__recalcCart();
               }
             }
+            syncPipQty(slug);
             return;
           }
 
-          const cardEl = e.target.closest('.pip-recipe');
-          if (cardEl) {
-            const row = cardEl;
+          const bodyEl = e.target.closest('.pip-recipe__body');
+          if (bodyEl) {
+            const row = bodyEl.closest('.pip-recipe');
+            if (!row) return;
             const slug = row.dataset.product;
             if (!slug) return;
             const recipe = recipes.find(r => r.slug === slug);
@@ -43723,7 +43833,8 @@
                 image: recipe.img, basePrice: recipe.unitPrice,
                 isSpecialty: true,
                 swapOptions: [{ id: 'default', title: 'Default', weight: '', delta: 0, isDefault: true, image: null }],
-                addOns: []
+                addOns: pipAddOnsForSlug(slug),
+                _pipMeta: { time: parseFloat(recipe.time), calories: parseFloat(recipe.calories), protein: parseFloat(recipe.protein), tags: [] }
               };
             }
             attachPipReopenListener();
@@ -48091,6 +48202,11 @@
     const pdpBackBtn    = document.getElementById('pdpBackBtn');
     const pdpTotalEl    = document.getElementById('pdpTotalPrice');
     const pdpAddBtn     = document.getElementById('pdpAddBtn');
+    const pdpFooterStepper = document.getElementById('pdpFooterStepper');
+    const pdpStepperMain   = document.getElementById('pdpStepperMain');
+    const pdpStepperSub    = document.getElementById('pdpStepperSub');
+    const pdpStepperDec    = document.getElementById('pdpStepperDec');
+    const pdpStepperInc    = document.getElementById('pdpStepperInc');
 
     // Mirrors web repo's Recipe.videoLink pattern (app/features/product-details-feature).
     // When a slug is present here, the PDP hero shows a muted/looping video instead of
@@ -48303,6 +48419,7 @@
 
       pdpAddBtn.textContent = existingVariantId ? 'Update' : 'Add to box';
       updatePdpFooter();
+      updatePdpCta();
     }
 
     function updatePdpFooter() {
@@ -48326,6 +48443,32 @@
       } else {
         pdpTotalEl.textContent = '';
         if (priceWrap) priceWrap.hidden = true;
+      }
+    }
+
+    function updatePdpCta() {
+      if (!pdpState || !pdpFooterStepper) return;
+      const slug = pdpState.slug;
+      const rows = document.querySelectorAll(
+        `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id="${CSS.escape(slug)}"]`
+      );
+      let qty = 0;
+      rows.forEach(r => { const q = parseInt(r.querySelector('.qty')?.textContent || '0', 10); if (!isNaN(q)) qty += q; });
+
+      if (qty > 0) {
+        pdpAddBtn.hidden = true;
+        pdpTotalEl.parentElement.hidden = true;
+        pdpFooterStepper.hidden = false;
+        const surcharge = pdpState.cfg.basePrice - PLAN_MEAL_PRICE;
+        const subText = surcharge > 0
+          ? `(${qty * 2} servings +$${surcharge.toFixed(2)})`
+          : `(${qty * 2} servings)`;
+        pdpStepperMain.textContent = qty + ' in your box';
+        pdpStepperSub.textContent  = subText;
+      } else {
+        pdpFooterStepper.hidden = true;
+        pdpAddBtn.hidden = false;
+        updatePdpFooter();
       }
     }
 
@@ -48389,16 +48532,14 @@
         `.product-card[data-product="${CSS.escape(slug)}"], .category-list-card[data-product="${CSS.escape(slug)}"]`
       );
       const cardTag = (sel) => sourceCard ? Array.from(sourceCard.querySelectorAll(sel)).map(n => (n.textContent || '').trim()).filter(Boolean) : [];
+      const pipMeta = cfg._pipMeta || null;
       const meta = {
-        time: catalogMatch ? catalogMatch.time
-          : (sourceCard && parseFloat(sourceCard.dataset.sortTime)) || null,
-        calories: catalogMatch ? catalogMatch.kcal
-          : (sourceCard && parseFloat(sourceCard.dataset.sortCalories)) || null,
-        protein: catalogMatch ? catalogMatch.protein
-          : (sourceCard && parseFloat(sourceCard.dataset.sortProtein)) || null,
+        time:     catalogMatch ? catalogMatch.time     : (sourceCard && parseFloat(sourceCard.dataset.sortTime))     || (pipMeta && pipMeta.time)     || null,
+        calories: catalogMatch ? catalogMatch.kcal     : (sourceCard && parseFloat(sourceCard.dataset.sortCalories)) || (pipMeta && pipMeta.calories) || null,
+        protein:  catalogMatch ? catalogMatch.protein  : (sourceCard && parseFloat(sourceCard.dataset.sortProtein))  || (pipMeta && pipMeta.protein)  || null,
         tags: (catalogMatch && catalogMatch.tags && catalogMatch.tags.length)
           ? catalogMatch.tags
-          : cardTag('.dietary-tags .dietary-tag'),
+          : (cardTag('.dietary-tags .dietary-tag').length ? cardTag('.dietary-tags .dietary-tag') : ((pipMeta && pipMeta.tags) || [])),
       };
       pdpState = {
         slug,
@@ -48423,6 +48564,8 @@
     function closePdp() {
       const origin = (pdpState && pdpState.originScreen) || 'store';
       pdpState = null;
+      if (pdpFooterStepper) pdpFooterStepper.hidden = true;
+      if (pdpAddBtn) pdpAddBtn.hidden = false;
       switchScreen(origin);
     }
 
@@ -48475,7 +48618,49 @@
         }
 
         addCustomizedMealToCart(pdpState);
-        closePdp();
+        pdpState.existingVariantId = null;
+        updatePdpCta();
+      });
+    }
+
+    if (pdpStepperDec) {
+      pdpStepperDec.addEventListener('click', () => {
+        if (!pdpState) return;
+        const slug = pdpState.slug;
+        const rows = document.querySelectorAll(
+          `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id="${CSS.escape(slug)}"]`
+        );
+        if (!rows.length) return;
+        const cartRow = rows[rows.length - 1];
+        const qtyEl = cartRow.querySelector('.qty');
+        if (!qtyEl) return;
+        const next = (parseInt(qtyEl.textContent, 10) || 0) - 1;
+        if (next <= 0) {
+          cartRow.remove();
+        } else {
+          qtyEl.textContent = next;
+        }
+        if (typeof window.__recalcCart === 'function') window.__recalcCart();
+        if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+        updatePdpCta();
+      });
+    }
+
+    if (pdpStepperInc) {
+      pdpStepperInc.addEventListener('click', () => {
+        if (!pdpState) return;
+        const slug = pdpState.slug;
+        const rows = document.querySelectorAll(
+          `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id="${CSS.escape(slug)}"]`
+        );
+        if (!rows.length) return;
+        const cartRow = rows[rows.length - 1];
+        const qtyEl = cartRow.querySelector('.qty');
+        if (!qtyEl) return;
+        qtyEl.textContent = (parseInt(qtyEl.textContent, 10) || 0) + 1;
+        if (typeof window.__recalcCart === 'function') window.__recalcCart();
+        if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+        updatePdpCta();
       });
     }
 
@@ -49718,21 +49903,58 @@
         }
       }
 
+      function getCartRow() {
+        const slug = card.dataset.product;
+        if (!slug) return null;
+        const rows = document.querySelectorAll(
+          `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id="${CSS.escape(slug)}"]`
+        );
+        return rows.length ? rows[rows.length - 1] : null;
+      }
+
+      function syncCartQty(newQty) {
+        const cartRow = getCartRow();
+        if (!cartRow) return;
+        const qtyEl = cartRow.querySelector('.qty');
+        if (!qtyEl) return;
+        if (newQty <= 0) {
+          cartRow.remove();
+        } else {
+          qtyEl.textContent = newQty;
+        }
+        if (typeof window.__recalcCart === 'function') window.__recalcCart();
+        if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+      }
+
       decBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (qty > 0) qty -= 1;
         render();
+        syncCartQty(qty);
       });
       incBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         qty += 1;
         render();
+        syncCartQty(qty);
         incBtn.style.transform = 'scale(1.15)';
         setTimeout(() => incBtn.style.transform = '', 150);
       });
       if (addBtn) {
         addBtn.addEventListener('click', (e) => {
           e.stopPropagation();
+          const slug = card.dataset.product;
+          if (slug && window.__cart && window.__cart.addOrIncrement) {
+            const name = card.querySelector('.your-meals-card__name')?.textContent?.trim() || '';
+            const img = card.querySelector('.your-meals-card__img')?.src || '';
+            const price = parseFloat(card.dataset.price || '0') || 0;
+            window.__cart.addOrIncrement({
+              id: slug, slug, name, image: img,
+              unitPrice: price, servings: 2,
+              kind: 'meal', surcharge: price > 9.99,
+              customSummary: '', showPrice: price > 9.99, pairings: []
+            });
+          }
           qty = 1;
           render();
         });
