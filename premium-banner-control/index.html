@@ -2161,7 +2161,7 @@
     .premium-video {
       flex-shrink: 0;
       width: 220px;
-      height: 300px;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       border-radius: 12px;
       scroll-snap-align: start;
@@ -2287,6 +2287,112 @@
     }
     .premium-cta:hover { background: rgba(255, 255, 255, 0.08); }
     .premium-cta:active { background: rgba(255, 255, 255, 0.16); }
+
+    /* ---------- Merch Widget ---------- */
+    .merch-section {
+      margin: 16px calc(-1 * var(--spacing-md));
+      padding: 0 var(--spacing-md);
+    }
+    .merch-card {
+      display: block;
+      background: #067a46;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .merch-card:active {
+      transform: scale(0.98);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+    .merch-card__image {
+      width: 100%;
+      height: 162px;
+      object-fit: cover;
+      display: block;
+    }
+    .merch-card__content {
+      padding: 12px 16px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .merch-card__title {
+      font-family: var(--font-family-primary);
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 32px;
+      margin: 0;
+    }
+    .merch-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 4px;
+    }
+    .merch-card__chevron {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #FAF8F3;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .merch-card__chevron svg {
+      width: 20px;
+      height: 20px;
+      color: #067a46;
+    }
+
+    /* Merch nested page */
+    #page-merch .page-inner { padding-top: 0; }
+    .merch-header {
+      background: var(--color-status-success);
+      padding: 54px var(--spacing-md) 14px;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .merch-header .back-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .merch-header .back-btn svg { width: 20px; height: 20px; }
+    .merch-header .title {
+      font-family: var(--font-family-primary);
+      font-weight: 700;
+      font-size: 20px;
+      color: #FFFFFF;
+      flex: 1;
+      text-align: center;
+      padding-right: 32px;
+    }
+    .merch-list {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .merch-list .product-card .img-wrap { aspect-ratio: 16 / 10; }
+    .merch-list .product-card .product-name { font-size: 18px; }
 
     /* ---------- Premium Irish grass-fed beef nested page ---------- */
     .premium-irish-page {
@@ -2445,6 +2551,10 @@
       border-radius: 12px;
       padding: 10px;
       align-items: stretch;
+      cursor: pointer;
+    }
+    .premium-irish-page .pip-recipe:hover .pip-recipe__name {
+      text-decoration: underline;
     }
     .premium-irish-page .pip-recipe__img {
       position: relative;
@@ -2475,6 +2585,47 @@
       justify-content: center;
       box-shadow: 0 1px 3px rgba(0,0,0,0.15);
       color: #1d1d1d;
+    }
+    .premium-irish-page .pip-recipe__stepper {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      display: none;
+      align-items: stretch;
+      background: #fff;
+      border: 1px solid #232323;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+    .premium-irish-page .pip-recipe.is-selected .pip-recipe__stepper { display: inline-flex; }
+    .premium-irish-page .pip-recipe.is-selected .pip-recipe__add { display: none; }
+    .premium-irish-page .pip-recipe__stepper button {
+      width: 26px;
+      height: 24px;
+      background: #efe9de;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      cursor: pointer;
+      padding: 0;
+    }
+    .premium-irish-page .pip-recipe__stepper button svg { width: 10px; height: 10px; }
+    .premium-irish-page .pip-recipe__qty {
+      width: 26px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-left: 1px solid #232323;
+      border-right: 1px solid #232323;
+      font-family: var(--font-family-secondary);
+      font-size: 12px;
+      font-weight: 700;
+      color: #111;
     }
     .premium-irish-page .pip-recipe__body {
       flex: 1;
@@ -3257,14 +3408,13 @@
       background: #FFFFFF;
       border-radius: 9px;
       padding: 7px 22px;
-      font-family: var(--font-family-cta);
       font-weight: 700;
       font-size: 14px;
-      line-height: 1;
       color: #111;
       cursor: pointer;
+      flex-shrink: 0;
     }
-    .product-card .card-footer .add-btn:active { background: var(--color-elevation-level1); }
+    .product-card .card-footer .add-btn:active { background: #f0f0f0; }
     .product-card .card-footer .qty-stepper {
       display: flex;
       align-items: center;
@@ -3393,7 +3543,7 @@
 
     /* ---------- Featured meal: tall hero variant (1:1 poster) ---------- */
     .product-card--featured-tall .img-wrap {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 16 / 9;
     }
 
     .category-header {
@@ -3462,7 +3612,7 @@
     }
     /* Featured variant in category list (mirrors .product-card--featured-tall) */
     .category-list-card--featured-tall .img-wrap {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 16 / 9;
     }
     .category-list-card .favorite-btn {
       position: absolute;
@@ -3621,18 +3771,28 @@
       color: #777;
     }
     .category-list-card .card-footer .add-btn {
-      border: 1.5px solid #111;
-      background: #FFFFFF;
-      border-radius: 9px;
-      padding: 7px 22px;
-      font-family: var(--font-family-cta);
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 1;
-      color: #111;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: #232323;
+      color: #fff;
+      font-size: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
+      flex-shrink: 0;
     }
-    .category-list-card .card-footer .add-btn:active { background: var(--color-elevation-level1); }
+    .category-list-card .card-footer .add-btn::after {
+      content: '+';
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1;
+      color: #fff;
+    }
+    .category-list-card .card-footer .add-btn:active { background: #444; }
     .category-list-card .card-footer .qty-stepper {
       display: flex;
       align-items: center;
@@ -3963,21 +4123,66 @@
       color: var(--color-neutral-foreground-strongest);
       margin-top: 2px;
     }
-    .reorder-card .add-btn {
-      margin: 4px 10px 10px;
-      padding: 6px 12px;
-      background: #FFFFFF;
-      color: var(--color-neutral-foreground-strongest);
-      border: 1px solid var(--color-neutral-foreground-strongest);
-      border-radius: var(--radius-md);
-      font-family: var(--font-family-cta);
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      align-self: flex-end;
-      box-shadow: none;
+    .reorder-card .card-footer {
+      padding: 4px 10px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
-    .reorder-card .add-btn:active { background: var(--color-elevation-level1); }
+    .reorder-card .add-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: #232323;
+      color: #fff;
+      font-size: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .reorder-card .add-btn::after {
+      content: '+';
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1;
+      color: #fff;
+    }
+    .reorder-card .add-btn:active { background: #444; }
+    .reorder-card .card-footer .qty-stepper {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #111;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #111;
+    }
+    .reorder-card .card-footer .qty-stepper button {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: #111;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-family: var(--font-family-secondary);
+    }
+    .reorder-card .card-footer .qty-stepper .qty-val {
+      min-width: 22px;
+      text-align: center;
+      font-family: var(--font-family-secondary);
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+      padding: 0 2px;
+    }
 
     /* Carousel controls for reorder (< >) */
     .market-carousel-controls {
@@ -6411,7 +6616,7 @@
        Opened when user taps "Apply" on the HelloFresh Cash banner
        in the cart Order total section.
        ========================================================== */
-    /* Zest Drawer, type=bottom — tokens: bg #FAF8F3, padding 24, topLeft/topRight radius 8, handle radius 4 */
+    /* HF_CASH_FEATURE_DISABLED: .hf-cash-drawer CSS
     .hf-cash-drawer {
       background: #FAF8F3;
       border-top-left-radius: 8px;
@@ -6464,7 +6669,6 @@
       flex-direction: column;
       gap: 8px;
     }
-    /* Zest Button, size=lg — tokens: borderRadius 8, padding 24/12 */
     .hf-cash-drawer .drawer-btn {
       width: 100%;
       padding: 12px 24px;
@@ -6476,27 +6680,26 @@
       cursor: pointer;
       text-align: center;
     }
-    /* Zest Button variant=primary, appearance=brand */
     .hf-cash-drawer .drawer-btn--primary {
       background: #232323;
       color: #ffffff;
       border: none;
     }
     .hf-cash-drawer .drawer-btn--primary:active { background: #4B4B4B; }
-    /* Zest Button variant=secondary, appearance=brand */
     .hf-cash-drawer .drawer-btn--secondary {
       background: transparent;
       color: #232323;
       border: 1px solid #232323;
     }
     .hf-cash-drawer .drawer-btn--secondary:active { background: #D2D2D2; }
+    HF_CASH_FEATURE_DISABLED */
 
     /* ==========================================================
        CART FEEDBACK BAR (HF Cash applied confirmation)
        Appears just below the cart header after the user applies
        HelloFresh Cash from the apply drawer.
        ========================================================== */
-    /* Zest FeedbackBar, variant=positive — tokens: bg #cbf5e7, padding 16/12, gapSm 8, gapLg 16, borderRadius 0 */
+    /* HF_CASH_FEATURE_DISABLED: .cart-feedback-bar CSS
     .cart-feedback-bar {
       display: flex;
       align-items: center;
@@ -6525,7 +6728,6 @@
       line-height: 1.4;
       color: #242424;
     }
-    /* Zest Button, variant=secondary, size=sm — tokens: borderRadius 8, padding 24/8 */
     .cart-feedback-bar__undo {
       padding: 8px 24px;
       border-radius: 8px;
@@ -6540,8 +6742,9 @@
       flex-shrink: 0;
     }
     .cart-feedback-bar__undo:active { background: #D2D2D2; }
+    HF_CASH_FEATURE_DISABLED */
 
-    /* HF Cash row + Amount due row + disclaimer inside price summary */
+    /* HF_CASH_FEATURE_DISABLED: .price-row--hf-cash CSS
     .price-row--hf-cash { margin-top: var(--spacing-sm); }
     .price-row--hf-cash .price-row__title,
     .price-row--hf-cash .price-row__price {
@@ -6550,6 +6753,7 @@
       font-size: 16px;
     }
     .price-row--hf-cash .price-row__price { color: var(--color-promo-foreground); }
+    HF_CASH_FEATURE_DISABLED */
     .price-row--amount-due {
       margin-top: var(--spacing-sm);
     }
@@ -6875,6 +7079,19 @@
     .product-item__custom-remove svg {
       width: 14px;
       height: 14px;
+    }
+    .product-item__premium-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xxs);
+    }
+    .product-item__premium-label {
+      flex: 1;
+      font-family: var(--font-family-secondary);
+      font-size: 12px;
+      line-height: 1.35;
+      color: var(--color-neutral-foreground-medium);
+      text-transform: uppercase;
     }
     /* Thumbnail is clickable — opens PDP */
     .product-item__thumbnail-btn {
@@ -7284,7 +7501,7 @@
       color: var(--color-neutral-foreground-strongest);
     }
 
-    /* ---------- Sticky HelloFresh Cash nudge (above checkout CTA) ---------- */
+    /* HF_CASH_FEATURE_DISABLED: .sticky-cash-nudge CSS
     .sticky-cash-nudge {
       flex-shrink: 0;
       display: flex;
@@ -7325,8 +7542,9 @@
       color: var(--color-neutral-foreground-strongest);
       cursor: pointer;
     }
+    HF_CASH_FEATURE_DISABLED */
 
-    /* ---------- Free shipping progress bar (sticky above checkout) ---------- */
+    /* FREE_SHIPPING_FEATURE_DISABLED: .free-shipping-progress CSS
     .free-shipping-progress {
       flex-shrink: 0;
       background: var(--bottom-nav-background);
@@ -7358,6 +7576,7 @@
       transition: width 0.3s ease;
       width: 0%;
     }
+    FREE_SHIPPING_FEATURE_DISABLED */
 
     /* ---------- FloatingStoreButton / Checkout bar ---------- */
     .cart-checkout-bar {
@@ -8031,6 +8250,7 @@
       background: #FFFFFF;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      padding-bottom: 0;
     }
     .pdp-hero {
       position: relative;
@@ -8066,7 +8286,7 @@
     }
     .pdp-hero__back svg { width: 20px; height: 20px; }
     .pdp-body {
-      padding: 20px 16px 120px;
+      padding: 20px 16px 80px;
     }
     .pdp-title {
       font-family: var(--font-family-secondary);
@@ -8143,7 +8363,7 @@
     .pdp-footer .btn-add-to-box {
       flex: 1;
       padding: 14px 16px;
-      border-radius: 999px;
+      border-radius: 12px;
       background: var(--color-brand-background-default, #007838);
       color: #FFFFFF;
       border: none;
@@ -8151,6 +8371,55 @@
       font-weight: 700;
       font-size: 15px;
       cursor: pointer;
+    }
+    .pdp-qty-stepper {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      border: 1.5px solid #111;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #111;
+      min-height: 48px;
+    }
+    .pdp-qty-stepper[hidden] { display: none; }
+    .pdp-qty-stepper button {
+      width: 48px;
+      border: none;
+      background: #111;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .pdp-qty-stepper button svg { width: 16px; height: 16px; }
+    .pdp-qty-val {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.25;
+      padding: 4px 8px;
+      border-left: 1px solid rgba(255,255,255,0.18);
+      border-right: 1px solid rgba(255,255,255,0.18);
+    }
+    .pdp-qty-label-main {
+      font-family: var(--font-family-secondary);
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .pdp-qty-label-sub {
+      font-family: var(--font-family-secondary);
+      font-size: 11px;
+      color: rgba(255,255,255,0.8);
+    }
+    .pdp-footer:has(#pdpQtyStepper:not([hidden])) .footer-price,
+    .pdp-footer:has(#pdpQtyStepper:not([hidden])) #pdpAddBtn {
+      display: none;
     }
 
     /* Nested page: "Your top rated" (full-screen list) */
@@ -10820,6 +11089,7 @@
       font-weight: 700;
       color: #232323;
     }
+    /* HF_CASH_FEATURE_DISABLED: .mca-web__price-row--hf-cash CSS
     .mca-web__price-row--hf-cash {
       display: none;
       justify-content: space-between;
@@ -10830,6 +11100,7 @@
     }
     .mca-web__price-row--hf-cash.visible { display: flex; }
     .mca-web__price-row--hf-cash .price { color: #C11A2B; }
+    HF_CASH_FEATURE_DISABLED */
     .mca-web__price-row--amount-due {
       display: none;
       justify-content: space-between;
@@ -10839,6 +11110,7 @@
       color: #232323;
     }
     .mca-web__price-row--amount-due.visible { display: flex; }
+    /* HF_CASH_FEATURE_DISABLED: .mca-web__hf-cash-disclaimer CSS
     .mca-web__hf-cash-disclaimer {
       display: none;
       justify-content: space-between;
@@ -10859,6 +11131,7 @@
       cursor: pointer;
       flex-shrink: 0;
     }
+    HF_CASH_FEATURE_DISABLED */
 
     /* Web savings banner (Zest BannerMessage benefits, shaped) */
     .mca-web__savings {
@@ -10884,7 +11157,7 @@
     .mca-web__savings-text { flex: 1; font-weight: 700; }
     .mca-web__savings-cta { font-weight: 700; text-decoration: underline; padding-right: 8px; }
 
-    /* Web HF Cash banner (Zest BannerMessage filled, mint) */
+    /* HF_CASH_FEATURE_DISABLED: .mca-web__hfcash-banner CSS
     .mca-web__hfcash-banner {
       display: flex;
       align-items: center;
@@ -10910,6 +11183,7 @@
       flex-shrink: 0;
     }
     .mca-web__hfcash-banner-btn:active { background: #D2D2D2; }
+    HF_CASH_FEATURE_DISABLED */
 
     /* Web Confirm button (Zest Button primary, lg) */
     .mca-web__confirm {
@@ -11393,8 +11667,7 @@
         </button>
       </div>
 
-      <!-- Free-shipping-unlocked feedback bar (green). Fires on Store /
-           Market when the cart crosses the 4-meal free-shipping threshold. -->
+      <!-- FREE_SHIPPING_FEATURE_DISABLED: Free shipping unlocked toast
       <div class="order-saved-toast" id="freeShippingUnlockedToast" role="status" aria-live="polite" hidden>
         <span class="order-saved-toast__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7h11v8H3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 10h4l3 3v2h-7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7.5" cy="17" r="1.75" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="17" r="1.75" stroke="currentColor" stroke-width="2"/></svg>
@@ -11404,6 +11677,7 @@
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
+      FREE_SHIPPING_FEATURE_DISABLED -->
 
       <!-- ================================================
            PAGE 1: HOME
@@ -12046,7 +12320,7 @@
               </div>
             </article>
 
-            <article class="product-card product-card--featured-tall" data-zest-component="Card" data-zest-variant="meal" data-product="honey-dijon-dill-steak" data-price="9.99" data-customizable="true" data-filters="specialty american beef high-protein under-45 wheat" data-sort-time="35" data-sort-calories="680" data-sort-protein="45" data-has-video="true">
+            <article class="product-card product-card--featured-tall" data-zest-component="Card" data-zest-variant="meal" data-product="honey-dijon-dill-steak" data-price="13.98" data-customizable="true" data-filters="specialty american beef high-protein under-45 wheat" data-sort-time="35" data-sort-calories="680" data-sort-protein="45" data-has-video="true">
               <div class="img-wrap">
                 <video src="https://assets.mixkit.co/videos/46673/46673-720.mp4" autoplay loop muted playsinline preload="auto" aria-label="Honey Dijon Dill Steak cooking video"></video>
                 <span class="specialty-reason">Premium Pick</span>
@@ -12071,12 +12345,234 @@
                 </div>
               </div>
               <div class="card-footer">
+                <div class="plan-line plan-line--surcharge">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="surcharge-price">
+                    <span class="surcharge-price__amount">+$3.99</span>
+                    <span class="surcharge-price__unit">per serving</span>
+                  </span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Honey Dijon Dill Steak to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="creamy-lemon-garlic-shrimp-linguine" data-price="12.99" data-customizable="false" data-filters="pasta-noodles seafood under-30 milk wheat" data-sort-time="30" data-sort-calories="780" data-sort-protein="30">
+              <div class="img-wrap">
+                <img src="images/real/creamy-lemon-garlic-shrimp-linguine.jpg" alt="Creamy Lemon-Garlic Shrimp Linguine">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Creamy Lemon-Garlic Shrimp Linguine</div>
+                <div class="product-subtitle">with Baby Spinach &amp; Parmesan</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>30 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>780 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>30g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Hall of Fame</span>
+                </div>
+              </div>
+              <div class="card-footer">
                 <div class="plan-line">
                   <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
                   <span class="servings-count">2</span>
                   <span class="plan-text">Included in plan</span>
                 </div>
-                <button type="button" class="add-btn stepper-plus" aria-label="Add Honey Dijon Dill Steak to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Creamy Lemon-Garlic Shrimp Linguine to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="herbed-chicken-green-beans" data-price="11.49" data-customizable="false" data-filters="american chicken high-protein under-650 under-30" data-sort-time="30" data-sort-calories="560" data-sort-protein="42">
+              <div class="img-wrap">
+                <img src="images/real/herbed-chicken-green-beans.jpg" alt="Herbed Chicken with Green Beans">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Herbed Chicken with Green Beans</div>
+                <div class="product-subtitle">with Garlic Mashed Potatoes &amp; Pan Sauce</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>30 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>560 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>42g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">High Protein</span>
+                  <span class="dietary-tag">Under 650 cal</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="plan-text">Included in plan</span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Herbed Chicken with Green Beans to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="aglio-olio-chicken-pasta" data-price="11.49" data-customizable="false" data-filters="pasta-noodles italian chicken under-30 wheat" data-sort-time="30" data-sort-calories="780" data-sort-protein="36">
+              <div class="img-wrap">
+                <img src="images/real/aglio-olio-chicken-pasta.jpg" alt="Aglio e Olio Chicken Pasta">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Aglio e Olio Chicken Pasta</div>
+                <div class="product-subtitle">with Baby Spinach &amp; Parmesan</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>30 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>780 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>36g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Bestseller</span>
+                  <span class="dietary-tag">Italian</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="plan-text">Included in plan</span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Aglio e Olio Chicken Pasta to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="coconut-curry-chicken" data-price="11.49" data-customizable="false" data-filters="bowls asian chicken under-30" data-sort-time="30" data-sort-calories="690" data-sort-protein="34">
+              <div class="img-wrap">
+                <img src="images/real/coconut-curry-chicken.jpg" alt="Coconut Curry Chicken">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Coconut Curry Chicken</div>
+                <div class="product-subtitle">with Jasmine Rice &amp; Cilantro</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>30 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>690 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>34g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Global Flavors</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="plan-text">Included in plan</span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Coconut Curry Chicken to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="loaded-beef-taquitos" data-price="10.99" data-customizable="false" data-filters="handhelds mexican beef family-friendly under-30 wheat" data-sort-time="25" data-sort-calories="810" data-sort-protein="28">
+              <div class="img-wrap">
+                <img src="images/real/loaded-beef-taquitos.jpg" alt="Loaded Beef Taquitos">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Loaded Beef Taquitos</div>
+                <div class="product-subtitle">with Southwest Slaw &amp; Lime Crema</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>25 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>810 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>28g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Family Friendly</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="plan-text">Included in plan</span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Loaded Beef Taquitos to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="southwest-chicken-sandos" data-price="10.99" data-customizable="false" data-filters="handhelds american chicken under-30 wheat" data-sort-time="25" data-sort-calories="710" data-sort-protein="34">
+              <div class="img-wrap">
+                <img src="images/real/southwest-chicken-sandos.jpg" alt="Southwest Chicken Sandos">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Southwest Chicken Sandos</div>
+                <div class="product-subtitle">with Chipotle Mayo &amp; Potato Wedges</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>25 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>710 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>34g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Quick Cook</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="plan-text">Included in plan</span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Southwest Chicken Sandos to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+              </div>
+            </article>
+
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="chicken-milanese-pesto-penne" data-price="12.49" data-customizable="false" data-filters="pasta-noodles italian chicken under-45 wheat milk" data-sort-time="35" data-sort-calories="830" data-sort-protein="40">
+              <div class="img-wrap">
+                <img src="images/real/chicken-milanese-pesto-penne.jpg" alt="Chicken Milanese &amp; Pesto Penne">
+              </div>
+              <div class="card-body">
+                <div class="product-name">Chicken Milanese &amp; Pesto Penne</div>
+                <div class="product-subtitle">with Cherry Tomatoes &amp; Parmesan</div>
+                <div class="product-meta">
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
+                  <span>35 min</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
+                  <span>830 kcal</span>
+                  <span class="dot">•</span>
+                  <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
+                  <span>40g protein</span>
+                </div>
+                <div class="dietary-tags">
+                  <span class="dietary-tag">Bestseller</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="plan-line">
+                  <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
+                  <span class="servings-count">2</span>
+                  <span class="plan-text">Included in plan</span>
+                </div>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Chicken Milanese &amp; Pesto Penne to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
               </div>
             </article>
 
@@ -12467,6 +12963,21 @@
               </div>
             </article>
 
+            <!-- Merch Widget — "Top 10 meals in the US" navigational card -->
+            <div class="merch-section" data-zest-component="custom" data-zest-note="Merch navigational widget">
+              <div class="merch-card" role="button" tabindex="0" aria-label="Top 10 meals in the US" id="merch-card-trigger">
+                <img class="merch-card__image" src="images/real/merch-hero.jpg" alt="Mother and daughter cooking together">
+                <div class="merch-card__content">
+                  <h3 class="merch-card__title">Top 10 meals in the US</h3>
+                  <div class="merch-card__footer">
+                    <span class="merch-card__chevron" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="steak-parmesan-potatoes" data-price="13.99" data-customizable="true" data-filters="specialty american beef high-protein under-45 milk" data-sort-time="35" data-sort-calories="760" data-sort-protein="42">
               <div class="img-wrap">
                 <img src="images/real/steak-parmesan-potatoes.jpg" alt="Steak with Parmesan Potatoes">
@@ -12729,7 +13240,9 @@
                 <div class="name">Pork Lumpia</div>
                 <div class="price">$4.19</div>
               </div>
-              <button class="add-btn stepper-plus" aria-label="Add Pork Lumpia">Add</button>
+              <div class="card-footer">
+                <button class="add-btn stepper-plus" aria-label="Add Pork Lumpia">Add</button>
+              </div>
             </article>
             <article class="reorder-card" data-product="chocolate-chip-cookie-skillet" data-price="3.99">
               <div class="img-wrap"><img src="images/market-chocolate-chip-cookie-skillet.jpg" alt="Chocolate Chip Cookie Skillet"></div>
@@ -12737,7 +13250,9 @@
                 <div class="name">Chocolate Chip Cookie Skillet</div>
                 <div class="price">$3.99</div>
               </div>
-              <button class="add-btn stepper-plus" aria-label="Add Chocolate Chip Cookie Skillet">Add</button>
+              <div class="card-footer">
+                <button class="add-btn stepper-plus" aria-label="Add Chocolate Chip Cookie Skillet">Add</button>
+              </div>
             </article>
             <article class="reorder-card" data-product="cinnamon-rolls" data-price="4.49">
               <div class="img-wrap"><img src="images/market-cinnamon-roll.jpg" alt="Cinnamon Rolls"></div>
@@ -12745,7 +13260,9 @@
                 <div class="name">Cinnamon Rolls</div>
                 <div class="price">$4.49</div>
               </div>
-              <button class="add-btn stepper-plus" aria-label="Add Cinnamon Rolls">Add</button>
+              <div class="card-footer">
+                <button class="add-btn stepper-plus" aria-label="Add Cinnamon Rolls">Add</button>
+              </div>
             </article>
             <article class="reorder-card" data-product="creamy-mashed-potatoes" data-price="3.49">
               <div class="img-wrap"><img src="images/market-mashed-potatoes.jpg" alt="Creamy Mashed Potatoes"></div>
@@ -12753,7 +13270,9 @@
                 <div class="name">Creamy Mashed Potatoes</div>
                 <div class="price">$3.49</div>
               </div>
-              <button class="add-btn stepper-plus" aria-label="Add Creamy Mashed Potatoes">Add</button>
+              <div class="card-footer">
+                <button class="add-btn stepper-plus" aria-label="Add Creamy Mashed Potatoes">Add</button>
+              </div>
             </article>
           </div>
 
@@ -13019,6 +13538,22 @@
       </section>
 
       <!-- ================================================
+           PAGE: MERCH - TOP 10 MEALS IN THE US
+           Curated collection opened from the merch widget card.
+           ================================================ -->
+      <section class="page" id="page-merch" data-zest-component="custom" data-zest-note="Top 10 Meals nested list">
+        <div class="page-inner">
+          <div class="merch-header" data-zest-component="custom" data-zest-note="MerchHeader">
+            <button class="back-btn" aria-label="Back to Store" onclick="switchScreen('store')" data-zest-component="BackButton">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m5.586 12 8.485-8.485 1.414 1.414-7.07 7.07 7.07 7.072-1.414 1.414L5.586 12Z"/></svg>
+            </button>
+            <span class="title">Top 10 meals in the US</span>
+          </div>
+          <div class="merch-list" id="merch-list" role="list"></div>
+        </div>
+      </section>
+
+      <!-- ================================================
            PAGE: NOTIFICATIONS (opens from the home screen bell)
            Single banner routing into the Double Protein nested
            page. Mirrors the green immersive header pattern.
@@ -13105,7 +13640,7 @@
             </div>
           </div>
 
-          <!-- HF Cash applied feedback bar (appears after user applies HF Cash) -->
+          <!-- HF_CASH_FEATURE_DISABLED: Cart feedback bar
           <div class="cart-feedback-bar" id="hfCashFeedbackBar" data-zest-component="FeedbackBar" data-zest-variant="positive" role="status" aria-live="polite" hidden>
             <span class="cart-feedback-bar__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0002 14C13.1048 14 14.0002 13.1046 14.0002 12C14.0002 10.8954 13.1048 10 12.0002 10C10.8956 10 10.0002 10.8954 10.0002 12C10.0002 13.1046 10.8956 14 12.0002 14Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6L3.00017 18H21.0001V16.0179C21.0002 16.0119 21.0002 16.006 21.0002 16C21.0002 15.994 21.0002 15.9881 21.0001 15.9821V8.01787L21.0002 8L21.0001 7.98213V6H3ZM19.0001 14V10C17.8956 9.99996 17.0002 9.10454 17.0002 8H7.00018C7.00018 9.10457 6.10475 10 5.00018 10L5.00011 14C6.10468 14 7.00018 14.8954 7.00018 16H17.0002C17.0002 14.8955 17.8956 14 19.0001 14Z" fill="currentColor"/></svg>
@@ -13113,6 +13648,7 @@
             <span class="cart-feedback-bar__text">HelloFresh Cash applied</span>
             <button type="button" class="cart-feedback-bar__undo" id="hfCashFeedbackUndo" data-zest-component="Button" data-zest-variant="secondary" data-zest-appearance="brand" data-zest-size="sm">Undo</button>
           </div>
+          HF_CASH_FEATURE_DISABLED -->
 
           <!-- Scrollable content -->
           <div class="cart-scroll">
@@ -13139,11 +13675,17 @@
                     <div class="product-item__row">
                       <span class="product-item__name" data-testid="product-item-name">Garlic Herb Butter Scallops</span>
                     </div>
+                    <!-- CUSTOMISATION_ROW_FEATURE_DISABLED: customisation row for m1
                     <div class="product-item__custom-row">
                       <p class="product-item__custom product-item__custom--editable" data-testid="product-item-custom" role="button" tabindex="0" aria-label="Edit customization for Garlic Herb Butter Scallops"><svg class="product-item__custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4L20 12M16 12H20V8M12 20L4 12M8 12H4V16"/></svg>2 x Sea Scallops</p>
                       <button type="button" class="product-item__custom-remove" aria-label="Remove customization for Garlic Herb Butter Scallops" data-testid="product-item-custom-remove">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
                       </button>
+                      <span class="product-item__price" data-testid="product-item-price">+$13.98</span>
+                    </div>
+                    CUSTOMISATION_ROW_FEATURE_DISABLED -->
+                    <div class="product-item__custom-row">
+                      <p class="product-item__custom" data-testid="product-item-custom"><svg class="product-item__custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4L20 12M16 12H20V8M12 20L4 12M8 12H4V16"/></svg>2 x Sea Scallops</p>
                       <span class="product-item__price" data-testid="product-item-price">+$13.98</span>
                     </div>
                     <div class="number-stepper" role="group" aria-label="Quantity" data-zest-component="NumberStepper">
@@ -13361,6 +13903,7 @@
                 <span class="price-row__title" id="summary-addons-label">Add-ons</span>
                 <span class="price-row__price" id="summary-addons-value">$0.00</span>
               </div>
+              <!-- FREE_SHIPPING_FEATURE_DISABLED: Shipping price row
               <div class="price-row" data-testid="price-row-shipping">
                 <span class="price-row__title">Shipping</span>
                 <span class="price-row__price" id="shipping-value">
@@ -13368,12 +13911,13 @@
                   <span id="shipping-free" class="price-row__price--free">FREE</span>
                 </span>
               </div>
+              FREE_SHIPPING_FEATURE_DISABLED -->
               <div class="price-row price-row--total" data-testid="price-row-total">
                 <span class="price-row__title">Total</span>
                 <span class="price-row__price" id="cart-total">$91.90</span>
               </div>
 
-              <!-- HelloFresh Cash reassurance banner -->
+              <!-- HF_CASH_FEATURE_DISABLED: HelloFresh Cash reassurance banner + applied rows
               <div class="benefit-banner benefit-banner--info" data-zest-component="BannerMessage" data-zest-variant="filled" data-zest-type="static" role="group" aria-label="$10 HelloFresh Cash available">
                 <span class="benefit-banner__icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0002 14C13.1048 14 14.0002 13.1046 14.0002 12C14.0002 10.8954 13.1048 10 12.0002 10C10.8956 10 10.0002 10.8954 10.0002 12C10.0002 13.1046 10.8956 14 12.0002 14Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6L3.00017 18H21.0001V16.0179C21.0002 16.0119 21.0002 16.006 21.0002 16C21.0002 15.994 21.0002 15.9881 21.0001 15.9821V8.01787L21.0002 8L21.0001 7.98213V6H3ZM19.0001 14V10C17.8956 9.99996 17.0002 9.10454 17.0002 8H7.00018C7.00018 9.10457 6.10475 10 5.00018 10L5.00011 14C6.10468 14 7.00018 14.8954 7.00018 16H17.0002C17.0002 14.8955 17.8956 14 19.0001 14Z" fill="currentColor"/></svg>
@@ -13382,7 +13926,6 @@
                 <button type="button" class="benefit-banner__btn" data-zest-component="Button" data-zest-variant="secondary" data-zest-size="sm" onclick="openHfCashDrawer(this)">Apply</button>
               </div>
 
-              <!-- HF Cash applied rows (shown after user applies HF Cash) -->
               <div class="price-row price-row--hf-cash" id="hf-cash-row" data-testid="price-row-hf-cash" hidden>
                 <span class="price-row__title">HelloFresh Cash <sup>*</sup></span>
                 <span class="price-row__price" id="hf-cash-value">−$10.00</span>
@@ -13395,11 +13938,12 @@
                 <span class="price-summary__disclaimer-text"><sup>*</sup> Your HelloFresh Cash has been applied to this order.</span>
                 <button type="button" class="price-summary__disclaimer-undo" id="hf-cash-disclaimer-undo">Undo</button>
               </div>
+              HF_CASH_FEATURE_DISABLED -->
             </div>
 
           </div>
 
-          <!-- Sticky HF Cash nudge (sits above the CTA; prioritized over free-shipping progress) -->
+          <!-- HF_CASH_FEATURE_DISABLED: Sticky HF Cash nudge
           <div class="sticky-cash-nudge" id="stickyCashNudge" hidden>
             <span class="sticky-cash-nudge__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0002 14C13.1048 14 14.0002 13.1046 14.0002 12C14.0002 10.8954 13.1048 10 12.0002 10C10.8956 10 10.0002 10.8954 10.0002 12C10.0002 13.1046 10.8956 14 12.0002 14Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6L3.00017 18H21.0001V16.0179C21.0002 16.0119 21.0002 16.006 21.0002 16C21.0002 15.994 21.0002 15.9881 21.0001 15.9821V8.01787L21.0002 8L21.0001 7.98213V6H3ZM19.0001 14V10C17.8956 9.99996 17.0002 9.10454 17.0002 8H7.00018C7.00018 9.10457 6.10475 10 5.00018 10L5.00011 14C6.10468 14 7.00018 14.8954 7.00018 16H17.0002C17.0002 14.8955 17.8956 14 19.0001 14Z" fill="currentColor"/></svg>
@@ -13407,8 +13951,9 @@
             <span class="sticky-cash-nudge__text">$10 HelloFresh Cash available</span>
             <button type="button" class="sticky-cash-nudge__cta" onclick="scrollCartToHfCashBanner(this)">View</button>
           </div>
+          HF_CASH_FEATURE_DISABLED -->
 
-          <!-- Free shipping progress bar (sticky above Confirm when threshold not yet met) -->
+          <!-- FREE_SHIPPING_FEATURE_DISABLED: Free shipping progress bar
           <div class="free-shipping-progress" id="freeShippingProgress" hidden>
             <p class="free-shipping-progress__label" id="freeShippingLabel">
               Add <strong id="freeShippingAmount">$9.56</strong> more to get free shipping
@@ -13417,6 +13962,7 @@
               <div class="free-shipping-progress__fill" id="freeShippingFill"></div>
             </div>
           </div>
+          FREE_SHIPPING_FEATURE_DISABLED -->
 
           <!-- Floating store button / checkout bar -->
           <div class="cart-checkout-bar" data-zest-component="custom" data-zest-note="FloatingStoreButtonWrapper">
@@ -13480,6 +14026,14 @@
             <span class="per">per serving</span>
           </div>
           <button class="btn-add-to-box" id="pdpAddBtn" data-zest-component="Button" data-zest-variant="primary">Add to box</button>
+          <div class="pdp-qty-stepper" id="pdpQtyStepper" hidden role="group" aria-label="Quantity">
+            <button type="button" id="pdpStepperDec" aria-label="Decrease quantity"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 7h10v2H3z"/></svg></button>
+            <div class="pdp-qty-val" id="pdpQtyVal">
+              <span class="pdp-qty-label-main">1 in your box</span>
+              <span class="pdp-qty-label-sub"></span>
+            </div>
+            <button type="button" id="pdpStepperInc" aria-label="Increase quantity"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M7 3h2v4h4v2H9v4H7V9H3V7h4z"/></svg></button>
+          </div>
         </div>
       </section>
 
@@ -13783,11 +14337,7 @@
         </div>
       </aside>
 
-      <!-- ================================================
-           HF CASH APPLY DRAWER (Bottom Sheet)
-           Opened when the "Apply" CTA on the HelloFresh Cash
-           reassurance banner is tapped in Cart > Order total.
-           ================================================ -->
+      <!-- HF_CASH_FEATURE_DISABLED: HF Cash apply drawer + scrim
       <div class="drawer-scrim" id="hfCashScrim" hidden></div>
       <aside class="drawer hf-cash-drawer" id="hfCashDrawer" role="dialog" aria-modal="true" aria-labelledby="hfCashTitle" hidden
              data-zest-component="Drawer" data-zest-type="bottom" data-zest-note="HF Cash apply drawer">
@@ -13804,6 +14354,7 @@
           </div>
         </div>
       </aside>
+      HF_CASH_FEATURE_DISABLED -->
 
       <!-- ================================================
            DOUBLE PROTEIN ONBOARDING BOTTOM SHEET
@@ -14934,7 +15485,7 @@
        data and price totals.
        ================================================ -->
   <div class="mca-web-overlay" id="mcaWebOverlay" hidden>
-    <!-- HF Cash applied feedback bar (web variant) — full viewport width, auto-dismisses -->
+    <!-- HF_CASH_FEATURE_DISABLED: MCA web feedback bar
     <div class="mca-web__feedback-bar" id="mcaWebFeedbackBar" data-zest-component="FeedbackBar" data-zest-variant="positive" role="status" aria-live="polite">
       <span class="mca-web__feedback-bar-text">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12.0002 14C13.1048 14 14.0002 13.1046 14.0002 12C14.0002 10.8954 13.1048 10 12.0002 10C10.8956 10 10.0002 10.8954 10.0002 12C10.0002 13.1046 10.8956 14 12.0002 14Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6L3.00017 18H21.0001V16.0179C21.0002 16.0119 21.0002 16.006 21.0002 16C21.0002 15.994 21.0002 15.9881 21.0001 15.9821V8.01787L21.0002 8L21.0001 7.98213V6H3ZM19.0001 14V10C17.8956 9.99996 17.0002 9.10454 17.0002 8H7.00018C7.00018 9.10457 6.10475 10 5.00018 10L5.00011 14C6.10468 14 7.00018 14.8954 7.00018 16H17.0002C17.0002 14.8955 17.8956 14 19.0001 14Z" fill="currentColor"/></svg>
@@ -14942,6 +15493,7 @@
       </span>
       <button type="button" class="mca-web__feedback-bar-undo" id="mcaWebFeedbackUndo" data-zest-component="Button" data-zest-variant="secondary" data-zest-appearance="brand" data-zest-size="sm">Undo</button>
     </div>
+    HF_CASH_FEATURE_DISABLED -->
 
     <div class="mca-web">
       <button type="button" class="mca-web__close" id="mcaWebClose" aria-label="Close" data-zest-component="IconButton" data-zest-variant="tertiary">
@@ -15081,7 +15633,7 @@
             <span><span id="mcaWebTotalDisplay">$91.90</span></span>
           </div>
 
-          <!-- HF Cash applied rows (web) -->
+          <!-- HF_CASH_FEATURE_DISABLED: MCA web HF Cash rows, disclaimer, banner
           <div class="mca-web__price-row mca-web__price-row--hf-cash" id="mcaWebHfCashRow" data-testid="price-row-hf-cash">
             <span>HelloFresh Cash <sup>*</sup></span>
             <span class="price" id="mcaWebHfCashValue">−$10.00</span>
@@ -15094,13 +15646,12 @@
             <span><sup>*</sup> Your HelloFresh Cash has been applied to this order.</span>
             <button type="button" id="mcaWebHfCashDisclaimerUndo">Undo</button>
           </div>
-
-          <!-- HF Cash banner -->
           <div class="mca-web__hfcash-banner" id="mcaWebHfCashBanner" data-zest-component="BannerMessage" data-zest-variant="filled" data-zest-type="static" role="group" aria-label="$10 HelloFresh Cash available">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12.0002 14C13.1048 14 14.0002 13.1046 14.0002 12C14.0002 10.8954 13.1048 10 12.0002 10C10.8956 10 10.0002 10.8954 10.0002 12C10.0002 13.1046 10.8956 14 12.0002 14Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6L3.00017 18H21.0001V16.0179C21.0002 16.0119 21.0002 16.006 21.0002 16C21.0002 15.994 21.0002 15.9881 21.0001 15.9821V8.01787L21.0002 8L21.0001 7.98213V6H3ZM19.0001 14V10C17.8956 9.99996 17.0002 9.10454 17.0002 8H7.00018C7.00018 9.10457 6.10475 10 5.00018 10L5.00011 14C6.10468 14 7.00018 14.8954 7.00018 16H17.0002C17.0002 14.8955 17.8956 14 19.0001 14Z" fill="currentColor"/></svg>
             <span class="mca-web__hfcash-banner-text">$10 HelloFresh Cash available</span>
             <button type="button" class="mca-web__hfcash-banner-btn" id="mcaWebApplyHfCash" data-zest-component="Button" data-zest-variant="secondary" data-zest-appearance="brand" data-zest-size="sm">Apply</button>
           </div>
+          HF_CASH_FEATURE_DISABLED -->
 
           <button type="button" class="mca-web__confirm" data-zest-component="Button" data-zest-variant="primary" data-zest-appearance="brand" data-zest-size="lg">Confirm</button>
 
@@ -43334,6 +43885,7 @@
       });
       carousel.addEventListener('scroll', updateState, { passive: true });
       updateState();
+      window.__updatePremiumCarouselState = updateState;
     })();
 
     /* ==================================================
@@ -43350,15 +43902,16 @@
       if (!page || !viewAll) return;
 
       const recipes = [
-        { badge: 'PREMIUM', name: 'Creamy Chicken Sausage & Kale Cavatappi', sub: 'with Garlic, Lemon & Parmesan', time: '30 min', calories: '750 kcal', protein: '19g protein', price: '+$12.99', img: 'images/real/creamy-mushroom-gemelli.jpg' },
-        { badge: 'PREMIUM', name: 'Rigatoni with Beef & Zucchini Ragu', sub: 'with Shredded Carrots, Buttery Breadcrumbs', time: '30 min', calories: '621 kcal', protein: '21g protein', price: '+$12.99', img: 'images/real/beef-meatballs-onion-gravy.jpg' },
-        { badge: 'BESTSELLER', highlight: 'time', name: 'Creamy Lemon-Herb Pork Chops', sub: 'with Balsamic-Glazed Brussels', time: '20 min', calories: '750 kcal', protein: '19g protein', price: '+$12.99', img: 'images/real/hoisin-pork-tenderloin.jpg' },
-        { badge: 'PREMIUM', highlight: 'protein', name: 'Chicken Bacon Ranch Loaded Potatoes', sub: 'with Cheddar & Scallions', time: '30 min', calories: '750 kcal', protein: '39g protein', price: '+$12.99', img: 'images/real/crispy-parmesan-chicken.jpg' },
-        { badge: 'PREMIUM', highlight: 'calories', name: 'Mushroom, Carrot & Bok Choy Stir-Fry', sub: 'with Crispy Rice, Fried Onions & Sesame', time: '30 min', calories: '621 kcal', protein: '21g protein', price: '+$12.99', img: 'images/real/sesame-soy-beef-bowls.jpg' },
-        { badge: 'PREMIUM', name: 'Creamy Chicken Sausage & Kale Cavatappi', sub: 'with Garlic, Lemon & Parmesan', time: '30 min', calories: '750 kcal', protein: '19g protein', price: '+$12.99', img: 'images/real/creamy-mushroom-gemelli.jpg' },
+        { slug: 'hoisin-pork-tenderloin',       unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Hoisin Pork Tenderloin',         sub: 'with Jasmine Rice & Bok Choy',            time: '30 min', calories: '650 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/hoisin-pork-tenderloin.jpg' },
+        { slug: 'beef-meatballs-onion-gravy',   unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Beef Meatballs with Onion Gravy', sub: 'with Mashed Potatoes & Green Beans',      time: '35 min', calories: '720 kcal', protein: '34g protein', price: '+$3.99', img: 'images/real/beef-meatballs-onion-gravy.jpg' },
+        { slug: 'steak-parmesan-potatoes',      unitPrice: 13.98, badge: 'BESTSELLER', highlight: 'time',     name: 'Steak & Parmesan Potatoes',       sub: 'with Broccolini & Herb Butter',           time: '30 min', calories: '710 kcal', protein: '42g protein', price: '+$3.99', img: 'images/real/steak-parmesan-potatoes.jpg' },
+        { slug: 'crispy-parmesan-chicken',      unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'protein',  name: 'Crispy Parmesan Chicken',         sub: 'with Roasted Potatoes & Garlicky Greens', time: '30 min', calories: '720 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/crispy-parmesan-chicken.jpg' },
+        { slug: 'sesame-soy-beef-bowls',        unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'calories', name: 'Sesame Soy Beef Bowls',           sub: 'with Jasmine Rice & Pickled Cucumber',    time: '25 min', calories: '610 kcal', protein: '36g protein', price: '+$3.99', img: 'images/real/sesame-soy-beef-bowls.jpg' },
+        { slug: 'almond-crusted-dijon-chicken', unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Almond-Crusted Dijon Chicken',    sub: 'with Roasted Sweet Potato & Arugula',     time: '35 min', calories: '680 kcal', protein: '40g protein', price: '+$3.99', img: 'images/real/almond-crusted-dijon-chicken.jpg' },
       ];
 
-      const plusIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+      const plusIcon  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+      const minusIcon = '<svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 7h10v2H3z"/></svg>';
 
       function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
@@ -43367,10 +43920,15 @@
           const badgeClass = r.badge === 'BESTSELLER' ? 'pip-recipe__badge--bestseller' : '';
           const cls = (key) => 'pip-metric' + (r.highlight === key ? ' pip-metric--highlight' : '');
           return `
-          <div class="pip-recipe">
+          <div class="pip-recipe" data-product="${escapeHtml(r.slug)}" data-price="${r.unitPrice}">
             <div class="pip-recipe__img">
               <img src="${r.img}" alt="${escapeHtml(r.name)}">
               <button type="button" class="pip-recipe__add" aria-label="Add ${escapeHtml(r.name)}">${plusIcon}</button>
+              <div class="pip-recipe__stepper" role="group" aria-label="Quantity">
+                <button type="button" class="pip-recipe__stepper-dec" aria-label="Decrease">${minusIcon}</button>
+                <span class="pip-recipe__qty">1</span>
+                <button type="button" class="pip-recipe__stepper-inc" aria-label="Increase"><svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 3h2v4h4v2H9v4H7V9H3V7h4z"/></svg></button>
+              </div>
             </div>
             <div class="pip-recipe__body">
               <span class="pip-recipe__badge ${badgeClass}">${escapeHtml(r.badge)}</span>
@@ -43401,6 +43959,8 @@
         page.classList.remove('is-scrolled');
         page.hidden = true;
       }
+      window.__closePipPage = closePage;
+      window.__openPipPage = openPage;
 
       viewAll.addEventListener('click', openPage);
       viewAll.addEventListener('keydown', (e) => {
@@ -43418,12 +43978,80 @@
         }, { passive: true });
       }
 
-      // Add-to-cart buttons (simple toast)
+      // Card body click → open PDP
       grid.addEventListener('click', (e) => {
-        const btn = e.target.closest('.pip-recipe__add');
-        if (!btn) return;
-        if (typeof showToast === 'function') {
-          showToast('Added to cart');
+        if (e.target.closest('.pip-recipe__add') || e.target.closest('.pip-recipe__stepper')) return;
+        const card = e.target.closest('.pip-recipe');
+        if (!card) return;
+        const slug = card.dataset.product;
+        if (!slug || typeof window.openPdp !== 'function') return;
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof window.__closePipPage === 'function') window.__closePipPage();
+        window.__pdpReturnToPip = true;
+        const cartRow = document.querySelector(`.product-item[data-slug="${CSS.escape(slug)}"]`);
+        const variantId = cartRow ? cartRow.dataset.mealId : null;
+        window.openPdp(slug, variantId ? { existingVariantId: variantId } : undefined);
+      });
+
+      // Stepper dec / inc + add button
+      grid.addEventListener('click', (e) => {
+        const card = e.target.closest('.pip-recipe');
+        if (!card) return;
+
+        // Stepper decrement
+        if (e.target.closest('.pip-recipe__stepper-dec')) {
+          e.stopPropagation();
+          const slug = card.dataset.product;
+          const rows = document.querySelectorAll(
+            `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id="${CSS.escape(slug)}"]`
+          );
+          if (rows.length) {
+            const row = rows[0];
+            const qtyEl = row.querySelector('.qty');
+            const current = parseInt(qtyEl?.textContent || '1', 10);
+            if (current <= 1) { row.remove(); }
+            else { qtyEl.textContent = current - 1; }
+            if (typeof window.__recalcCart === 'function') window.__recalcCart();
+            if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+          }
+          return;
+        }
+
+        // Stepper increment
+        if (e.target.closest('.pip-recipe__stepper-inc')) {
+          e.stopPropagation();
+          const slug = card.dataset.product;
+          const rows = document.querySelectorAll(
+            `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id="${CSS.escape(slug)}"]`
+          );
+          if (rows.length) {
+            const qtyEl = rows[0].querySelector('.qty');
+            qtyEl.textContent = (parseInt(qtyEl.textContent || '1', 10)) + 1;
+            if (typeof window.__recalcCart === 'function') window.__recalcCart();
+            if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+          }
+          return;
+        }
+
+        // Add button (first add)
+        if (e.target.closest('.pip-recipe__add')) {
+          const slug = card.dataset.product;
+          const unitPrice = parseFloat(card.dataset.price || '0') || 0;
+          if (!slug || !window.__cart) return;
+          e.stopPropagation();
+          const cfg = (typeof MEAL_CUSTOMIZATIONS !== 'undefined') ? MEAL_CUSTOMIZATIONS[slug] : null;
+          const name = cfg ? cfg.name : (card.querySelector('.pip-recipe__name')?.textContent || slug);
+          const image = cfg ? cfg.image : (card.querySelector('img')?.getAttribute('src') || '');
+          const surcharge = unitPrice > 9.99;
+          window.__cart.addOrIncrement({
+            id: slug, slug, name, image, unitPrice,
+            servings: 2, kind: 'meal',
+            surcharge, showPrice: surcharge,
+            customSummary: ''
+          });
+          if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+          if (typeof showToast === 'function') showToast('Added to cart');
         }
       });
     })();
@@ -43453,7 +44081,7 @@
     let searchReferrer = 'store';
 
     function switchScreen(screen) {
-      if (!['home', 'store', 'cart', 'market', 'search', 'high-protein', 'top-rated', 'reorder-again', 'product-details', 'notifications'].includes(screen)) return;
+      if (!['home', 'store', 'cart', 'market', 'search', 'high-protein', 'top-rated', 'reorder-again', 'product-details', 'notifications', 'merch'].includes(screen)) return;
       if (typeof customizeState !== 'undefined' && customizeState) closeCustomizeDrawer();
       // Remember the origin before navigating into search.
       if (screen === 'search') {
@@ -43510,6 +44138,11 @@
       // Reset collapsible Store header state on (re)entry
       document.getElementById('page-store').classList.remove('header-collapsed');
 
+      // Re-evaluate premium carousel arrow state now that the store page is visible
+      if (screen === 'store' && typeof window.__updatePremiumCarouselState === 'function') {
+        requestAnimationFrame(window.__updatePremiumCarouselState);
+      }
+
       // Show the floating store CTA only on the Store screen
       const floatingCta = document.getElementById('store-floating-cta');
       if (floatingCta) {
@@ -43525,7 +44158,7 @@
 
       // Light status bar text on screens with a green immersive header
       const statusBar = document.querySelector('.status-bar');
-      if (statusBar) statusBar.classList.toggle('status-bar--light', screen === 'home' || screen === 'search' || screen === 'high-protein' || screen === 'top-rated' || screen === 'reorder-again' || screen === 'notifications');
+      if (statusBar) statusBar.classList.toggle('status-bar--light', screen === 'home' || screen === 'search' || screen === 'high-protein' || screen === 'top-rated' || screen === 'reorder-again' || screen === 'notifications' || screen === 'merch');
 
       ProtoStorage.set('activeScreen', screen);
 
@@ -44687,7 +45320,7 @@
         return standardRow + doubleRow;
       }).join('');
 
-      const addOnCardsHtml = cfg.addOns.map(ad => {
+      const addOnCardsHtml = (cfg.addOns || []).map(ad => {
         const isSelected = selectedAddOns.has(ad.id);
         return `
           <label class="addon-card ${isSelected ? 'selected' : ''}" data-addon-id="${ad.id}">
@@ -44737,7 +45370,7 @@
         <div class="swap-list" role="radiogroup" aria-label="Customize your meal">
           ${swapRowsHtml}
         </div>
-        ${cfg.addOns.length ? `
+        ${(cfg.addOns && cfg.addOns.length) ? `
           <h2 class="pdp-section-title">Tastes even better with</h2>
           <div class="addon-carousel">
             ${addOnCardsHtml}
@@ -44859,7 +45492,7 @@
       }, 250);
     }
 
-    /* Apply / undo HF Cash on the web cart. Mirrors the mobile state. */
+    /* HF_CASH_FEATURE_DISABLED: applyMcaWebHfCash / undoMcaWebHfCash
     let mcaWebFeedbackTimer = null;
     function applyMcaWebHfCash() {
       const HF = 10.00;
@@ -44874,7 +45507,6 @@
       if (feedbackBar) feedbackBar.classList.add('visible');
       const banner = document.getElementById('mcaWebHfCashBanner');
       if (banner) banner.style.display = 'none';
-      // Auto-dismiss the feedback bar after 4s
       if (mcaWebFeedbackTimer) clearTimeout(mcaWebFeedbackTimer);
       mcaWebFeedbackTimer = setTimeout(() => {
         feedbackBar?.classList.remove('visible');
@@ -44893,6 +45525,7 @@
         mcaWebFeedbackTimer = null;
       }
     }
+    HF_CASH_FEATURE_DISABLED */
 
     /* Embed-mode bootstrap — the Double protein "Show all" overlay loads
        this same page in iframes with ?dp=<state>. When detected, we hide
@@ -46066,17 +46699,12 @@
     }
     if (orderSavedToastClose) orderSavedToastClose.addEventListener('click', hideOrderSavedToast);
 
-    /* Free-shipping-unlocked feedback bar.
-       Same animation pattern as the order-saved toast, but fires once when
-       the cart crosses the 4-meal free-shipping threshold while the user is
-       on the Store or Market screen. Auto-dismisses after 3s. */
+    /* FREE_SHIPPING_FEATURE_DISABLED: showFreeShippingUnlockedToast / hideFreeShippingUnlockedToast
     const freeShippingUnlockedToastEl = document.getElementById('freeShippingUnlockedToast');
     const freeShippingUnlockedToastClose = document.getElementById('freeShippingUnlockedToastClose');
     let freeShippingUnlockedToastTimer = null;
     function showFreeShippingUnlockedToast() {
       if (!freeShippingUnlockedToastEl) return;
-      // Suppress the concurrent "Order saved" toast so only the stronger
-      // free-shipping message is shown on the threshold-crossing add.
       hideOrderSavedToast();
       freeShippingUnlockedToastEl.hidden = false;
       requestAnimationFrame(() => freeShippingUnlockedToastEl.classList.add('visible'));
@@ -46093,6 +46721,7 @@
     }
     if (freeShippingUnlockedToastClose) freeShippingUnlockedToastClose.addEventListener('click', hideFreeShippingUnlockedToast);
     window.__showFreeShippingUnlockedToast = showFreeShippingUnlockedToast;
+    FREE_SHIPPING_FEATURE_DISABLED */
 
     /* Returns the current total meal count in the cart
        (meals + specialty rows, excludes add-ons). */
@@ -46827,10 +47456,7 @@
         name: "Honey Dijon Dill Steak",
         subtitle: "with Roasted Potatoes & Green Beans",
         image: "images/real/honey-dijon-dill-steak.jpg",
-        // basePrice == PLAN_MEAL_PRICE so the card's pre-customized surcharge
-        // rolls entirely into the default swap's doubleDelta (steak premium +
-        // double portion). Mirrors miso-salmon-ramen / firecracker-meatballs.
-        basePrice: 9.99,
+        basePrice: 13.98,
         isSpecialty: true,
         swapOptions: [
           { id: "default",    title: "Sirloin steak",         weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 3.99, doubleKcalDelta: 400, doubleProteinDelta: 26 },
@@ -46899,7 +47525,7 @@
         name: "Crispy Parmesan Chicken",
         subtitle: "with Roasted Potatoes & Garlicky Greens",
         image: "images/real/crispy-parmesan-chicken.jpg",
-        basePrice: 9.99,
+        basePrice: 13.98,
         swapOptions: [
           { id: "default", title: "Chicken breast", weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 4.99, doubleKcalDelta: 320, doubleProteinDelta: 28 },
           { id: "tofu",    title: "Tofu",           weight: "300g", delta: 0,    image: null },
@@ -46915,7 +47541,7 @@
         name: "Sesame Soy Beef Bowls",
         subtitle: "with Jasmine Rice & Charred Broccoli",
         image: "images/real/sesame-soy-beef-bowls.jpg",
-        basePrice: 9.99,
+        basePrice: 13.98,
         swapOptions: [
           { id: "default", title: "Ground beef",    weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 4.49, doubleKcalDelta: 380, doubleProteinDelta: 24 },
           { id: "chicken", title: "Chicken breast", weight: "300g", delta: 0,    image: null },
@@ -46947,7 +47573,7 @@
         name: "Hoisin Pork Tenderloin",
         subtitle: "with Jasmine Rice & Sesame Snap Peas",
         image: "images/real/hoisin-pork-tenderloin.jpg",
-        basePrice: 9.99,
+        basePrice: 13.98,
         swapOptions: [
           { id: "default", title: "Pork tenderloin", weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 4.99, doubleKcalDelta: 360, doubleProteinDelta: 26 },
           { id: "chicken", title: "Chicken breast",  weight: "300g", delta: 0,    image: null },
@@ -46963,7 +47589,7 @@
         name: "Almond-Crusted Dijon Chicken",
         subtitle: "with Roasted Potatoes & Honey-Glazed Carrots",
         image: "images/real/almond-crusted-dijon-chicken.jpg",
-        basePrice: 9.99,
+        basePrice: 13.98,
         swapOptions: [
           { id: "default", title: "Chicken breast", weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 4.49, doubleKcalDelta: 320, doubleProteinDelta: 28 },
           { id: "tofu",    title: "Tofu",           weight: "300g", delta: 0,    image: null },
@@ -46979,10 +47605,7 @@
         name: "Steak with Parmesan Potatoes",
         subtitle: "with Garlic Butter & Roasted Asparagus",
         image: "images/real/steak-parmesan-potatoes.jpg",
-        // basePrice == PLAN_MEAL_PRICE so the card's pre-customized surcharge
-        // rolls entirely into the default swap's doubleDelta (steak premium +
-        // double portion). Mirrors miso-salmon-ramen / firecracker-meatballs.
-        basePrice: 9.99,
+        basePrice: 13.98,
         isSpecialty: true,
         swapOptions: [
           { id: "default", title: "Sirloin steak",   weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 5.99, doubleKcalDelta: 400, doubleProteinDelta: 26 },
@@ -47064,7 +47687,7 @@
         name: "Beef Meatballs in Onion Gravy",
         subtitle: "with Creamy Mashed Potatoes & Green Beans",
         image: "images/real/beef-meatballs-onion-gravy.jpg",
-        basePrice: 9.99,
+        basePrice: 13.98,
         swapOptions: [
           { id: "default", title: "Beef meatballs",  weight: "300g", delta: 0,    isDefault: true, image: null, doubleWeight: "600g", doubleDelta: 4.49, doubleKcalDelta: 380, doubleProteinDelta: 24 },
           { id: "chicken", title: "Chicken breast",  weight: "300g", delta: 0,    image: null },
@@ -47175,7 +47798,7 @@
         return standardRow + doubleRow;
       }).join('');
 
-      const addOnCardsHtml = cfg.addOns.map(ad => {
+      const addOnCardsHtml = (cfg.addOns || []).map(ad => {
         const isSelected = selectedAddOns.has(ad.id);
         return `
           <label class="addon-card ${isSelected ? 'selected' : ''}" data-addon-id="${ad.id}">
@@ -47234,7 +47857,7 @@
       const swapDelta = swap.delta || 0;
       const doubleDelta = (doubleSelected && swap.doubleDelta != null) ? swap.doubleDelta : 0;
       let addonSum = 0;
-      cfg.addOns.forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
+      (cfg.addOns || []).forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
       const total = cfg.basePrice + swapDelta + doubleDelta + addonSum;
       const surcharge = total - PLAN_MEAL_PRICE;
       const priceWrap = customizeTotalEl.parentElement;
@@ -47274,6 +47897,11 @@
       }
     }
 
+    function hasRealCustomizations(cfg) {
+      return (cfg.swapOptions && cfg.swapOptions.length > 1) ||
+             (cfg.addOns && cfg.addOns.length > 0);
+    }
+
     function openCustomizeDrawer(slug, cfg, originButton, opts) {
       opts = opts || {};
       const defaultSwapOpt = (cfg.swapOptions.find(o => o.isDefault) || cfg.swapOptions[0]);
@@ -47310,7 +47938,7 @@
       }
       // Also infer add-ons from standalone pairing rows, mirroring the PDP.
       if (selectedAddOns.size === 0) {
-        cfg.addOns.forEach(ad => {
+        (cfg.addOns || []).forEach(ad => {
           if (document.querySelector(`.product-item[data-meal-id="pairing-${CSS.escape(ad.id)}"]`)) {
             selectedAddOns.add(ad.id);
           }
@@ -47445,7 +48073,7 @@
       // as their own rows, not bundled into the meal price.
       const pairings = [];
       if (hasPairings) {
-        cfg.addOns.forEach(ad => {
+        (cfg.addOns || []).forEach(ad => {
           if (selectedAddOns.has(ad.id)) {
             pairings.push({ id: ad.id, name: ad.name, image: ad.image, unitPrice: ad.delta });
           }
@@ -47955,7 +48583,7 @@
         return standardRow + doubleRow;
       }).join('');
 
-      const addOnCardsHtml = cfg.addOns.map(ad => {
+      const addOnCardsHtml = (cfg.addOns || []).map(ad => {
         const isSelected = selectedAddOns.has(ad.id);
         return `
           <label class="addon-card ${isSelected ? 'selected' : ''}" data-addon-id="${ad.id}">
@@ -47991,12 +48619,15 @@
         }
       }
 
+      const hasSwapChoices = cfg.swapOptions && cfg.swapOptions.length > 1;
+      const hasAddOns = cfg.addOns && cfg.addOns.length > 0;
       pdpBody.innerHTML = `
         <h1 class="pdp-title" id="pdpTitle">${cfg.name}</h1>
-        <p class="pdp-subtitle">${cfg.subtitle}</p>
+        <p class="pdp-subtitle">${cfg.subtitle || ''}</p>
         ${buildPdpQuickInfoHtml(quickInfoMeta)}
         ${buildPdpDietaryTagsHtml(meta)}
 
+        ${hasSwapChoices ? `
         <h2 class="pdp-section-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4L20 12M16 12H20V8M12 20L4 12M8 12H4V16"/></svg>
           Make it yours
@@ -48005,16 +48636,21 @@
         <div class="swap-list" role="radiogroup" aria-label="Make it yours">
           ${swapRowsHtml}
         </div>
+        ` : ''}
 
+        ${hasAddOns ? `
         <h2 class="pdp-section-title">Tastes even better with</h2>
         <div class="addon-carousel">
           ${addOnCardsHtml}
         </div>
         <p class="pdp-section-disclaimer">You'll receive the right amount of this item to go with the recipe.</p>
+        ` : ''}
       `;
 
-      pdpAddBtn.textContent = existingVariantId ? 'Update' : 'Add to box';
+      pdpAddBtn.hidden = false;
+      document.getElementById('pdpQtyStepper').hidden = true;
       updatePdpFooter();
+      updatePdpQtyControl();
     }
 
     function updatePdpFooter() {
@@ -48024,7 +48660,7 @@
       const swapDelta = swap.delta || 0;
       const doubleDelta = (doubleSelected && swap.doubleDelta != null) ? swap.doubleDelta : 0;
       let addonSum = 0;
-      cfg.addOns.forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
+      (cfg.addOns || []).forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
       // PDP footer shows per-serving surcharge vs PLAN_MEAL_PRICE (matches
       // the "+$X.XX per serving" copy on the product card), not the gross
       // per-serving price. When surcharge <= 0 the price hides entirely so
@@ -48041,14 +48677,77 @@
       }
     }
 
+    function updatePdpQtyControl() {
+      if (!pdpState) return;
+      const { slug, cfg, selectedSwap, selectedAddOns, doubleSelected } = pdpState;
+      const rows = document.querySelectorAll(
+        `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id^="${CSS.escape(slug)}"]`
+      );
+      let qty = 0;
+      rows.forEach(r => {
+        const q = parseInt(r.querySelector('.qty')?.textContent || '0', 10);
+        if (!isNaN(q)) qty += q;
+      });
+
+      const addBtn = document.getElementById('pdpAddBtn');
+      const stepper = document.getElementById('pdpQtyStepper');
+      if (!addBtn || !stepper) return;
+
+      if (qty > 0) {
+        const swap = cfg.swapOptions.find(o => o.id === selectedSwap) || cfg.swapOptions[0];
+        const swapDelta = swap.delta || 0;
+        const doubleDelta = (doubleSelected && swap.doubleDelta != null) ? swap.doubleDelta : 0;
+        let addonSum = 0;
+        (cfg.addOns || []).forEach(ad => { if (selectedAddOns.has(ad.id)) addonSum += ad.delta; });
+        const total = cfg.basePrice + swapDelta + doubleDelta + addonSum;
+        const surcharge = total - PLAN_MEAL_PRICE;
+
+        const mainEl = document.getElementById('pdpQtyVal')?.querySelector('.pdp-qty-label-main');
+        const subEl  = document.getElementById('pdpQtyVal')?.querySelector('.pdp-qty-label-sub');
+        if (mainEl) mainEl.textContent = `${qty} in your box`;
+        if (subEl)  subEl.textContent  = surcharge > 0 ? `(2 servings ${fmtDelta(surcharge)})` : '';
+
+        stepper.hidden = false;
+        addBtn.hidden = true;
+      } else {
+        stepper.hidden = true;
+        addBtn.hidden = false;
+        addBtn.textContent = 'Add to box';
+      }
+    }
+
+    function openPdpForAnyCard(card, slug) {
+      if (typeof MEAL_CUSTOMIZATIONS !== 'undefined' && MEAL_CUSTOMIZATIONS[slug]) {
+        openPdp(slug);
+        return;
+      }
+      const nameEl = card.querySelector('.product-name') || card.querySelector('.name');
+      const name = (nameEl ? nameEl.textContent : '').trim();
+      const imgEl = card.querySelector('img');
+      const price = parseFloat(card.dataset.price || '0') || 0;
+      const metaEl = card.querySelector('.product-meta');
+      openPdp(slug, {
+        syntheticCfg: {
+          name: name,
+          subtitle: metaEl ? metaEl.textContent.trim() : '',
+          image: imgEl ? imgEl.getAttribute('src') : '',
+          basePrice: price,
+          swapOptions: [{ id: 'default', title: name, weight: null, delta: 0, isDefault: true }],
+          addOns: [],
+        }
+      });
+    }
+    window.openPdpForAnyCard = openPdpForAnyCard;
+
     function openPdp(slug, opts) {
-      const cfg = MEAL_CUSTOMIZATIONS[slug];
+      const options = opts || {};
+      const cfg = options.syntheticCfg || MEAL_CUSTOMIZATIONS[slug];
       if (!cfg) {
         // Fallback: no config for this slug — just show a toast.
         showToast('Details not available');
         return;
       }
-      const options = opts || {};
+      if (cfg.image) { const _pre = new Image(); _pre.src = cfg.image; }
       const existingVariantId = options.existingVariantId || null;
 
       // Default state
@@ -48081,7 +48780,7 @@
         }
         // Also detect pairing rows (from drawer pairings split)
         if (selectedAddOns.size === 0) {
-          cfg.addOns.forEach(ad => {
+          (cfg.addOns || []).forEach(ad => {
             if (document.querySelector(`.product-item[data-meal-id="pairing-${CSS.escape(ad.id)}"]`)) {
               selectedAddOns.add(ad.id);
             }
@@ -48134,8 +48833,13 @@
 
     function closePdp() {
       const origin = (pdpState && pdpState.originScreen) || 'store';
+      const returnToPip = !!window.__pdpReturnToPip;
+      window.__pdpReturnToPip = false;
       pdpState = null;
       switchScreen(origin);
+      if (returnToPip && typeof window.__openPipPage === 'function') {
+        window.__openPipPage();
+      }
     }
 
     if (pdpBackBtn) pdpBackBtn.addEventListener('click', closePdp);
@@ -48172,14 +48876,10 @@
         if (!pdpState) return;
         const { existingVariantId } = pdpState;
 
-        // If editing an existing cart row, remove it (and any associated
-        // pairing rows that came from the drawer) before adding the
-        // updated variant so we don't leave a stale row behind.
         if (existingVariantId) {
           const row = document.querySelector(`.product-item[data-meal-id="${CSS.escape(existingVariantId)}"]`);
           if (row && row.parentNode) row.parentNode.removeChild(row);
-          // Also remove any pairing-* rows tied to this meal's addOns
-          pdpState.cfg.addOns.forEach(ad => {
+          (pdpState.cfg.addOns || []).forEach(ad => {
             const pairingRow = document.querySelector(`.product-item[data-meal-id="pairing-${CSS.escape(ad.id)}"]`);
             if (pairingRow && pairingRow.parentNode) pairingRow.parentNode.removeChild(pairingRow);
           });
@@ -48187,7 +48887,52 @@
         }
 
         addCustomizedMealToCart(pdpState);
-        closePdp();
+        pdpState.existingVariantId = null;
+        updatePdpQtyControl();
+      });
+    }
+
+    const pdpStepperDec = document.getElementById('pdpStepperDec');
+    const pdpStepperInc = document.getElementById('pdpStepperInc');
+
+    if (pdpStepperDec) {
+      pdpStepperDec.addEventListener('click', () => {
+        if (!pdpState) return;
+        const slug = pdpState.slug;
+        const row = document.querySelector(
+          `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id^="${CSS.escape(slug)}"]`
+        );
+        if (!row) return;
+        const qtyEl = row.querySelector('.qty');
+        const current = parseInt(qtyEl?.textContent || '1', 10);
+        if (current <= 1) {
+          row.remove();
+        } else {
+          qtyEl.textContent = current - 1;
+        }
+        if (typeof window.__recalcCart === 'function') window.__recalcCart();
+        requestAnimationFrame(() => {
+          if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+        });
+        updatePdpQtyControl();
+      });
+    }
+
+    if (pdpStepperInc) {
+      pdpStepperInc.addEventListener('click', () => {
+        if (!pdpState) return;
+        const slug = pdpState.slug;
+        const row = document.querySelector(
+          `.product-item[data-slug="${CSS.escape(slug)}"], .product-item[data-meal-id^="${CSS.escape(slug)}"]`
+        );
+        if (!row) return;
+        const qtyEl = row.querySelector('.qty');
+        qtyEl.textContent = (parseInt(qtyEl.textContent || '1', 10)) + 1;
+        if (typeof window.__recalcCart === 'function') window.__recalcCart();
+        requestAnimationFrame(() => {
+          if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+        });
+        updatePdpQtyControl();
       });
     }
 
@@ -48276,6 +49021,7 @@
        Triggered from the "$10 HelloFresh Cash available"
        banner in the cart Order total section.
        ================================================== */
+    /* HF_CASH_FEATURE_DISABLED: drawer vars, open/close/apply/undo/scroll functions + event listeners
     const hfCashScrimEl = document.getElementById('hfCashScrim');
     const hfCashDrawerEl = document.getElementById('hfCashDrawer');
     const hfCashCloseBtn = document.getElementById('hfCashClose');
@@ -48295,11 +49041,6 @@
       if (title) { title.setAttribute('tabindex', '-1'); title.focus({ preventScroll: true }); }
     }
 
-    // Auto-dismiss the sticky HF Cash nudge once the user scrolls down
-    // and the Order total section enters the viewport. Mirrors the
-    // "View" CTA dismissal so the nudge stops shadowing the checkout
-    // CTA after the user has reached the same banner inside the price
-    // summary on their own.
     (function initStickyCashNudgeAutoDismiss() {
       const scrollEl = document.querySelector('#page-cart .cart-scroll');
       if (!scrollEl) return;
@@ -48307,16 +49048,11 @@
         const nudge = document.getElementById('stickyCashNudge');
         if (!nudge || nudge.hidden) return;
         if (nudge.dataset.dismissed === 'true') return;
-        // Don't dismiss before the user has actually scrolled — on a
-        // short cart, the Order total may already be visible at rest.
         if (scrollEl.scrollTop <= 0) return;
         const summary = document.getElementById('cart-price-summary');
         if (!summary) return;
         const scrollRect = scrollEl.getBoundingClientRect();
         const summaryRect = summary.getBoundingClientRect();
-        // Trigger as soon as the Order total heading enters the visible
-        // portion of the cart scroll viewport (its top is above the
-        // bottom of the viewport).
         if (summaryRect.top < scrollRect.bottom) {
           nudge.dataset.dismissed = 'true';
           nudge.hidden = true;
@@ -48325,9 +49061,6 @@
       scrollEl.addEventListener('scroll', checkAndDismiss, { passive: true });
     })();
 
-    // Sticky nudge "View" action: scroll the cart to the in-cart HF Cash
-    // banner (inside the Order total section) and dismiss the nudge so it
-    // doesn't keep shadowing the checkout CTA after the user has seen it.
     function scrollCartToHfCashBanner(originButton) {
       const nudge = document.getElementById('stickyCashNudge');
       if (nudge) {
@@ -48370,7 +49103,6 @@
       if (e.key === 'Escape' && !hfCashDrawerEl.hidden) closeHfCashDrawer();
     });
 
-    /* --------- HF Cash applied state --------- */
     const HF_CASH_AMOUNT = 10.00;
     const hfCashFeedbackBar = document.getElementById('hfCashFeedbackBar');
     const hfCashFeedbackUndo = document.getElementById('hfCashFeedbackUndo');
@@ -48393,8 +49125,6 @@
       hfCashDisclaimerEl.hidden = false;
       if (hfCashBanner) hfCashBanner.hidden = true;
       if (typeof window.__recalcCart === 'function') window.__recalcCart();
-      // Scroll to the disclaimer so the confirmation footnote lands in view
-      // after the drawer closes.
       requestAnimationFrame(() => {
         const scrollEl = document.querySelector('#page-cart .cart-scroll');
         if (scrollEl) {
@@ -48427,8 +49157,8 @@
     hfCashFeedbackUndo.addEventListener('click', undoHfCash);
     hfCashDisclaimerUndo.addEventListener('click', undoHfCash);
 
-    // Expose for recalcCart to read
     window.__hfCash = { get applied() { return hfCashApplied; }, amount: HF_CASH_AMOUNT };
+    HF_CASH_FEATURE_DISABLED */
 
     /* ==================================================
        Stepper-plus click: open drawer for customizable
@@ -48442,7 +49172,7 @@
       // Skip the cart screen's own + button (handled by bindStepper)
       if (plus.closest('.cart-scroll')) return;
       e.stopPropagation();
-      const card = plus.closest('.product-card, .category-list-card, .fav-card');
+      const card = plus.closest('.product-card, .category-list-card, .fav-card, .reorder-card');
       const slug = card && card.dataset.product;
       const isCustomizable = card && card.dataset.customizable === 'true';
       const cfg = slug ? MEAL_CUSTOMIZATIONS[slug] : null;
@@ -48466,12 +49196,26 @@
         }
       }
 
-      // Customizable meal → always open the drawer first (even with HP
-      // filter active). The drawer preselects 2x when HP is on, so the user
-      // sees the pre-customized state and can confirm or adjust before the
-      // card flips to the selected state.
-      if (isCustomizable && cfg) {
+      // Customizable meal with real choices → open the drawer first.
+      // Single-default meals (one swap, no add-ons) add immediately.
+      if (isCustomizable && cfg && hasRealCustomizations(cfg)) {
         openCustomizeDrawer(slug, cfg, plus);
+        return;
+      }
+      if (isCustomizable && cfg) {
+        const defaultSwap = cfg.swapOptions.find(o => o.isDefault) || cfg.swapOptions[0];
+        addCustomizedMealToCart({
+          cfg, slug,
+          selectedSwap: defaultSwap.id,
+          selectedAddOns: new Set(),
+          doubleSelected: false,
+        });
+        refreshStoreBadge();
+        if (getCartMealCount() >= 2) {
+          showOrderSavedToast();
+        } else {
+          showToast('Added to cart');
+        }
         return;
       }
 
@@ -48488,16 +49232,36 @@
     });
 
     /* ==================================================
+       Card body tap → opens PDP.
+       Only fires when the tap is on the image/title area —
+       footer, buttons, and fav controls are excluded.
+       ================================================== */
+    document.addEventListener('click', (e) => {
+      if (e.target.closest(
+        '.card-footer, .favorite-btn, .add-btn, .qty-stepper, ' +
+        '.card-stepper-dec, .card-stepper-inc, .fav-card__customize, ' +
+        '.fav-card__add, .fav-card__stepper'
+      )) return;
+      const card = e.target.closest('.category-list-card, .product-card, .reorder-card');
+      if (!card) return;
+      const slug = card.dataset.product;
+      if (!slug) return;
+      e.stopPropagation();
+      openPdpForAnyCard(card, slug);
+    });
+
+    /* ==================================================
        Cart screen — stepper + totals + store sync
        Option A free-shipping rule: meals >= 4 unlocks free shipping.
        ================================================== */
     (function () {
+      /* FREE_SHIPPING_FEATURE_DISABLED: shipping constants + state vars
       const SHIPPING = 10.99;
       const FREE_SHIPPING_MEAL_COUNT = 4;
       const PLAN_SIZE = 3;
-
       let wasFreeShippingUnlocked = false;
       let recalcInitialized = false;
+      FREE_SHIPPING_FEATURE_DISABLED */
 
       const mealsListEl = document.getElementById('cart-items-list');
       const addonsListEl = document.getElementById('cart-addons-list');
@@ -48535,9 +49299,7 @@
         const priceHtml = priceText
           ? `<span class="product-item__price" data-testid="product-item-price">${priceText}</span>`
           : '';
-        // Price sits on the custom-summary row (inline with the swap/2x
-        // reason text) for meals, and on the title row for add-ons that
-        // have no summary line.
+        /* CUSTOMISATION_ROW_FEATURE_DISABLED: customRow template + titleRowPrice
         const customRow = customSummary
           ? `<div class="product-item__custom-row">
               <p class="product-item__custom product-item__custom--editable" data-testid="product-item-custom" role="button" tabindex="0" aria-label="Edit customization for ${name}">${customSummary}</p>
@@ -48548,6 +49310,22 @@
             </div>`
           : '';
         const titleRowPrice = customSummary ? '' : priceHtml;
+        CUSTOMISATION_ROW_FEATURE_DISABLED */
+        let subtitleRow = '';
+        let titleRowSuffix = '';
+        if (customSummary) {
+          subtitleRow = `<div class="product-item__custom-row">
+            <p class="product-item__custom" data-testid="product-item-custom">${customSummary}</p>
+            ${priceHtml}
+          </div>`;
+        } else if (priceText && surcharge) {
+          subtitleRow = `<div class="product-item__premium-row">
+            <span class="product-item__premium-label">PREMIUM</span>
+            <span class="product-item__price" data-testid="product-item-price">${priceText}</span>
+          </div>`;
+        } else if (priceText) {
+          titleRowSuffix = priceHtml;
+        }
         el.innerHTML = `
           <div class="product-item__inner">
             <button type="button" class="product-item__thumbnail-btn" aria-label="Open ${name} details">
@@ -48557,10 +49335,9 @@
           </div>
           <div class="product-item__title-container">
             <div class="product-item__row">
-              <span class="product-item__name" data-testid="product-item-name">${name}</span>
-              ${titleRowPrice}
+              <span class="product-item__name" data-testid="product-item-name">${name}</span>${titleRowSuffix}
             </div>
-            ${customRow}
+            ${subtitleRow}
             <div class="number-stepper" role="group" aria-label="Quantity" data-zest-component="NumberStepper">
               <button type="button" class="number-stepper__button stepper-dec" aria-label="Decrease">${SVG_MINUS}</button>
               <span class="number-stepper__value qty">${qty}</span>
@@ -48794,6 +49571,9 @@
           card.classList.toggle('is-selected', qty > 0);
           if (card.classList.contains('fav-card')) {
             syncFavCardState(card, qty, customizedRow);
+          } else if (card.classList.contains('pip-recipe')) {
+            const qtyEl = card.querySelector('.pip-recipe__qty');
+            if (qtyEl) qtyEl.textContent = Math.max(1, qty);
           } else {
             renderCardFooterStepper(card, qty, customizedRow);
             syncCardPlanLine(card, customizedRow);
@@ -48863,9 +49643,6 @@
         const existingStepper = footer.querySelector('.qty-stepper');
         const existingAdd = footer.querySelector('.add-btn');
         if (qty > 0) {
-          // Compute expanded label: "(2 servings +$X.XX)" when the meal has a
-          // surcharge (base or via customized variant), else falls back to the
-          // plain compact stepper.
           const slug = card.dataset.product;
           const cfg = (typeof MEAL_CUSTOMIZATIONS !== 'undefined' && slug) ? MEAL_CUSTOMIZATIONS[slug] : null;
           const basePrice = cfg ? cfg.basePrice : parseFloat(card.dataset.price || '0') || 0;
@@ -48884,38 +49661,30 @@
           ) || 2;
           const subText = hasSurcharge
             ? `(${servingsCount} servings +$${priceDelta.toFixed(2)})`
-            : '';
+            : `(${servingsCount} servings)`;
           if (existingStepper) {
-            // Toggle expanded variant based on current priced state.
-            existingStepper.classList.toggle('qty-stepper--expanded', hasSurcharge);
+            existingStepper.classList.add('qty-stepper--expanded');
             const qtyVal = existingStepper.querySelector('.qty-val');
             if (qtyVal) {
-              if (hasSurcharge) {
-                qtyVal.innerHTML = `
-                  <span class="qty-label-main">${qty} in your box</span>
-                  <span class="qty-label-sub">${subText}</span>
-                `;
-              } else {
-                qtyVal.textContent = qty;
-              }
+              qtyVal.innerHTML = `
+                <span class="qty-label-main">${qty} in your box</span>
+                <span class="qty-label-sub">${subText}</span>
+              `;
             }
             return;
           }
           if (existingAdd) existingAdd.remove();
           const stepper = document.createElement('div');
-          stepper.className = 'qty-stepper' + (hasSurcharge ? ' qty-stepper--expanded' : '');
+          stepper.className = 'qty-stepper qty-stepper--expanded';
           stepper.setAttribute('role', 'group');
           stepper.setAttribute('aria-label', 'Quantity');
           stepper.setAttribute('data-zest-component', 'NumberStepper');
-          const qtyValHtml = hasSurcharge
-            ? `<span class="qty-val">
-                 <span class="qty-label-main">${qty} in your box</span>
-                 <span class="qty-label-sub">${subText}</span>
-               </span>`
-            : `<span class="qty-val">${qty}</span>`;
           stepper.innerHTML = `
             <button type="button" class="card-stepper-dec" aria-label="Decrease quantity">${SVG_MINUS}</button>
-            ${qtyValHtml}
+            <span class="qty-val">
+              <span class="qty-label-main">${qty} in your box</span>
+              <span class="qty-label-sub">${subText}</span>
+            </span>
             <button type="button" class="card-stepper-inc" aria-label="Increase quantity">${SVG_PLUS}</button>
           `;
           footer.appendChild(stepper);
@@ -49021,11 +49790,8 @@
         });
 
         const goodsSubtotal = mealsSubtotal + specialtyTotal + addonsTotal;
+        /* FREE_SHIPPING_FEATURE_DISABLED: freeShippingUnlocked calc, toast trigger, state update
         const freeShippingUnlocked = totalMeals >= FREE_SHIPPING_MEAL_COUNT;
-
-        // Fire the unlocked toast once when crossing the threshold
-        // while the user is on the Store or Market screen. Skip the
-        // very first recalc so the seeded cart state doesn't trigger it.
         if (recalcInitialized && freeShippingUnlocked && !wasFreeShippingUnlocked) {
           const activePage = document.querySelector('.page.active');
           const activeId = activePage && activePage.id;
@@ -49037,8 +49803,8 @@
         }
         wasFreeShippingUnlocked = freeShippingUnlocked;
         recalcInitialized = true;
-
-        const shippingCost = freeShippingUnlocked ? 0 : SHIPPING;
+        FREE_SHIPPING_FEATURE_DISABLED */
+        const shippingCost = 10.99;
         const benefitDiscount = totalMeals > 0 ? 12.98 : 0;
         const total = Math.max(0, goodsSubtotal + shippingCost - benefitDiscount);
 
@@ -49059,11 +49825,13 @@
         const checkoutBtn = $('checkout-btn');
         const hfCashValueElLocal = $('hf-cash-value');
         const amountDueValueElLocal = $('amount-due-value');
+        /* FREE_SHIPPING_FEATURE_DISABLED: shipping/progress DOM refs
         const shippingOriginal = $('shipping-original');
         const shippingFree = $('shipping-free');
         const freeShippingProgress = $('freeShippingProgress');
         const freeShippingFill = $('freeShippingFill');
         const freeShippingLabel = $('freeShippingLabel');
+        FREE_SHIPPING_FEATURE_DISABLED */
 
         const totalCartCount = totalMeals + addonsCount;
         if (headerCount) {
@@ -49094,6 +49862,7 @@
         if (cartTotal) cartTotal.textContent = '$' + total.toFixed(2);
         if (checkoutTotal) checkoutTotal.textContent = total.toFixed(2);
 
+        /* FREE_SHIPPING_FEATURE_DISABLED: shipping FREE label toggle
         if (shippingOriginal && shippingFree) {
           if (freeShippingUnlocked) {
             shippingOriginal.classList.add('price-row__price--strikethrough');
@@ -49103,6 +49872,7 @@
             shippingFree.hidden = true;
           }
         }
+        FREE_SHIPPING_FEATURE_DISABLED */
 
         const hfCash = window.__hfCash;
         const hfApplied = hfCash && hfCash.applied;
@@ -49123,6 +49893,7 @@
             manuallyDismissed;
         }
 
+        /* FREE_SHIPPING_FEATURE_DISABLED: progress bar update block
         if (freeShippingProgress) {
           const showProgress = hfApplied && totalMeals >= PLAN_SIZE && !freeShippingUnlocked;
           freeShippingProgress.hidden = !showProgress;
@@ -49139,6 +49910,7 @@
             }
           }
         }
+        FREE_SHIPPING_FEATURE_DISABLED */
 
         if (checkoutBtn) {
           const disabled = totalMeals === 0;
@@ -49420,15 +50192,35 @@
         }
       }
 
+      function syncCartRow() {
+        const slug = card.dataset.product;
+        const row = document.querySelector(`.product-item[data-slug="${CSS.escape(slug)}"]`);
+        if (row) {
+          const qtyEl = row.querySelector('.qty');
+          if (qty <= 0) { row.remove(); }
+          else if (qtyEl) { qtyEl.textContent = qty; }
+        } else if (qty > 0 && window.__cart) {
+          const name = card.querySelector('.your-meals-card__name')?.textContent || slug;
+          const img = card.querySelector('.your-meals-card__img img')?.src || '';
+          const unitPrice = parseFloat(card.querySelector('.your-meals-card__tag--price')?.dataset.unitPrice || '0');
+          window.__cart.addOrIncrement({ id: slug, slug, name, image: img, unitPrice, servings: 2, kind: 'meal', surcharge: unitPrice > 9.99 });
+          return;
+        }
+        if (typeof window.__recalcCart === 'function') window.__recalcCart();
+        if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+      }
+
       decBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (qty > 0) qty -= 1;
         render();
+        syncCartRow();
       });
       incBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         qty += 1;
         render();
+        syncCartRow();
         incBtn.style.transform = 'scale(1.15)';
         setTimeout(() => incBtn.style.transform = '', 150);
       });
@@ -49437,6 +50229,7 @@
           e.stopPropagation();
           qty = 1;
           render();
+          syncCartRow();
         });
       }
       render();
@@ -49804,6 +50597,50 @@
     })();
 
     /* ==================================================
+       TOP 10 MEALS IN THE US — populate the merch nested page
+       ================================================== */
+    (function () {
+      const list = document.getElementById('merch-list');
+      if (!list) return;
+
+      const storeGrid = document.querySelector('#page-store .store-grid');
+      if (!storeGrid) return;
+
+      const MERCH_SLUGS = [
+        'miso-salmon-ramen',
+        'crispy-parmesan-chicken',
+        'korean-bibimbap',
+        'sesame-soy-beef-bowls',
+        'chipotle-shrimp-tacos',
+        'smoky-bbq-glazed-chicken',
+        'creamy-pasta',
+        'almond-crusted-dijon-chicken',
+        'soy-glazed-salmon',
+        'hoisin-pork-tenderloin'
+      ];
+
+      const sourceCards = MERCH_SLUGS
+        .map(slug => storeGrid.querySelector(`.product-card[data-product="${slug}"]`))
+        .filter(Boolean);
+
+      sourceCards.forEach(sourceCard => {
+        list.appendChild(cloneCardWithStaticImage(sourceCard));
+      });
+
+      if (typeof window.__syncStoreCardsFromCart === 'function') {
+        window.__syncStoreCardsFromCart();
+      }
+
+      const trigger = document.getElementById('merch-card-trigger');
+      if (trigger) {
+        trigger.addEventListener('click', () => switchScreen('merch'));
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); switchScreen('merch'); }
+        });
+      }
+    })();
+
+    /* ==================================================
        DOUBLE PROTEIN — populate the carousel + nested page
        from every Store meal that has a double-protein
        customization option (MEAL_CUSTOMIZATIONS default swap
@@ -50091,7 +50928,7 @@
 
       // Re-run after the HP protein + top-rated dynamic carousels render
       // (they clone product cards into new containers).
-      ['top-rated-carousel', 'top-rated-list', 'high-protein-carousel', 'high-protein-list'].forEach(id => {
+      ['top-rated-carousel', 'top-rated-list', 'high-protein-carousel', 'high-protein-list', 'merch-list'].forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
         if (el.children.length) highlightAll(el);
