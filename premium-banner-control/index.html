@@ -3404,28 +3404,17 @@
       color: #111;
     }
     .product-card .card-footer .add-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: none;
-      background: #232323;
-      color: #fff;
-      font-size: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 1.5px solid #111;
+      background: #FFFFFF;
+      border-radius: 9px;
+      padding: 7px 22px;
+      font-weight: 700;
+      font-size: 14px;
+      color: #111;
       cursor: pointer;
       flex-shrink: 0;
     }
-    .product-card .card-footer .add-btn::after {
-      content: '+';
-      font-size: 24px;
-      font-weight: 300;
-      line-height: 1;
-      color: #fff;
-    }
-    .product-card .card-footer .add-btn:active { background: #444; }
+    .product-card .card-footer .add-btn:active { background: #f0f0f0; }
     .product-card .card-footer .qty-stepper {
       display: flex;
       align-items: center;
@@ -48752,6 +48741,7 @@
         showToast('Details not available');
         return;
       }
+      if (cfg.image) { const _pre = new Image(); _pre.src = cfg.image; }
       const existingVariantId = options.existingVariantId || null;
 
       // Default state
@@ -48915,7 +48905,9 @@
           qtyEl.textContent = current - 1;
         }
         if (typeof window.__recalcCart === 'function') window.__recalcCart();
-        if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+        requestAnimationFrame(() => {
+          if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+        });
         updatePdpQtyControl();
       });
     }
@@ -48931,7 +48923,9 @@
         const qtyEl = row.querySelector('.qty');
         qtyEl.textContent = (parseInt(qtyEl.textContent || '1', 10)) + 1;
         if (typeof window.__recalcCart === 'function') window.__recalcCart();
-        if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+        requestAnimationFrame(() => {
+          if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
+        });
         updatePdpQtyControl();
       });
     }
@@ -49643,9 +49637,6 @@
         const existingStepper = footer.querySelector('.qty-stepper');
         const existingAdd = footer.querySelector('.add-btn');
         if (qty > 0) {
-          // Compute expanded label: "(2 servings +$X.XX)" when the meal has a
-          // surcharge (base or via customized variant), else falls back to the
-          // plain compact stepper.
           const slug = card.dataset.product;
           const cfg = (typeof MEAL_CUSTOMIZATIONS !== 'undefined' && slug) ? MEAL_CUSTOMIZATIONS[slug] : null;
           const basePrice = cfg ? cfg.basePrice : parseFloat(card.dataset.price || '0') || 0;
@@ -49664,38 +49655,30 @@
           ) || 2;
           const subText = hasSurcharge
             ? `(${servingsCount} servings +$${priceDelta.toFixed(2)})`
-            : '';
+            : `(${servingsCount} servings)`;
           if (existingStepper) {
-            // Toggle expanded variant based on current priced state.
-            existingStepper.classList.toggle('qty-stepper--expanded', hasSurcharge);
+            existingStepper.classList.add('qty-stepper--expanded');
             const qtyVal = existingStepper.querySelector('.qty-val');
             if (qtyVal) {
-              if (hasSurcharge) {
-                qtyVal.innerHTML = `
-                  <span class="qty-label-main">${qty} in your box</span>
-                  <span class="qty-label-sub">${subText}</span>
-                `;
-              } else {
-                qtyVal.textContent = qty;
-              }
+              qtyVal.innerHTML = `
+                <span class="qty-label-main">${qty} in your box</span>
+                <span class="qty-label-sub">${subText}</span>
+              `;
             }
             return;
           }
           if (existingAdd) existingAdd.remove();
           const stepper = document.createElement('div');
-          stepper.className = 'qty-stepper' + (hasSurcharge ? ' qty-stepper--expanded' : '');
+          stepper.className = 'qty-stepper qty-stepper--expanded';
           stepper.setAttribute('role', 'group');
           stepper.setAttribute('aria-label', 'Quantity');
           stepper.setAttribute('data-zest-component', 'NumberStepper');
-          const qtyValHtml = hasSurcharge
-            ? `<span class="qty-val">
-                 <span class="qty-label-main">${qty} in your box</span>
-                 <span class="qty-label-sub">${subText}</span>
-               </span>`
-            : `<span class="qty-val">${qty}</span>`;
           stepper.innerHTML = `
             <button type="button" class="card-stepper-dec" aria-label="Decrease quantity">${SVG_MINUS}</button>
-            ${qtyValHtml}
+            <span class="qty-val">
+              <span class="qty-label-main">${qty} in your box</span>
+              <span class="qty-label-sub">${subText}</span>
+            </span>
             <button type="button" class="card-stepper-inc" aria-label="Increase quantity">${SVG_PLUS}</button>
           `;
           footer.appendChild(stepper);
