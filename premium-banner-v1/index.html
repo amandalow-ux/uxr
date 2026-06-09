@@ -44198,7 +44198,8 @@
               id: slug, slug, name: recipe.name, image: recipe.img,
               unitPrice: recipe.unitPrice, servings: 2,
               kind: 'specialty', surcharge: true,
-              customSummary: '', showPrice: true, pairings: []
+              customSummary: '', showPrice: true, pairings: [],
+              premiumLabel: recipe.badge || 'PREMIUM'
             });
             syncPipQty(slug);
             if (typeof showOrderSavedToast === 'function') showOrderSavedToast();
@@ -44227,7 +44228,8 @@
               id: slug, slug, name: recipe.name, image: recipe.img,
               unitPrice: recipe.unitPrice, servings: 2,
               kind: 'specialty', surcharge: true,
-              customSummary: '', showPrice: true, pairings: []
+              customSummary: '', showPrice: true, pairings: [],
+              premiumLabel: recipe.badge || 'PREMIUM'
             });
             syncPipQty(slug);
             if (typeof showOrderSavedToast === 'function') showOrderSavedToast();
@@ -47696,6 +47698,9 @@
         const isAddon = productCard.dataset.zestVariant === 'addon'
           || !!productCard.closest('#page-market');
         const surcharge = !isAddon && unitPrice > PLAN_MEAL_PRICE;
+        const premiumLabel = productCard.querySelector('.specialty-reason')?.textContent?.trim()
+          || productCard.querySelector('.meal-tag')?.textContent?.trim()
+          || 'PREMIUM';
         return {
           id: slug,
           slug,
@@ -47706,6 +47711,7 @@
           kind: isAddon ? 'addon' : 'meal',
           surcharge,
           showPrice: isAddon ? true : surcharge,
+          premiumLabel: surcharge ? premiumLabel : '',
         };
       }
       const reorderCard = plus.closest('.reorder-card');
@@ -48406,6 +48412,10 @@
       }
 
       const isSurcharge = mealUnitPrice > PLAN_MEAL_PRICE;
+      const cardEl = document.querySelector(`.product-card[data-product="${slug}"]`);
+      const premiumLabel = cardEl?.querySelector('.specialty-reason')?.textContent?.trim()
+        || cardEl?.querySelector('.meal-tag')?.textContent?.trim()
+        || 'PREMIUM';
       if (window.__cart && window.__cart.addOrIncrement) {
         window.__cart.addOrIncrement({
           id: variantId,
@@ -48424,6 +48434,7 @@
             doubleSelected: hasDoubled,
             addOnIds: Array.from(selectedAddOns || []),
           },
+          premiumLabel,
         });
       }
       // Mirror the user's drawer selection back onto the Store card so the
@@ -49535,7 +49546,7 @@
       const SVG_PLUS  = '<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 3h2v4h4v2H9v4H7V9H3V7h4z"/></svg>';
       const SVG_SERVINGS = '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6ZM3 22a9 9 0 0 1 18 0h-2a7 7 0 0 0-14 0H3Z"/></svg>';
 
-      function buildCartItem({ id, slug, name, image, unitPrice, qty, servings, kind, surcharge, customSummary, showPrice }) {
+      function buildCartItem({ id, slug, name, image, unitPrice, qty, servings, kind, surcharge, customSummary, showPrice, premiumLabel }) {
         const el = document.createElement('div');
         el.className = 'product-item';
         el.setAttribute('data-zest-component', 'ProductItem');
@@ -49575,7 +49586,7 @@
             /* CUSTOMIZATION_LINK: disabled — to restore X button + clickable: add class product-item__custom--editable, role=button, tabindex=0, aria-label to the <p>, then add button.product-item__custom-remove after it */
           : surcharge
             ? `<div class="product-item__custom-row">
-                <p class="product-item__custom" data-testid="product-item-custom">PREMIUM</p>
+                <p class="product-item__custom" data-testid="product-item-custom">${premiumLabel || 'PREMIUM'}</p>
                 ${priceHtml}
               </div>`
             : '';
@@ -49758,7 +49769,7 @@
         bindCustomizationControls(item);
       };
 
-      function addOrIncrement({ id, slug, name, image, unitPrice, servings, kind, surcharge, customSummary, showPrice, pairings, customState }) {
+      function addOrIncrement({ id, slug, name, image, unitPrice, servings, kind, surcharge, customSummary, showPrice, pairings, customState, premiumLabel }) {
         const existing = findItemById(id);
         if (existing) {
           const qtyEl = existing.querySelector('.qty');
@@ -49772,6 +49783,7 @@
             surcharge: !!surcharge,
             customSummary: customSummary || '',
             showPrice: !!showPrice,
+            premiumLabel: premiumLabel || '',
           });
           if (customState) {
             try { row.dataset.customState = JSON.stringify(customState); } catch (err) {}
@@ -50502,11 +50514,16 @@
             const name = card.querySelector('.your-meals-card__name')?.textContent?.trim() || '';
             const img = card.querySelector('.your-meals-card__img')?.src || '';
             const price = parseFloat(card.dataset.price || '0') || 0;
+            const sourceCard = document.querySelector(`.product-card[data-product="${slug}"]`);
+            const premiumLabel = sourceCard?.querySelector('.specialty-reason')?.textContent?.trim()
+              || sourceCard?.querySelector('.meal-tag')?.textContent?.trim()
+              || 'PREMIUM';
             window.__cart.addOrIncrement({
               id: slug, slug, name, image: img,
               unitPrice: price, servings: 2,
               kind: 'meal', surcharge: price > 9.99,
-              customSummary: '', showPrice: price > 9.99, pairings: []
+              customSummary: '', showPrice: price > 9.99, pairings: [],
+              premiumLabel: price > 9.99 ? premiumLabel : ''
             });
           }
           qty = 1;
