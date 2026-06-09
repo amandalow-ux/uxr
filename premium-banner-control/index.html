@@ -50966,14 +50966,20 @@
     }
     body.uxr-embed .device-scale { margin: 0 auto; }
 
-    /* Mobile / touch viewports — strip the bezel chrome but KEEP the
-       scale transform so the 393×852 prototype content fits the
-       viewport without overflowing. Triggers on narrow width OR coarse
-       pointer so phones, installed PWAs, and tablets in portrait all
-       bypass the bezel. */
-    @media (max-width: 600px), (pointer: coarse) and (max-width: 900px) {
+    /* Mobile viewports — strip the bezel chrome and scale the 393×852
+       prototype to fill viewport width. Height overflows and the page
+       scrolls vertically so all content remains reachable. */
+    @media (max-width: 768px) {
+      html, body {
+        height: auto !important;
+        min-height: 100vh;
+        overflow: visible !important;
+      }
       body.uxr-embed {
         background: var(--color-elevation-base, #fff);
+        height: auto !important;
+        min-height: 100vh;
+        overflow: visible !important;
       }
       /* Reserve the SCALED footprint of just the screen (393×852),
          not the frame-plus-bezel (421×880). */
@@ -51008,19 +51014,14 @@
   <script>
     (function uxrEmbedBootstrap() {
       const SCREEN_W = 393;
-      const SCREEN_H = 852;
-      const MOBILE_QUERY = '(max-width: 600px), (pointer: coarse) and (max-width: 900px)';
+      const MOBILE_QUERY = '(max-width: 768px)';
 
-      // Recompute --device-scale against the actual screen dims (393×852)
-      // when mobile mode is active. Runs AFTER the main scaler's resize
-      // listener (registered earlier in the file) so it overrides the
-      // dp-embed branch which uses the frame-with-bezel dims (421×880).
+      // Recompute --device-scale against the actual screen width (393)
+      // when mobile mode is active. Width-only fit so the prototype fills
+      // the viewport edge-to-edge and the page scrolls vertically.
       function uxrFitMobile() {
         if (!matchMedia(MOBILE_QUERY).matches) return;
-        const scale = Math.min(
-          window.innerWidth / SCREEN_W,
-          window.innerHeight / SCREEN_H
-        );
+        const scale = window.innerWidth / SCREEN_W;
         document.documentElement.style.setProperty('--device-scale', scale);
       }
 
