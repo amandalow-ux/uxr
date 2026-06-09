@@ -2454,8 +2454,8 @@
     }
     .premium-irish-page .pip-recipe__img {
       position: relative;
-      width: 110px;
-      height: 110px;
+      width: 140px;
+      height: 140px;
       flex-shrink: 0;
       border-radius: 8px;
       overflow: hidden;
@@ -2467,47 +2467,98 @@
       object-fit: cover;
       display: block;
     }
+    /* Standalone add button — Zest NumberStepper "collapsed" state, sm (40px)
+       Tokens: zest-tokens/build/react-native/hellofresh/components/numberStepper */
     .premium-irish-page .pip-recipe__add {
       position: absolute;
-      bottom: 6px; right: 6px;
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      background: #fff;
-      border: 1px solid rgba(0,0,0,0.08);
+      bottom: 8px; right: 8px;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--stepper-radius);
+      background: var(--stepper-background-default);
+      border: 1px solid var(--stepper-border-default);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-      color: #1d1d1d;
+      color: var(--stepper-foreground-default);
+      padding: 0;
+      box-sizing: border-box;
+      transition: background 0.12s ease;
+    }
+    .premium-irish-page .pip-recipe__add:hover,
+    .premium-irish-page .pip-recipe__add:active {
+      background: var(--stepper-background-pressed);
+    }
+    .premium-irish-page .pip-recipe__add svg {
+      width: 16px;
+      height: 16px;
     }
     .premium-irish-page .pip-recipe.is-selected .pip-recipe__add { display: none; }
+    /* Expanded stepper — Zest NumberStepper "expanded" state, sm (40px). Buttons own
+       their full borders; value container has only top+bottom borders so the row reads
+       as one continuous outlined unit (mirrors @zest/react-native NumberStepper). */
     .premium-irish-page .pip-recipe .pip-recipe__stepper {
       display: none;
       position: absolute;
-      bottom: 6px; right: 6px;
+      bottom: 8px; left: 8px; right: 8px;
+      height: 40px;
+      flex-direction: row;
       align-items: stretch;
-      background: #fff;
-      border: 1px solid #232323;
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,.12);
+      gap: 0;
+      background: transparent;
     }
-    .premium-irish-page .pip-recipe.is-selected .pip-recipe__stepper { display: inline-flex; }
+    .premium-irish-page .pip-recipe.is-selected .pip-recipe__stepper { display: flex; }
     .premium-irish-page .pip-recipe__stepper-dec,
     .premium-irish-page .pip-recipe__stepper-inc {
-      width: 28px; height: 28px;
-      border: none; background: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      color: #232323;
+      width: 40px;
+      flex: 0 0 40px;
+      height: 40px;
+      background: var(--stepper-background-default);
+      border: 1px solid var(--stepper-border-default);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--stepper-foreground-default);
+      padding: 0;
+      box-sizing: border-box;
+      transition: background 0.12s ease;
+    }
+    .premium-irish-page .pip-recipe__stepper-dec:hover,
+    .premium-irish-page .pip-recipe__stepper-dec:active,
+    .premium-irish-page .pip-recipe__stepper-inc:hover,
+    .premium-irish-page .pip-recipe__stepper-inc:active {
+      background: var(--stepper-background-pressed);
+    }
+    .premium-irish-page .pip-recipe__stepper-dec {
+      border-top-left-radius: var(--stepper-radius);
+      border-bottom-left-radius: var(--stepper-radius);
+    }
+    .premium-irish-page .pip-recipe__stepper-inc {
+      border-top-right-radius: var(--stepper-radius);
+      border-bottom-right-radius: var(--stepper-radius);
+    }
+    .premium-irish-page .pip-recipe__stepper-dec svg,
+    .premium-irish-page .pip-recipe__stepper-inc svg {
+      width: 16px;
+      height: 16px;
     }
     .premium-irish-page .pip-recipe__qty {
-      min-width: 20px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 600;
-      border-left: 1px solid #e0e0e0;
-      border-right: 1px solid #e0e0e0;
+      flex: 1;
+      min-width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--stepper-label-background);
+      border-top: 1px solid var(--stepper-border-default);
+      border-bottom: 1px solid var(--stepper-border-default);
+      box-sizing: border-box;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--stepper-label-foreground);
+      font-family: var(--font-family-secondary);
+      user-select: none;
     }
     .premium-irish-page .pip-recipe__body {
       flex: 1;
@@ -2520,27 +2571,27 @@
     .premium-irish-page .pip-recipe__badge {
       display: inline-block;
       align-self: flex-start;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 800;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      color: #1d1d1d;
-      background: #ffffff;
-      padding: 3px 6px;
-      border-radius: 3px;
-      margin-bottom: 4px;
+      color: #ffffff;
+      background: #1d1d1d;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 6px;
     }
     .premium-irish-page .pip-recipe__badge--bestseller {
-      background: #ffe27a;
-      color: #1d1d1d;
+      background: #1d1d1d;
+      color: #ffffff;
     }
     /* Badge + community rating pair, sit on the same row at the top of
-       the card body. Keeps the compact 110px card height intact. */
+       the card body. */
     .premium-irish-page .pip-recipe__badge-row {
       display: flex;
       align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
+      gap: 8px;
+      margin-bottom: 6px;
       min-width: 0;
     }
     .premium-irish-page .pip-recipe__badge-row .pip-recipe__badge {
@@ -2550,18 +2601,16 @@
       display: inline-flex;
       align-items: baseline;
       gap: 3px;
+      margin-left: auto;
       font-family: var(--font-family-secondary);
       font-weight: 700;
       font-size: 11px;
       line-height: 1.2;
       color: #1d1d1d;
       white-space: nowrap;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
     .premium-irish-page .pip-recipe__rating .star {
-      color: #f4a522;
+      color: #1d1d1d;
       font-size: 12px;
       line-height: 1;
     }
@@ -2571,18 +2620,18 @@
       font-size: 10px;
     }
     .premium-irish-page .pip-recipe__name {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 800;
       color: #1d1d1d;
       line-height: 1.25;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       font-family: var(--font-family-primary);
     }
     .premium-irish-page .pip-recipe__sub {
-      font-size: 11px;
+      font-size: 12px;
       color: rgba(29,29,29,0.6);
       line-height: 1.3;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -2590,25 +2639,28 @@
     .premium-irish-page .pip-recipe__metrics {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
-      margin-bottom: 6px;
+      gap: 6px;
+      margin-bottom: 8px;
+      align-items: center;
     }
     .premium-irish-page .pip-metric {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 600;
       color: rgba(29,29,29,0.7);
-      background: rgba(29,29,29,0.06);
-      padding: 3px 6px;
-      border-radius: 4px;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
       white-space: nowrap;
     }
     .premium-irish-page .pip-metric--highlight {
-      background: #ffe27a;
+      background: #ede5d8;
       color: #1d1d1d;
+      padding: 3px 7px;
+      border-radius: 4px;
     }
     .premium-irish-page .pip-recipe__price {
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 800;
       color: #1d1d1d;
       margin-top: auto;
     }
@@ -7655,6 +7707,11 @@
       pointer-events: auto;
     }
     .order-saved-toast[hidden] { display: none; }
+    /* Premium-widget nested page has no sticky CTA — bottom-anchor the toast
+       16px above the device frame edge so it doesn't float in dead space. */
+    .screen:has(.premium-irish-page.visible) .order-saved-toast {
+      bottom: 16px;
+    }
     .order-saved-toast__icon {
       width: 24px;
       height: 24px;
@@ -12350,39 +12407,36 @@
               </div>
             </article>
 
-            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="garlic-herb-butter-scallops" data-price="12.99" data-customizable="true" data-filters="specialty seafood high-protein under-30 milk" data-sort-time="25" data-sort-calories="580" data-sort-protein="36">
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="mediterranean-chicken-bowls" data-price="11.49" data-customizable="true" data-filters="bowls mediterranean chicken high-protein under-30 milk" data-sort-time="30" data-sort-calories="620" data-sort-protein="38">
               <div class="img-wrap">
-                <img src="images/real/garlic-herb-butter-scallops.jpg" alt="Garlic Herb Butter Scallops">
+                <img src="images/real/mediterranean-chicken-bowls.jpg" alt="Mediterranean Chicken Bowls">
               </div>
               <div class="card-body">
-                <div class="product-name">Garlic Herb Butter Scallops</div>
-                <div class="product-subtitle">with Lemon Risotto &amp; Asparagus</div>
+                <div class="product-name">Mediterranean Chicken Bowls</div>
+                <div class="product-subtitle">with Couscous &amp; Lemon Yogurt</div>
                 <div class="product-meta">
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
-                  <span>25 min</span>
+                  <span>30 min</span>
                   <span class="dot">•</span>
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
-                  <span>580 kcal</span>
+                  <span>620 kcal</span>
                   <span class="dot">•</span>
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
-                  <span>36g protein</span>
+                  <span>38g protein</span>
                 </div>
                 <div class="dietary-tags">
-                  <span class="dietary-tag">Specialty</span>
-                  <span class="dietary-tag">Seafood</span>
+                  <span class="dietary-tag">Mediterranean</span>
+                  <span class="dietary-tag">Bestseller</span>
                   <span class="dietary-tag">High Protein</span>
                 </div>
               </div>
               <div class="card-footer">
-                <div class="plan-line plan-line--surcharge">
+                <div class="plan-line">
                   <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
                   <span class="servings-count">2</span>
-                  <span class="surcharge-price">
-                    <span class="surcharge-price__amount">+$1.50</span>
-                    <span class="surcharge-price__unit">per serving</span>
-                  </span>
+                  <span class="plan-text">Included in plan</span>
                 </div>
-                <button type="button" class="add-btn stepper-plus" aria-label="Add Garlic Herb Butter Scallops to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Mediterranean Chicken Bowls to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
               </div>
             </article>
 
@@ -12554,39 +12608,36 @@
               </div>
             </article>
 
-            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="scallops-parmesan-spaghetti" data-price="12.99" data-customizable="true" data-filters="pasta-noodles italian seafood high-protein under-30 milk wheat" data-sort-time="25" data-sort-calories="660" data-sort-protein="34">
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="aglio-olio-chicken-pasta" data-price="11.49" data-customizable="true" data-filters="pasta-noodles italian chicken high-protein under-30 milk wheat" data-sort-time="30" data-sort-calories="780" data-sort-protein="36">
               <div class="img-wrap">
-                <img src="images/real/scallops-parmesan-spaghetti.jpg" alt="Scallops &amp; Parmesan Spaghetti">
+                <img src="images/real/aglio-olio-chicken-pasta.jpg" alt="Aglio e Olio Chicken Pasta">
               </div>
               <div class="card-body">
-                <div class="product-name">Scallops &amp; Parmesan Spaghetti</div>
-                <div class="product-subtitle">with Brown Butter &amp; Crispy Capers</div>
+                <div class="product-name">Aglio e Olio Chicken Pasta</div>
+                <div class="product-subtitle">with Baby Spinach &amp; Parmesan</div>
                 <div class="product-meta">
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
-                  <span>25 min</span>
+                  <span>30 min</span>
                   <span class="dot">•</span>
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
-                  <span>660 kcal</span>
+                  <span>780 kcal</span>
                   <span class="dot">•</span>
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
-                  <span>34g protein</span>
+                  <span>36g protein</span>
                 </div>
                 <div class="dietary-tags">
-                  <span class="dietary-tag">Seafood</span>
                   <span class="dietary-tag">Italian</span>
+                  <span class="dietary-tag">Bestseller</span>
                   <span class="dietary-tag">High Protein</span>
                 </div>
               </div>
               <div class="card-footer">
-                <div class="plan-line plan-line--surcharge">
+                <div class="plan-line">
                   <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
                   <span class="servings-count">2</span>
-                  <span class="surcharge-price">
-                    <span class="surcharge-price__amount">+$1.50</span>
-                    <span class="surcharge-price__unit">per serving</span>
-                  </span>
+                  <span class="plan-text">Included in plan</span>
                 </div>
-                <button type="button" class="add-btn stepper-plus" aria-label="Add Scallops &amp; Parmesan Spaghetti to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Aglio e Olio Chicken Pasta to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
               </div>
             </article>
 
@@ -13021,27 +13072,27 @@
               </div>
             </article>
 
-            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="chipotle-shrimp-tacos" data-price="9.99" data-customizable="true" data-filters="handhelds mexican seafood high-protein under-30 spicy wheat" data-sort-time="20" data-sort-calories="620" data-sort-protein="32">
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="creamy-shrimp-bacon-spaghetti" data-price="12.49" data-customizable="true" data-filters="pasta-noodles italian seafood high-protein under-30 wheat milk" data-sort-time="30" data-sort-calories="810" data-sort-protein="32">
               <div class="img-wrap">
-                <img src="images/real/chipotle-shrimp-tacos.jpg" alt="Chipotle Shrimp Tacos">
+                <img src="images/real/creamy-shrimp-bacon-spaghetti.jpg" alt="Creamy Shrimp &amp; Bacon Spaghetti">
               </div>
               <div class="card-body">
-                <div class="product-name">Chipotle Shrimp Tacos</div>
-                <div class="product-subtitle">with Cilantro-Lime Slaw &amp; Avocado Crema</div>
+                <div class="product-name">Creamy Shrimp &amp; Bacon Spaghetti</div>
+                <div class="product-subtitle">with Baby Spinach &amp; Parmesan</div>
                 <div class="product-meta">
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
-                  <span>20 min</span>
+                  <span>30 min</span>
                   <span class="dot">•</span>
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
-                  <span>620 kcal</span>
+                  <span>810 kcal</span>
                   <span class="dot">•</span>
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
                   <span>32g protein</span>
                 </div>
                 <div class="dietary-tags">
+                  <span class="dietary-tag">Seafood</span>
+                  <span class="dietary-tag">Comfort</span>
                   <span class="dietary-tag">High Protein</span>
-                  <span class="dietary-tag">Spicy</span>
-                  <span class="dietary-tag">Quick Cook</span>
                 </div>
               </div>
               <div class="card-footer">
@@ -13050,7 +13101,7 @@
                   <span class="servings-count">2</span>
                   <span class="plan-text">Included in plan</span>
                 </div>
-                <button type="button" class="add-btn stepper-plus" aria-label="Add Chipotle Shrimp Tacos to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Creamy Shrimp &amp; Bacon Spaghetti to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
               </div>
             </article>
 
@@ -14063,11 +14114,11 @@
               <h2 class="pip-heading" id="pipReviewsHeading">What people are saying</h2>
               <div class="pip-rating">
                 <div class="stars" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#f4a522"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#f4a522"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#f4a522"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#f4a522"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#f4a522"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 </div>
                 <span class="score">4.9</span>
                 <span class="count">from 2,847 reviews</span>
@@ -43932,6 +43983,10 @@
         { slug: 'honey-balsamic-duck-breast',      unitPrice: 24.98, badge: 'DATE NIGHT', highlight: 'protein', name: 'Honey-Balsamic Duck Breast',       sub: 'with Roasted Figs & Wild Rice',           time: '35 min', calories: '710 kcal', protein: '38g protein', price: '+$14.99', img: 'images/real/crispy-parmesan-chicken.jpg' },
         { slug: 'pan-seared-salmon-en-papillote', unitPrice: 23.98, badge: 'DATE NIGHT', highlight: 'calories', name: 'Pan-Seared Salmon en Papillote',  sub: 'with Champagne Cream & Dill',             time: '30 min', calories: '580 kcal', protein: '34g protein', price: '+$13.99', img: 'images/real/sesame-soy-beef-bowls.jpg' },
         { slug: 'tagliatelle-al-tartufo',          unitPrice: 24.98, badge: 'DATE NIGHT', name: 'Tagliatelle al Tartufo',           sub: 'with Black Truffle, Pecorino & Egg Yolk', time: '25 min', calories: '660 kcal', protein: '20g protein', price: '+$14.99', img: 'images/real/creamy-mushroom-gemelli.jpg' },
+        { slug: 'lemon-caper-branzino',            unitPrice: 24.98, badge: 'DATE NIGHT', name: 'Lemon-Caper Branzino',             sub: 'with Saffron Couscous & Charred Lemon',   time: '30 min', calories: '590 kcal', protein: '36g protein', price: '+$14.99', img: 'images/real/creamy-lemon-garlic-shrimp-linguine.jpg' },
+        { slug: 'truffle-burrata-ravioli',         unitPrice: 24.98, badge: 'BESTSELLER', highlight: 'time', name: 'Black Truffle & Burrata Ravioli',  sub: 'with Brown Butter & Crispy Sage',         time: '20 min', calories: '720 kcal', protein: '24g protein', price: '+$14.99', img: 'images/real/creamy-pesto-pasta-burrata.jpg' },
+        { slug: 'brown-butter-lobster-risotto',    unitPrice: 25.98, badge: 'DATE NIGHT', highlight: 'protein', name: 'Brown-Butter Lobster Risotto',    sub: 'with Tarragon & Crème Fraîche',           time: '35 min', calories: '740 kcal', protein: '34g protein', price: '+$15.99', img: 'images/real/creamy-shrimp-bacon-spaghetti.jpg' },
+        { slug: 'bordelaise-beef-tenderloin',      unitPrice: 24.98, badge: 'DATE NIGHT', name: 'Bordelaise Beef Tenderloin',       sub: 'with Truffle Pommes & Watercress',        time: '35 min', calories: '700 kcal', protein: '40g protein', price: '+$14.99', img: 'images/real/steak-parmesan-potatoes.jpg' },
       ];
 
       const reviews = [
@@ -43956,9 +44011,9 @@
       }
       function pipRatingFor(seed) {
         if (!seed) return null;
-        if (pipHash01(seed + ':show') >= 0.80) return null;
-        const valStep = Math.floor(pipHash01(seed + ':val') * 20);
-        const value = (3.0 + valStep * 0.1).toFixed(1);
+        // Premium widget cards: always show, range 3.9-5.0 (12 steps × 0.1).
+        const valStep = Math.floor(pipHash01(seed + ':val') * 12);
+        const value = (3.9 + valStep * 0.1).toFixed(1);
         const raw = Math.floor(80 + Math.pow(pipHash01(seed + ':cnt'), 1.6) * 4820);
         const count = raw >= 1000 ? (raw / 1000).toFixed(1) + 'k' : String(raw);
         return { value, count };
@@ -44037,7 +44092,7 @@
 
       function renderReviews() {
         if (!reviewsScroll) return;
-        const star = '<svg width="12" height="12" viewBox="0 0 24 24" fill="#f4a522"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+        const star = '<svg width="12" height="12" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
         const stars = star.repeat(5);
         reviewsScroll.innerHTML = reviews.map(rv => `
           <article class="pip-testimonial">
@@ -44146,6 +44201,7 @@
               customSummary: '', showPrice: true, pairings: []
             });
             syncPipQty(slug);
+            if (typeof showOrderSavedToast === 'function') showOrderSavedToast();
             return;
           }
 
@@ -44174,6 +44230,7 @@
               customSummary: '', showPrice: true, pairings: []
             });
             syncPipQty(slug);
+            if (typeof showOrderSavedToast === 'function') showOrderSavedToast();
             return;
           }
 
@@ -44200,6 +44257,7 @@
               }
             }
             syncPipQty(slug);
+            if (typeof showOrderSavedToast === 'function') showOrderSavedToast();
             return;
           }
 
@@ -44246,7 +44304,7 @@
         { slug: 'steak-parmesan-potatoes',     unitPrice: 13.99, name: 'Steak with Parmesan Potatoes',     sub: 'with Garlic Butter &amp; Roasted Asparagus',  time: '35 min', prep: '10 min', protein: '42g', tags: ['Specialty', 'High Protein'], img: 'images/real/steak-parmesan-potatoes.jpg' },
         { slug: 'crispy-parmesan-chicken',     unitPrice: 9.99,  name: 'Crispy Parmesan Chicken',          sub: 'with Lemon-Herb Orzo &amp; Green Beans',      time: '30 min', prep: '10 min', protein: '38g', tags: ['High Protein', 'Italian'], img: 'images/real/crispy-parmesan-chicken.jpg' },
         { slug: 'korean-bibimbap',             unitPrice: 11.99, name: 'Korean Beef Bibimbap',             sub: 'with Pickled Veg &amp; Gochujang Sauce',      time: '25 min', prep: '10 min', protein: '34g', tags: ['High Protein', 'Spicy'], img: 'images/real/korean-beef-bibimbap.jpg' },
-        { slug: 'chipotle-shrimp-tacos',       unitPrice: 9.99,  name: 'Chipotle Shrimp Tacos',           sub: 'with Cilantro-Lime Slaw &amp; Avocado Crema', time: '20 min', prep: '10 min', protein: '32g', tags: ['Quick', 'Seafood'], img: 'images/real/chipotle-shrimp-tacos.jpg' },
+        { slug: 'creamy-shrimp-bacon-spaghetti', unitPrice: 12.49, name: 'Creamy Shrimp & Bacon Spaghetti', sub: 'with Baby Spinach &amp; Parmesan',           time: '30 min', prep: '10 min', protein: '32g', tags: ['Seafood', 'Comfort'], img: 'images/real/creamy-shrimp-bacon-spaghetti.jpg' },
         { slug: 'sesame-soy-beef-bowls',       unitPrice: 9.99,  name: 'Sesame Soy Beef Bowls',           sub: 'with Jasmine Rice &amp; Quick Pickles',        time: '25 min', prep: '5 min', protein: '36g', tags: ['High Protein', 'Asian'], img: 'images/real/sesame-soy-beef-bowls.jpg' },
         { slug: 'hoisin-pork-tenderloin',      unitPrice: 9.99,  name: 'Hoisin Pork Tenderloin',          sub: 'with Roasted Sweet Potatoes &amp; Broccoli',  time: '30 min', prep: '10 min', protein: '36g', tags: ['High Protein'], img: 'images/real/hoisin-pork-tenderloin.jpg' },
         { slug: 'almond-crusted-dijon-chicken', unitPrice: 9.99, name: 'Almond-Crusted Dijon Chicken',    sub: 'with Roasted Potatoes &amp; Honey-Glazed Carrots', time: '30 min', prep: '10 min', protein: '40g', tags: ['High Protein', 'Classic'], img: 'images/real/almond-crusted-dijon-chicken.jpg' },
