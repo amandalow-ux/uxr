@@ -47679,6 +47679,15 @@
        Handles store meal cards, market addon cards, and the
        reorder carousel cards. Returns null if unrecognized.
        ================================================== */
+    function getCleanProductName(card) {
+      const nameEl = card.querySelector('.product-name');
+      if (!nameEl) return '';
+      const clone = nameEl.cloneNode(true);
+      const rating = clone.querySelector('.product-rating');
+      if (rating) rating.remove();
+      return clone.textContent.trim();
+    }
+
     function extractProductFromStepper(plus) {
       // Compact fav-card (Your top rated / High protein carousels):
       // delegate to the source .product-card in the Store grid.
@@ -47691,7 +47700,7 @@
       if (productCard) {
         const slug = productCard.dataset.product;
         if (!slug) return null;
-        const name = (productCard.querySelector('.product-name')?.textContent || '').trim();
+        const name = getCleanProductName(productCard);
         const img = productCard.querySelector('img');
         const image = img ? img.getAttribute('src') : '';
         const unitPrice = parseFloat(productCard.dataset.price || '0') || 0;
@@ -49261,7 +49270,7 @@
           ? MEAL_CATALOG.find(m => m.slug === slug)
           : null;
         const name = catalogMatch ? catalogMatch.name
-          : (card.querySelector('.product-name')?.textContent || card.querySelector('.your-meals-card__name')?.textContent || '').trim();
+          : (getCleanProductName(card) || card.querySelector('.your-meals-card__name')?.textContent?.trim() || '');
         const subtitle = catalogMatch ? (catalogMatch.subtitle || '')
           : (card.querySelector('.product-subtitle')?.textContent || card.querySelector('.your-meals-card__subtitle')?.textContent || '').trim();
         const price = catalogMatch ? catalogMatch.price
@@ -49586,7 +49595,7 @@
             /* CUSTOMIZATION_LINK: disabled — to restore X button + clickable: add class product-item__custom--editable, role=button, tabindex=0, aria-label to the <p>, then add button.product-item__custom-remove after it */
           : surcharge
             ? `<div class="product-item__custom-row">
-                <p class="product-item__custom" data-testid="product-item-custom">${premiumLabel || 'PREMIUM'}</p>
+                <p class="product-item__custom" data-testid="product-item-custom">${(premiumLabel || 'PREMIUM').toUpperCase()}</p>
                 ${priceHtml}
               </div>`
             : '';
@@ -49967,7 +49976,7 @@
           if (existingStepper) existingStepper.remove();
           if (!existingAdd) {
             const slug = card.dataset.product;
-            const name = (card.querySelector('.product-name')?.textContent || '').trim();
+            const name = getCleanProductName(card);
             const isMealCard = !card.matches('[data-zest-variant="addon"]') && !card.closest('#page-market');
             const addBtn = document.createElement('button');
             addBtn.type = 'button';
@@ -50568,7 +50577,7 @@
         sources.forEach(({ group, el }) => {
           if (!el) return;
           el.querySelectorAll('.product-card').forEach(card => {
-            const name     = (card.querySelector('.product-name')?.textContent || '').trim();
+            const name     = getCleanProductName(card);
             const subtitle = (card.querySelector('.product-subtitle')?.textContent || '').trim();
             const alt      = (card.querySelector('img')?.getAttribute('alt') || '').trim();
             const tags     = Array.from(card.querySelectorAll('.meal-tag')).map(t => t.textContent.trim()).join(' ');
@@ -50759,7 +50768,7 @@
       if (video) {
         const slug = sourceCard.dataset.product || '';
         const fallback = CARD_VIDEO_FALLBACK_IMAGE[slug];
-        const name = (sourceCard.querySelector('.product-name') || {}).textContent || '';
+        const name = getCleanProductName(sourceCard);
         if (fallback) {
           const img = document.createElement('img');
           img.src = fallback;
@@ -50777,7 +50786,7 @@
     function buildFavCard(sourceCard, opts) {
       const slug = sourceCard.dataset.product || '';
       const img = sourceCard.querySelector('.img-wrap img');
-      const name = (sourceCard.querySelector('.product-name') || {}).textContent || '';
+      const name = getCleanProductName(sourceCard);
       const imgSrc = (img && img.getAttribute('src')) || CARD_VIDEO_FALLBACK_IMAGE[slug] || '';
       const imgAlt = (img && img.getAttribute('alt')) || name;
 
