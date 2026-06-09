@@ -2558,8 +2558,8 @@
     }
     .premium-irish-page .pip-recipe__img {
       position: relative;
-      width: 110px;
-      height: 110px;
+      width: 140px;
+      height: 140px;
       flex-shrink: 0;
       border-radius: 8px;
       overflow: hidden;
@@ -2571,61 +2571,104 @@
       object-fit: cover;
       display: block;
     }
+    /* Standalone add button — Zest NumberStepper "collapsed" state, sm (40px)
+       Tokens: zest-tokens/build/react-native/hellofresh/components/numberStepper */
     .premium-irish-page .pip-recipe__add {
       position: absolute;
-      bottom: 6px; right: 6px;
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      background: #fff;
-      border: 1px solid rgba(0,0,0,0.08);
+      bottom: 8px; right: 8px;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--stepper-radius);
+      background: var(--stepper-background-default);
+      border: 1px solid var(--stepper-border-default);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-      color: #1d1d1d;
+      color: var(--stepper-foreground-default);
+      padding: 0;
+      box-sizing: border-box;
+      transition: background 0.12s ease;
     }
+    .premium-irish-page .pip-recipe__add:hover,
+    .premium-irish-page .pip-recipe__add:active {
+      background: var(--stepper-background-pressed);
+    }
+    .premium-irish-page .pip-recipe__add svg {
+      width: 16px;
+      height: 16px;
+    }
+    /* Expanded stepper — Zest NumberStepper "expanded" state, sm (40px). Buttons own
+       their full borders; value container has only top+bottom borders so the row reads
+       as one continuous outlined unit (mirrors @zest/react-native NumberStepper). */
     .premium-irish-page .pip-recipe__stepper {
       position: absolute;
-      bottom: 6px;
-      right: 6px;
+      bottom: 8px;
+      left: 8px;
+      right: 8px;
+      height: 40px;
       display: none;
+      flex-direction: row;
       align-items: stretch;
-      background: #fff;
-      border: 1px solid #232323;
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      gap: 0;
+      background: transparent;
     }
-    .premium-irish-page .pip-recipe.is-selected .pip-recipe__stepper { display: inline-flex; }
+    .premium-irish-page .pip-recipe.is-selected .pip-recipe__stepper { display: flex; }
     .premium-irish-page .pip-recipe.is-selected .pip-recipe__add { display: none; }
+    .premium-irish-page .pip-recipe__stepper-dec,
+    .premium-irish-page .pip-recipe__stepper-inc,
     .premium-irish-page .pip-recipe__stepper button {
-      width: 26px;
-      height: 24px;
-      background: #efe9de;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #111;
+      width: 40px;
+      flex: 0 0 40px;
+      height: 40px;
+      background: var(--stepper-background-default);
+      border: 1px solid var(--stepper-border-default);
       cursor: pointer;
-      padding: 0;
-    }
-    .premium-irish-page .pip-recipe__stepper button svg { width: 10px; height: 10px; }
-    .premium-irish-page .pip-recipe__qty {
-      width: 26px;
-      height: 24px;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      background: #fff;
-      border-left: 1px solid #232323;
-      border-right: 1px solid #232323;
-      font-family: var(--font-family-secondary);
-      font-size: 12px;
+      color: var(--stepper-foreground-default);
+      padding: 0;
+      box-sizing: border-box;
+      transition: background 0.12s ease;
+    }
+    .premium-irish-page .pip-recipe__stepper-dec:hover,
+    .premium-irish-page .pip-recipe__stepper-dec:active,
+    .premium-irish-page .pip-recipe__stepper-inc:hover,
+    .premium-irish-page .pip-recipe__stepper-inc:active,
+    .premium-irish-page .pip-recipe__stepper button:hover,
+    .premium-irish-page .pip-recipe__stepper button:active {
+      background: var(--stepper-background-pressed);
+    }
+    .premium-irish-page .pip-recipe__stepper-dec {
+      border-top-left-radius: var(--stepper-radius);
+      border-bottom-left-radius: var(--stepper-radius);
+    }
+    .premium-irish-page .pip-recipe__stepper-inc {
+      border-top-right-radius: var(--stepper-radius);
+      border-bottom-right-radius: var(--stepper-radius);
+    }
+    .premium-irish-page .pip-recipe__stepper button svg,
+    .premium-irish-page .pip-recipe__stepper-dec svg,
+    .premium-irish-page .pip-recipe__stepper-inc svg {
+      width: 16px;
+      height: 16px;
+    }
+    .premium-irish-page .pip-recipe__qty {
+      flex: 1;
+      min-width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--stepper-label-background);
+      border-top: 1px solid var(--stepper-border-default);
+      border-bottom: 1px solid var(--stepper-border-default);
+      box-sizing: border-box;
+      font-size: 16px;
       font-weight: 700;
-      color: #111;
+      color: var(--stepper-label-foreground);
+      font-family: var(--font-family-secondary);
+      user-select: none;
     }
     .premium-irish-page .pip-recipe__body {
       flex: 1;
@@ -2637,33 +2680,33 @@
     .premium-irish-page .pip-recipe__badge {
       display: inline-block;
       align-self: flex-start;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 800;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      color: #1d1d1d;
-      background: #ffffff;
-      padding: 3px 6px;
-      border-radius: 3px;
-      margin-bottom: 4px;
+      color: #ffffff;
+      background: #1d1d1d;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 6px;
     }
     .premium-irish-page .pip-recipe__badge--bestseller {
-      background: #ffe27a;
-      color: #1d1d1d;
+      background: #1d1d1d;
+      color: #ffffff;
     }
     .premium-irish-page .pip-recipe__name {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 800;
       color: #1d1d1d;
       line-height: 1.25;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       font-family: var(--font-family-primary);
     }
     .premium-irish-page .pip-recipe__sub {
-      font-size: 11px;
+      font-size: 12px;
       color: rgba(29,29,29,0.6);
       line-height: 1.3;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -2671,25 +2714,28 @@
     .premium-irish-page .pip-recipe__metrics {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
-      margin-bottom: 6px;
+      gap: 6px;
+      margin-bottom: 8px;
+      align-items: center;
     }
     .premium-irish-page .pip-metric {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 600;
       color: rgba(29,29,29,0.7);
-      background: rgba(29,29,29,0.06);
-      padding: 3px 6px;
-      border-radius: 4px;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
       white-space: nowrap;
     }
     .premium-irish-page .pip-metric--highlight {
-      background: #ffe27a;
+      background: #ede5d8;
       color: #1d1d1d;
+      padding: 3px 7px;
+      border-radius: 4px;
     }
     .premium-irish-page .pip-recipe__price {
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 800;
       color: #1d1d1d;
       margin-top: auto;
     }
@@ -2700,6 +2746,16 @@
     .premium-irish-page .pip-section-title {
       margin-top: 36px;
       margin-bottom: 16px;
+    }
+    .premium-irish-page .pip-reviews {
+      margin-top: 32px;
+      margin-bottom: 24px;
+    }
+    .premium-irish-page .pip-reviews .pip-rating {
+      margin-bottom: 16px;
+    }
+    .premium-irish-page .pip-reviews .pip-eyebrow {
+      color: rgba(255,255,255,0.55);
     }
     .premium-irish-page .pip-eyebrow {
       font-size: 11px;
@@ -7658,6 +7714,11 @@
       pointer-events: auto;
     }
     .order-saved-toast[hidden] { display: none; }
+    /* Premium-widget nested page has no sticky CTA — bottom-anchor the toast
+       16px above the device frame edge so it doesn't float in dead space. */
+    .screen:has(.premium-irish-page.visible) .order-saved-toast {
+      bottom: 16px;
+    }
     .order-saved-toast__icon {
       width: 24px;
       height: 24px;
@@ -13011,27 +13072,27 @@
               </div>
             </article>
 
-            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="chipotle-shrimp-tacos" data-price="9.99" data-customizable="true" data-filters="handhelds mexican seafood high-protein under-30 spicy wheat" data-sort-time="20" data-sort-calories="620" data-sort-protein="32">
+            <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="creamy-shrimp-bacon-spaghetti" data-price="12.49" data-customizable="true" data-filters="pasta-noodles italian seafood high-protein under-30 wheat milk" data-sort-time="30" data-sort-calories="810" data-sort-protein="32">
               <div class="img-wrap">
-                <img src="images/real/chipotle-shrimp-tacos.jpg" alt="Chipotle Shrimp Tacos">
+                <img src="images/real/creamy-shrimp-bacon-spaghetti.jpg" alt="Creamy Shrimp &amp; Bacon Spaghetti">
               </div>
               <div class="card-body">
-                <div class="product-name">Chipotle Shrimp Tacos</div>
-                <div class="product-subtitle">with Cilantro-Lime Slaw &amp; Avocado Crema</div>
+                <div class="product-name">Creamy Shrimp &amp; Bacon Spaghetti</div>
+                <div class="product-subtitle">with Baby Spinach &amp; Parmesan</div>
                 <div class="product-meta">
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg></span>
-                  <span>20 min</span>
+                  <span>30 min</span>
                   <span class="dot">•</span>
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg></span>
-                  <span>620 kcal</span>
+                  <span>810 kcal</span>
                   <span class="dot">•</span>
                   <span class="icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg></span>
                   <span>32g protein</span>
                 </div>
                 <div class="dietary-tags">
+                  <span class="dietary-tag">Seafood</span>
+                  <span class="dietary-tag">Comfort</span>
                   <span class="dietary-tag">High Protein</span>
-                  <span class="dietary-tag">Spicy</span>
-                  <span class="dietary-tag">Quick Cook</span>
                 </div>
               </div>
               <div class="card-footer">
@@ -13040,7 +13101,7 @@
                   <span class="servings-count">2</span>
                   <span class="plan-text">Included in plan</span>
                 </div>
-                <button type="button" class="add-btn stepper-plus" aria-label="Add Chipotle Shrimp Tacos to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
+                <button type="button" class="add-btn stepper-plus" aria-label="Add Creamy Shrimp &amp; Bacon Spaghetti to plan" data-zest-component="Button" data-zest-variant="secondary">Add</button>
               </div>
             </article>
 
@@ -14074,7 +14135,26 @@
             <h1 class="pip-title" id="premium-irish-title">A cut above in flavour</h1>
             <p class="pip-subtitle">Treat yourself to premium recipes featuring Sirloin or Ribeye steak.</p>
 
-            <div class="pip-grid" id="pipRecipeGrid"></div>
+            <div class="pip-grid" id="pipRecipeGridTop"></div>
+
+            <section class="pip-reviews" aria-labelledby="pipReviewsHeading">
+              <div class="pip-eyebrow">Customer reviews</div>
+              <h2 class="pip-heading" id="pipReviewsHeading">What people are saying</h2>
+              <div class="pip-rating">
+                <div class="stars" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <span class="score">4.8</span>
+                <span class="count">from 1,964 reviews</span>
+              </div>
+              <div class="pip-hscroll" id="pipReviewsScroll"></div>
+            </section>
+
+            <div class="pip-grid" id="pipRecipeGridBottom"></div>
 
             <div class="pip-farm">
               <div class="pip-farm__img">
@@ -43898,16 +43978,28 @@
       const backFloat = document.getElementById('pipBackFloating');
       const backSticky = document.getElementById('pipBackSticky');
       const scroll = document.getElementById('pipScroll');
-      const grid = document.getElementById('pipRecipeGrid');
+      const gridTop = document.getElementById('pipRecipeGridTop');
+      const gridBottom = document.getElementById('pipRecipeGridBottom');
+      const reviewsScroll = document.getElementById('pipReviewsScroll');
       if (!page || !viewAll) return;
 
+      const reviews = [
+        { initials: 'CM', name: 'Carolyn M.',  location: 'Portland, OR',   avatarBg: '#bbf06a', quote: 'The grass-fed sirloin was honestly the best steak I\'ve cooked at home in years. You can taste the difference - it just feels lighter and cleaner than supermarket beef.', tag: 'Steak & Parmesan Potatoes' },
+        { initials: 'DR', name: 'Daniel R.',  location: 'Boston, MA',     avatarBg: '#d6e8c4', quote: 'I\'m a busy dad of two and these premium recipes have made weeknight dinners feel special again. The pork tenderloin came out perfectly - my kids even asked for seconds.', tag: 'Hoisin Pork Tenderloin' },
+        { initials: 'NA', name: 'Nadia A.',   location: 'San Diego, CA',  avatarBg: '#f5d99a', quote: 'Worth every cent of the upgrade. The beef meatballs were so tender and flavourful - way beyond what I usually expect from a meal kit. Will absolutely re-order.', tag: 'Beef Meatballs with Onion Gravy' },
+      ];
+
       const recipes = [
-        { slug: 'hoisin-pork-tenderloin',       unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Hoisin Pork Tenderloin',         sub: 'with Jasmine Rice & Bok Choy',            time: '30 min', calories: '650 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/hoisin-pork-tenderloin.jpg' },
-        { slug: 'beef-meatballs-onion-gravy',   unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Beef Meatballs with Onion Gravy', sub: 'with Mashed Potatoes & Green Beans',      time: '35 min', calories: '720 kcal', protein: '34g protein', price: '+$3.99', img: 'images/real/beef-meatballs-onion-gravy.jpg' },
-        { slug: 'steak-parmesan-potatoes',      unitPrice: 13.98, badge: 'BESTSELLER', highlight: 'time',     name: 'Steak & Parmesan Potatoes',       sub: 'with Broccolini & Herb Butter',           time: '30 min', calories: '710 kcal', protein: '42g protein', price: '+$3.99', img: 'images/real/steak-parmesan-potatoes.jpg' },
-        { slug: 'crispy-parmesan-chicken',      unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'protein',  name: 'Crispy Parmesan Chicken',         sub: 'with Roasted Potatoes & Garlicky Greens', time: '30 min', calories: '720 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/crispy-parmesan-chicken.jpg' },
-        { slug: 'sesame-soy-beef-bowls',        unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'calories', name: 'Sesame Soy Beef Bowls',           sub: 'with Jasmine Rice & Pickled Cucumber',    time: '25 min', calories: '610 kcal', protein: '36g protein', price: '+$3.99', img: 'images/real/sesame-soy-beef-bowls.jpg' },
-        { slug: 'almond-crusted-dijon-chicken', unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Almond-Crusted Dijon Chicken',    sub: 'with Roasted Sweet Potato & Arugula',     time: '35 min', calories: '680 kcal', protein: '40g protein', price: '+$3.99', img: 'images/real/almond-crusted-dijon-chicken.jpg' },
+        { slug: 'hoisin-pork-tenderloin',           unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Hoisin Pork Tenderloin',           sub: 'with Jasmine Rice & Bok Choy',            time: '30 min', calories: '650 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/hoisin-pork-tenderloin.jpg' },
+        { slug: 'beef-meatballs-onion-gravy',       unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Beef Meatballs with Onion Gravy',  sub: 'with Mashed Potatoes & Green Beans',      time: '35 min', calories: '720 kcal', protein: '34g protein', price: '+$3.99', img: 'images/real/beef-meatballs-onion-gravy.jpg' },
+        { slug: 'steak-parmesan-potatoes',          unitPrice: 13.98, badge: 'BESTSELLER', highlight: 'time',     name: 'Steak & Parmesan Potatoes',        sub: 'with Broccolini & Herb Butter',           time: '30 min', calories: '710 kcal', protein: '42g protein', price: '+$3.99', img: 'images/real/steak-parmesan-potatoes.jpg' },
+        { slug: 'crispy-parmesan-chicken',          unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'protein',  name: 'Crispy Parmesan Chicken',          sub: 'with Roasted Potatoes & Garlicky Greens', time: '30 min', calories: '720 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/crispy-parmesan-chicken.jpg' },
+        { slug: 'sesame-soy-beef-bowls',            unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'calories', name: 'Sesame Soy Beef Bowls',            sub: 'with Jasmine Rice & Pickled Cucumber',    time: '25 min', calories: '610 kcal', protein: '36g protein', price: '+$3.99', img: 'images/real/sesame-soy-beef-bowls.jpg' },
+        { slug: 'almond-crusted-dijon-chicken',     unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Almond-Crusted Dijon Chicken',     sub: 'with Roasted Sweet Potato & Arugula',     time: '35 min', calories: '680 kcal', protein: '40g protein', price: '+$3.99', img: 'images/real/almond-crusted-dijon-chicken.jpg' },
+        { slug: 'honey-dijon-dill-steak',           unitPrice: 13.98, badge: 'BESTSELLER', highlight: null,       name: 'Honey Dijon Dill Steak',           sub: 'with Roasted Potatoes & Green Beans',     time: '35 min', calories: '680 kcal', protein: '44g protein', price: '+$3.99', img: 'images/real/honey-dijon-dill-steak.jpg' },
+        { slug: 'beef-mushroom-shepherds-pie',      unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: "Beef & Mushroom Shepherd's Pie",   sub: 'with Cheddar-Topped Mash & Peas',          time: '40 min', calories: '760 kcal', protein: '36g protein', price: '+$3.99', img: 'images/real/beef-mushroom-shepherds-pie.jpg' },
+        { slug: 'sundried-tomato-stuffed-chicken',  unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'protein',  name: 'Sun-Dried Tomato Stuffed Chicken', sub: 'with Creamy Orzo & Wilted Spinach',        time: '40 min', calories: '720 kcal', protein: '44g protein', price: '+$3.99', img: 'images/real/sundried-tomato-stuffed-chicken.jpg' },
+        { slug: 'herbed-steak-apple-kale-salad',    unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'calories', name: 'Herbed Steak over Apple & Kale Salad', sub: 'with Toasted Pecans & Dijon Vinaigrette', time: '30 min', calories: '590 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/herbed-steak-apple-kale-salad.jpg' },
       ];
 
       const plusIcon  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
@@ -43915,38 +44007,62 @@
 
       function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
-      function renderRecipes() {
-        grid.innerHTML = recipes.map(r => {
-          const badgeClass = r.badge === 'BESTSELLER' ? 'pip-recipe__badge--bestseller' : '';
-          const cls = (key) => 'pip-metric' + (r.highlight === key ? ' pip-metric--highlight' : '');
-          return `
-          <div class="pip-recipe" data-product="${escapeHtml(r.slug)}" data-price="${r.unitPrice}">
-            <div class="pip-recipe__img">
-              <img src="${r.img}" alt="${escapeHtml(r.name)}">
-              <button type="button" class="pip-recipe__add" aria-label="Add ${escapeHtml(r.name)}">${plusIcon}</button>
-              <div class="pip-recipe__stepper" role="group" aria-label="Quantity">
-                <button type="button" class="pip-recipe__stepper-dec" aria-label="Decrease">${minusIcon}</button>
-                <span class="pip-recipe__qty">1</span>
-                <button type="button" class="pip-recipe__stepper-inc" aria-label="Increase"><svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 3h2v4h4v2H9v4H7V9H3V7h4z"/></svg></button>
-              </div>
-            </div>
-            <div class="pip-recipe__body">
-              <span class="pip-recipe__badge ${badgeClass}">${escapeHtml(r.badge)}</span>
-              <div class="pip-recipe__name">${escapeHtml(r.name)}</div>
-              <div class="pip-recipe__sub">${escapeHtml(r.sub)}</div>
-              <div class="pip-recipe__metrics">
-                <span class="${cls('time')}">${escapeHtml(r.time)}</span>
-                <span class="${cls('calories')}">${escapeHtml(r.calories)}</span>
-                <span class="${cls('protein')}">${escapeHtml(r.protein)}</span>
-              </div>
-              <div class="pip-recipe__price">${escapeHtml(r.price)} <span class="pip-recipe__price-unit">/serving</span></div>
+      function recipeHtml(r) {
+        const badgeClass = r.badge === 'BESTSELLER' ? 'pip-recipe__badge--bestseller' : '';
+        const cls = (key) => 'pip-metric' + (r.highlight === key ? ' pip-metric--highlight' : '');
+        return `
+        <div class="pip-recipe" data-product="${escapeHtml(r.slug)}" data-price="${r.unitPrice}">
+          <div class="pip-recipe__img">
+            <img src="${r.img}" alt="${escapeHtml(r.name)}">
+            <button type="button" class="pip-recipe__add" aria-label="Add ${escapeHtml(r.name)}">${plusIcon}</button>
+            <div class="pip-recipe__stepper" role="group" aria-label="Quantity">
+              <button type="button" class="pip-recipe__stepper-dec" aria-label="Decrease">${minusIcon}</button>
+              <span class="pip-recipe__qty">1</span>
+              <button type="button" class="pip-recipe__stepper-inc" aria-label="Increase"><svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 3h2v4h4v2H9v4H7V9H3V7h4z"/></svg></button>
             </div>
           </div>
-          `;
-        }).join('');
+          <div class="pip-recipe__body">
+            <span class="pip-recipe__badge ${badgeClass}">${escapeHtml(r.badge)}</span>
+            <div class="pip-recipe__name">${escapeHtml(r.name)}</div>
+            <div class="pip-recipe__sub">${escapeHtml(r.sub)}</div>
+            <div class="pip-recipe__metrics">
+              <span class="${cls('time')}">${escapeHtml(r.time)}</span>
+              <span class="${cls('calories')}">${escapeHtml(r.calories)}</span>
+              <span class="${cls('protein')}">${escapeHtml(r.protein)}</span>
+            </div>
+            <div class="pip-recipe__price">${escapeHtml(r.price)} <span class="pip-recipe__price-unit">/serving</span></div>
+          </div>
+        </div>
+        `;
+      }
+
+      function renderRecipes() {
+        if (gridTop) gridTop.innerHTML = recipes.slice(0, 4).map(recipeHtml).join('');
+        if (gridBottom) gridBottom.innerHTML = recipes.slice(4).map(recipeHtml).join('');
+      }
+
+      function renderReviews() {
+        if (!reviewsScroll) return;
+        const star = '<svg width="12" height="12" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+        const stars = star.repeat(5);
+        reviewsScroll.innerHTML = reviews.map(rv => `
+          <article class="pip-testimonial">
+            <div class="pip-testimonial__head">
+              <div class="pip-testimonial__avatar" style="background:${rv.avatarBg}">${escapeHtml(rv.initials)}</div>
+              <div class="pip-testimonial__meta">
+                <div class="pip-testimonial__name">${escapeHtml(rv.name)}</div>
+                <div class="pip-testimonial__location">${escapeHtml(rv.location)}</div>
+              </div>
+              <div class="pip-testimonial__stars" aria-label="5 out of 5 stars">${stars}</div>
+            </div>
+            <p class="pip-testimonial__quote">"${escapeHtml(rv.quote)}"</p>
+            <span class="pip-testimonial__tag">${escapeHtml(rv.tag)}</span>
+          </article>
+        `).join('');
       }
 
       renderRecipes();
+      renderReviews();
 
       function openPage() {
         page.hidden = false;
@@ -43979,7 +44095,7 @@
       }
 
       // Card body click → open PDP
-      grid.addEventListener('click', (e) => {
+      [gridTop, gridBottom].forEach(g => g && g.addEventListener('click', (e) => {
         if (e.target.closest('.pip-recipe__add') || e.target.closest('.pip-recipe__stepper')) return;
         const card = e.target.closest('.pip-recipe');
         if (!card) return;
@@ -43992,10 +44108,10 @@
         const cartRow = document.querySelector(`.product-item[data-slug="${CSS.escape(slug)}"]`);
         const variantId = cartRow ? cartRow.dataset.mealId : null;
         window.openPdp(slug, variantId ? { existingVariantId: variantId } : undefined);
-      });
+      }));
 
       // Stepper dec / inc + add button
-      grid.addEventListener('click', (e) => {
+      [gridTop, gridBottom].forEach(g => g && g.addEventListener('click', (e) => {
         const card = e.target.closest('.pip-recipe');
         if (!card) return;
 
@@ -44015,6 +44131,7 @@
             if (typeof window.__recalcCart === 'function') window.__recalcCart();
             if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
           }
+          if (typeof showOrderSavedToast === 'function') showOrderSavedToast();
           return;
         }
 
@@ -44031,6 +44148,7 @@
             if (typeof window.__recalcCart === 'function') window.__recalcCart();
             if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
           }
+          if (typeof showOrderSavedToast === 'function') showOrderSavedToast();
           return;
         }
 
@@ -44051,9 +44169,9 @@
             customSummary: ''
           });
           if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
-          if (typeof showToast === 'function') showToast('Added to cart');
+          if (typeof showOrderSavedToast === 'function') showOrderSavedToast();
         }
-      });
+      }));
     })();
 
     /* ==================================================
@@ -50611,7 +50729,7 @@
         'crispy-parmesan-chicken',
         'korean-bibimbap',
         'sesame-soy-beef-bowls',
-        'chipotle-shrimp-tacos',
+        'creamy-shrimp-bacon-spaghetti',
         'smoky-bbq-glazed-chicken',
         'creamy-pasta',
         'almond-crusted-dijon-chicken',
