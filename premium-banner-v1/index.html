@@ -2704,6 +2704,10 @@
       gap: 8px;
     }
     .premium-irish-page .pip-rating .stars { display: flex; gap: 2px; }
+    /* Reviews header sits on the dark green panel — keep stars white here only.
+       Per-testimonial cards (white bg) and product card rating chips (cream bg)
+       still inherit the inline black fill. */
+    .premium-irish-page .pip-reviews .pip-rating .stars svg { fill: #fff; }
     .premium-irish-page .pip-rating .score {
       font-size: 14px;
       font-weight: 700;
@@ -3313,7 +3317,7 @@
     }
     .product-card .product-rating .star,
     .category-list-card .product-rating .star {
-      color: #F5A623;
+      color: #1d1d1d;
       font-size: 13px;
       line-height: 1;
     }
@@ -8349,6 +8353,131 @@
     .pdp-body {
       padding: 20px 16px 32px;
     }
+    /* PDP rating chip — sits above the title, jumps to reviews on tap. */
+    .pdp-rating-chip {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+      font-family: var(--font-family-secondary);
+      font-size: 13px;
+      font-weight: 700;
+      color: #1d1d1d;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0 0 6px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .pdp-rating-chip .star {
+      color: #1d1d1d;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .pdp-rating-chip .count {
+      color: rgba(29,29,29,0.6);
+      font-weight: 400;
+      font-size: 12px;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .pdp-rating-chip:hover .count { color: #1d1d1d; }
+
+    /* PDP reviews section — anchor target for the rating chip. */
+    .pdp-reviews-section {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--color-elevation-level1, #f0ece3);
+    }
+    .pdp-reviews-section__head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .pdp-reviews-section__title {
+      font-family: var(--font-family-secondary);
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.3;
+      color: var(--color-neutral-foreground-strongest);
+      margin: 0;
+    }
+    .pdp-reviews-section__rating {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+      font-family: var(--font-family-secondary);
+      font-size: 13px;
+      font-weight: 700;
+      color: #1d1d1d;
+    }
+    .pdp-reviews-section__rating .star { color: #1d1d1d; font-size: 13px; line-height: 1; }
+    .pdp-reviews-section__rating .count { color: rgba(29,29,29,0.6); font-weight: 400; font-size: 12px; }
+    .pdp-review-card {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--color-elevation-level1, #f0ece3);
+    }
+    .pdp-review-card:last-child { border-bottom: none; }
+    .pdp-review-card__head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .pdp-review-card__avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      color: #1d1d1d;
+      flex-shrink: 0;
+    }
+    .pdp-review-card__meta { flex: 1; min-width: 0; }
+    .pdp-review-card__name {
+      font-family: var(--font-family-secondary);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--color-neutral-foreground-strongest);
+      line-height: 1.2;
+    }
+    .pdp-review-card__date {
+      font-family: var(--font-family-secondary);
+      font-size: 11px;
+      color: var(--color-neutral-foreground-medium);
+      line-height: 1.2;
+    }
+    .pdp-review-card__stars {
+      display: inline-flex;
+      gap: 1px;
+      flex-shrink: 0;
+    }
+    .pdp-review-card__quote {
+      font-family: var(--font-family-secondary);
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--color-neutral-foreground-strongest);
+      margin: 0;
+    }
+    .pdp-reviews-more {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 0;
+      background: none;
+      border: none;
+      font-family: var(--font-family-secondary);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-neutral-foreground-strongest);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
     .pdp-title {
       font-family: var(--font-family-secondary);
       font-weight: 700;
@@ -12137,10 +12266,6 @@
               <article class="your-meals-card" data-meal-id="ym-m1" data-product="garlic-herb-butter-scallops">
                 <div class="your-meals-card__img-wrap">
                   <img src="images/real/garlic-herb-butter-scallops.jpg" alt="Garlic Herb Butter Scallops">
-                  <div class="hp-2x-badge">
-                    <svg class="hp-2x-badge__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4L20 12M16 12H20V8M12 20L4 12M8 12H4V16"/></svg>
-                    <span class="hp-2x-badge__text">2 x Scallops</span>
-                  </div>
                 </div>
                 <div class="your-meals-card__body">
                   <div>
@@ -12149,12 +12274,11 @@
                   </div>
                   <div class="your-meals-card__meta">
                     <span><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg>30 min</span>
-                    <span><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg>840 kcal</span>
-                    <span><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg>52g protein</span>
+                    <span><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg>620 kcal</span>
+                    <span><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg>30g protein</span>
                   </div>
                   <div class="your-meals-card__tags">
                     <span class="your-meals-card__tag your-meals-card__tag--green">Specialty</span>
-                    <span class="your-meals-card__tag your-meals-card__tag--price" data-surcharge="+$6.99">+$6.99 per serving</span>
                   </div>
                 </div>
                 <div class="your-meals-card__cta-wrap">
@@ -12174,7 +12298,7 @@
                     <div class="plan-line">
                       <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
                       <span class="servings-count">2</span>
-                      <span class="plan-text">+$6.99 per serving</span>
+                      <span class="plan-text">Included in plan</span>
                     </div>
                     <button type="button" class="add-btn your-meals-card__add" aria-label="Add Garlic Herb Butter Scallops to box">Add</button>
                   </div>
@@ -13669,7 +13793,7 @@
               <div class="cart-header__title-container">
                 <div class="cart-header__section-title" data-zest-component="SectionTitle">
                   <h1 class="cart-header__title">Your order</h1>
-                  <span class="cart-header__badge" id="cart-header-count" data-zest-component="Badge">6</span>
+                  <span class="cart-header__badge" id="cart-header-count" data-zest-component="Badge">3</span>
                 </div>
                 <p class="cart-header__cutoff">Edit by Wed, May 7</p>
               </div>
@@ -13693,11 +13817,11 @@
             <div class="products-list" data-zest-component="custom" data-zest-note="ProductsList">
               <div class="cart-header__section-title" data-zest-component="SectionTitle">
                 <h2 class="cart-header__title">Meals</h2>
-                <span class="cart-header__badge" id="cart-meals-count" data-zest-component="Badge">6</span>
+                <span class="cart-header__badge" id="cart-meals-count" data-zest-component="Badge">3</span>
               </div>
 
               <div class="products-list__items" role="list" id="cart-items-list">
-                <div class="product-item" data-zest-component="ProductItem" data-meal-id="m1" data-slug="garlic-herb-butter-scallops" data-unit-price="16.98" data-kind="specialty" data-surcharge="true" data-custom-state='{"swapId":"default","doubleSelected":true,"addOnIds":[]}'>
+                <div class="product-item" data-zest-component="ProductItem" data-meal-id="m1" data-slug="garlic-herb-butter-scallops" data-unit-price="9.99" data-kind="meal">
                   <div class="product-item__inner">
                     <button type="button" class="product-item__thumbnail-btn" aria-label="Open Garlic Herb Butter Scallops details">
                       <img class="product-item__thumbnail" src="images/real/garlic-herb-butter-scallops.jpg" alt="Garlic Herb Butter Scallops">
@@ -13710,12 +13834,6 @@
                   <div class="product-item__title-container">
                     <div class="product-item__row">
                       <span class="product-item__name" data-testid="product-item-name">Garlic Herb Butter Scallops</span>
-                    </div>
-                    <div class="product-item__custom-row">
-                      <p class="product-item__custom" data-testid="product-item-custom"><svg class="product-item__custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4L20 12M16 12H20V8M12 20L4 12M8 12H4V16"/></svg>2 x Sea Scallops</p>
-                      <!-- CUSTOMIZATION_LINK: disabled — to restore: add class product-item__custom--editable, role="button", tabindex="0", aria-label, and X button after the </p>
-                      END CUSTOMIZATION_LINK: disabled -->
-                      <span class="product-item__price" data-testid="product-item-price">+$13.98</span>
                     </div>
                     <div class="number-stepper" role="group" aria-label="Quantity" data-zest-component="NumberStepper">
                       <button type="button" class="number-stepper__button stepper-dec" aria-label="Decrease">
@@ -13901,32 +14019,32 @@
               <h2 class="price-summary__title">Order total</h2>
 
               <!-- Savings reassurance banner -->
-              <button type="button" class="benefit-banner benefit-banner--success" data-zest-component="BannerMessage" data-zest-variant="benefits" data-zest-type="static" aria-label="$12.98 saved. Check benefits." onclick="showToast('Benefits detail')">
+              <button type="button" id="cart-savings-banner" class="benefit-banner benefit-banner--success" data-zest-component="BannerMessage" data-zest-variant="benefits" data-zest-type="static" aria-label="Rewards available. Check benefits." onclick="showToast('Benefits detail')">
                 <span class="benefit-banner__icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM7.29285 15.2929L15.2928 7.29291L16.7071 8.70712L8.70706 16.7071L7.29285 15.2929ZM9.5 11C10.3284 11 11 10.3284 11 9.5C11 8.67157 10.3284 8 9.5 8C8.67157 8 8 8.67157 8 9.5C8 10.3284 8.67157 11 9.5 11ZM14.5 16C15.3284 16 16 15.3284 16 14.5C16 13.6716 15.3284 13 14.5 13C13.6716 13 13 13.6716 13 14.5C13 15.3284 13.6716 16 14.5 16Z" fill="currentColor"/></svg>
                 </span>
-                <span class="benefit-banner__text">$12.98 saved!</span>
+                <span class="benefit-banner__text" id="cart-savings-banner-text">Rewards available</span>
                 <span class="benefit-banner__cta">Check benefits</span>
               </button>
 
               <div class="price-row" data-testid="price-row-meals">
-                <span class="price-row__title" id="summary-meals-label">4 Meals for 2 people</span>
-                <span class="price-row__price" id="summary-meals-value">$71.92</span>
+                <span class="price-row__title" id="summary-meals-label">3 Meals for 2 people</span>
+                <span class="price-row__price" id="summary-meals-value">$45.95</span>
               </div>
-              <div class="price-row" id="summary-benefit-row" data-testid="price-row-benefit">
+              <div class="price-row" id="summary-specialty-row" data-testid="price-row-specialty">
+                <span class="price-row__title" id="summary-specialty-label">0 Specialties &amp; custom</span>
+                <span class="price-row__price" id="summary-specialty-value">$0.00</span>
+              </div>
+              <div class="price-row" id="summary-benefit-row" data-testid="price-row-benefit" hidden>
                 <span class="price-row__title price-row__title--benefit">
                   <span class="price-row__benefit-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M7 4h10v2h2.5a1.5 1.5 0 0 1 1.5 1.5V9a4 4 0 0 1-4 4h-.3a5 5 0 0 1-3.7 3.9V19h3v2H8v-2h3v-2.1A5 5 0 0 1 7.3 13H7a4 4 0 0 1-4-4V7.5A1.5 1.5 0 0 1 4.5 6H7V4Zm0 4H4.5v1a2.5 2.5 0 0 0 2.5 2.5V8Zm10 3.5A2.5 2.5 0 0 0 19.5 9V8H17v3.5Z" fill="currentColor"/>
                     </svg>
                   </span>
-                  <span>1 Benefit</span>
+                  <span id="summary-benefit-label">10% off Specialties</span>
                 </span>
-                <span class="price-row__price price-row__price--discount" id="summary-benefit-value">-$12.98</span>
-              </div>
-              <div class="price-row" id="summary-specialty-row" data-testid="price-row-specialty">
-                <span class="price-row__title" id="summary-specialty-label">2 Specialties &amp; custom</span>
-                <span class="price-row__price" id="summary-specialty-value">$32.96</span>
+                <span class="price-row__price price-row__price--discount" id="summary-benefit-value">-$0.00</span>
               </div>
               <div class="price-row" id="summary-addons-row" data-testid="price-row-addons" hidden>
                 <span class="price-row__title" id="summary-addons-label">Add-ons</span>
@@ -13934,14 +14052,11 @@
               </div>
               <div class="price-row" data-testid="price-row-shipping">
                 <span class="price-row__title">Shipping</span>
-                <span class="price-row__price" id="shipping-value">
-                  <span id="shipping-original" class="price-row__price--strikethrough">$10.99</span>
-                  <span id="shipping-free" class="price-row__price--free">FREE</span>
-                </span>
+                <span class="price-row__price" id="shipping-value">$10.99</span>
               </div>
               <div class="price-row price-row--total" data-testid="price-row-total">
                 <span class="price-row__title">Total</span>
-                <span class="price-row__price" id="cart-total">$91.90</span>
+                <span class="price-row__price" id="cart-total">$56.94</span>
               </div>
 
               <!-- HF_CASH: disabled — remove the `hidden` attribute and uncomment JS block to re-enable
@@ -14120,8 +14235,8 @@
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 </div>
-                <span class="score">4.9</span>
-                <span class="count">from 2,847 reviews</span>
+                <span class="score">4.7</span>
+                <span class="count">Date Night average · 1,184 reviews</span>
               </div>
               <div class="pip-hscroll" id="pipReviewsScroll"></div>
             </section>
@@ -43977,16 +44092,16 @@
       if (!page || !viewAll) return;
 
       const recipes = [
-        { slug: 'truffle-butter-filet-mignon',    unitPrice: 24.98, badge: 'DATE NIGHT', name: 'Truffle Butter Filet Mignon',     sub: 'with Garlic Mash & Asparagus',            time: '35 min', calories: '720 kcal', protein: '42g protein', price: '+$14.99', img: 'images/real/beef-meatballs-onion-gravy.jpg' },
-        { slug: 'seared-scallops-lemon-risotto',  unitPrice: 23.98, badge: 'DATE NIGHT', name: 'Seared Scallops & Lemon Risotto', sub: 'with Browned Butter & Chives',             time: '30 min', calories: '640 kcal', protein: '28g protein', price: '+$13.99', img: 'images/real/creamy-mushroom-gemelli.jpg' },
-        { slug: 'lobster-tail-linguine',           unitPrice: 25.98, badge: 'BESTSELLER', highlight: 'time', name: 'Lobster Tail Linguine',            sub: 'with White Wine, Garlic & Tarragon',       time: '25 min', calories: '690 kcal', protein: '32g protein', price: '+$15.99', img: 'images/real/hoisin-pork-tenderloin.jpg' },
-        { slug: 'honey-balsamic-duck-breast',      unitPrice: 24.98, badge: 'DATE NIGHT', highlight: 'protein', name: 'Honey-Balsamic Duck Breast',       sub: 'with Roasted Figs & Wild Rice',           time: '35 min', calories: '710 kcal', protein: '38g protein', price: '+$14.99', img: 'images/real/crispy-parmesan-chicken.jpg' },
-        { slug: 'pan-seared-salmon-en-papillote', unitPrice: 23.98, badge: 'DATE NIGHT', highlight: 'calories', name: 'Pan-Seared Salmon en Papillote',  sub: 'with Champagne Cream & Dill',             time: '30 min', calories: '580 kcal', protein: '34g protein', price: '+$13.99', img: 'images/real/sesame-soy-beef-bowls.jpg' },
-        { slug: 'tagliatelle-al-tartufo',          unitPrice: 24.98, badge: 'DATE NIGHT', name: 'Tagliatelle al Tartufo',           sub: 'with Black Truffle, Pecorino & Egg Yolk', time: '25 min', calories: '660 kcal', protein: '20g protein', price: '+$14.99', img: 'images/real/creamy-mushroom-gemelli.jpg' },
-        { slug: 'lemon-caper-branzino',            unitPrice: 24.98, badge: 'DATE NIGHT', name: 'Lemon-Caper Branzino',             sub: 'with Saffron Couscous & Charred Lemon',   time: '30 min', calories: '590 kcal', protein: '36g protein', price: '+$14.99', img: 'images/real/creamy-lemon-garlic-shrimp-linguine.jpg' },
-        { slug: 'truffle-burrata-ravioli',         unitPrice: 24.98, badge: 'BESTSELLER', highlight: 'time', name: 'Black Truffle & Burrata Ravioli',  sub: 'with Brown Butter & Crispy Sage',         time: '20 min', calories: '720 kcal', protein: '24g protein', price: '+$14.99', img: 'images/real/creamy-pesto-pasta-burrata.jpg' },
-        { slug: 'brown-butter-lobster-risotto',    unitPrice: 25.98, badge: 'DATE NIGHT', highlight: 'protein', name: 'Brown-Butter Lobster Risotto',    sub: 'with Tarragon & Crème Fraîche',           time: '35 min', calories: '740 kcal', protein: '34g protein', price: '+$15.99', img: 'images/real/creamy-shrimp-bacon-spaghetti.jpg' },
-        { slug: 'bordelaise-beef-tenderloin',      unitPrice: 24.98, badge: 'DATE NIGHT', name: 'Bordelaise Beef Tenderloin',       sub: 'with Truffle Pommes & Watercress',        time: '35 min', calories: '700 kcal', protein: '40g protein', price: '+$14.99', img: 'images/real/steak-parmesan-potatoes.jpg' },
+        { slug: 'truffle-butter-filet-mignon',    unitPrice: 16.98, badge: 'DATE NIGHT', name: 'Truffle Butter Filet Mignon',     sub: 'with Garlic Mash & Asparagus',            time: '35 min', calories: '720 kcal', protein: '42g protein', price: '+$6.99',  img: 'images/real/beef-meatballs-onion-gravy.jpg' },
+        { slug: 'seared-scallops-lemon-risotto',  unitPrice: 16.98, badge: 'DATE NIGHT', name: 'Seared Scallops & Lemon Risotto', sub: 'with Browned Butter & Chives',             time: '30 min', calories: '640 kcal', protein: '28g protein', price: '+$6.99',  img: 'images/real/creamy-mushroom-gemelli.jpg' },
+        { slug: 'lobster-tail-linguine',           unitPrice: 22.98, badge: 'BESTSELLER', highlight: 'time', name: 'Lobster Tail Linguine',            sub: 'with White Wine, Garlic & Tarragon',       time: '25 min', calories: '690 kcal', protein: '32g protein', price: '+$12.99', img: 'images/real/hoisin-pork-tenderloin.jpg' },
+        { slug: 'honey-balsamic-duck-breast',      unitPrice: 16.98, badge: 'DATE NIGHT', highlight: 'protein', name: 'Honey-Balsamic Duck Breast',       sub: 'with Roasted Figs & Wild Rice',           time: '35 min', calories: '710 kcal', protein: '38g protein', price: '+$6.99',  img: 'images/real/crispy-parmesan-chicken.jpg' },
+        { slug: 'pan-seared-salmon-en-papillote', unitPrice: 16.98, badge: 'DATE NIGHT', highlight: 'calories', name: 'Pan-Seared Salmon en Papillote',  sub: 'with Champagne Cream & Dill',             time: '30 min', calories: '580 kcal', protein: '34g protein', price: '+$6.99',  img: 'images/real/sesame-soy-beef-bowls.jpg' },
+        { slug: 'tagliatelle-al-tartufo',          unitPrice: 13.98, badge: 'DATE NIGHT', name: 'Tagliatelle al Tartufo',           sub: 'with Black Truffle, Pecorino & Egg Yolk', time: '25 min', calories: '660 kcal', protein: '20g protein', price: '+$3.99',  img: 'images/real/creamy-mushroom-gemelli.jpg' },
+        { slug: 'lemon-caper-branzino',            unitPrice: 14.98, badge: 'DATE NIGHT', name: 'Lemon-Caper Branzino',             sub: 'with Saffron Couscous & Charred Lemon',   time: '30 min', calories: '590 kcal', protein: '36g protein', price: '+$4.99',  img: 'images/real/creamy-lemon-garlic-shrimp-linguine.jpg' },
+        { slug: 'truffle-burrata-ravioli',         unitPrice: 13.98, badge: 'BESTSELLER', highlight: 'time', name: 'Black Truffle & Burrata Ravioli',  sub: 'with Brown Butter & Crispy Sage',         time: '20 min', calories: '720 kcal', protein: '24g protein', price: '+$3.99',  img: 'images/real/creamy-pesto-pasta-burrata.jpg' },
+        { slug: 'brown-butter-lobster-risotto',    unitPrice: 22.98, badge: 'DATE NIGHT', highlight: 'protein', name: 'Brown-Butter Lobster Risotto',    sub: 'with Tarragon & Crème Fraîche',           time: '35 min', calories: '740 kcal', protein: '34g protein', price: '+$12.99', img: 'images/real/creamy-shrimp-bacon-spaghetti.jpg' },
+        { slug: 'bordelaise-beef-tenderloin',      unitPrice: 16.98, badge: 'DATE NIGHT', name: 'Bordelaise Beef Tenderloin',       sub: 'with Truffle Pommes & Watercress',        time: '35 min', calories: '700 kcal', protein: '40g protein', price: '+$6.99',  img: 'images/real/steak-parmesan-potatoes.jpg' },
       ];
 
       const reviews = [
@@ -44012,12 +44127,16 @@
       function pipRatingFor(seed) {
         if (!seed) return null;
         // Premium widget cards: always show, range 3.9-5.0 (12 steps × 0.1).
+        // Review counts capped under 200 per meal — these are premium meals, not
+        // mass-market dishes, so smaller realistic sample sizes feel honest.
         const valStep = Math.floor(pipHash01(seed + ':val') * 12);
         const value = (3.9 + valStep * 0.1).toFixed(1);
-        const raw = Math.floor(80 + Math.pow(pipHash01(seed + ':cnt'), 1.6) * 4820);
-        const count = raw >= 1000 ? (raw / 1000).toFixed(1) + 'k' : String(raw);
+        const raw = Math.floor(40 + pipHash01(seed + ':cnt') * 160);
+        const count = String(raw);
         return { value, count };
       }
+      // Expose so the PDP can render the same rating chip + smooth-scroll-to-reviews.
+      window.__pipRatingFor = pipRatingFor;
 
       const PIP_ADDON_CATALOG = [
         { id: 'garlic-bread', name: 'Garlic Bread', delta: 3.99, image: 'images/market-garlic-bread.jpg' },
@@ -44092,7 +44211,7 @@
 
       function renderReviews() {
         if (!reviewsScroll) return;
-        const star = '<svg width="12" height="12" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+        const star = '<svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
         const stars = star.repeat(5);
         reviewsScroll.innerHTML = reviews.map(rv => `
           <article class="pip-testimonial">
@@ -47854,7 +47973,7 @@
         name: "Garlic Herb Butter Scallops",
         subtitle: "with Lemon Risotto & Asparagus",
         image: "images/real/garlic-herb-butter-scallops.jpg",
-        basePrice: 14.99,
+        basePrice: 9.99,
         swapOptions: [
           { id: "default",   title: "Sea scallops",                 weight: "250g", delta: 0,    isDefault: true, image: null, doubleWeight: "500g", doubleDelta: 6.99, doubleKcalDelta: 220, doubleProteinDelta: 22 },
           { id: "chicken",   title: "Chicken breast",               weight: "300g", delta: 0,    image: null },
@@ -48859,6 +48978,129 @@
       return '<div class="pdp-dietary-tags">' + tags + '</div>';
     }
 
+    /* ==================================================
+       PDP Reviews — per-meal quotes for the 10 Date Night
+       recipes shown in the premium widget nested page.
+       Other PDPs fall back to GENERIC_PDP_REVIEWS.
+       ================================================== */
+    const PDP_REVIEWS_BY_SLUG = {
+      'truffle-butter-filet-mignon': [
+        { initials: 'EM', name: 'Emma & Tom', date: '2 weeks ago', avatarBg: '#bbf06a', stars: 5, quote: "We did the filet for our anniversary instead of going out and honestly? Better than the restaurant we usually book. Felt special, took 35 minutes, no reservation stress." },
+        { initials: 'KS', name: 'Kris S.',    date: '1 month ago', avatarBg: '#d6e8c4', stars: 5, quote: "The truffle butter alone is worth the upgrade. Steak was perfectly tender — my partner couldn't believe I cooked it." },
+        { initials: 'BD', name: 'Bea D.',     date: '5 days ago',  avatarBg: '#f5d99a', stars: 5, quote: "Beautifully marbled steak, and the asparagus was crisp. We paired it with a bottle of pinot and called it a Tuesday." },
+      ],
+      'seared-scallops-lemon-risotto': [
+        { initials: 'LP', name: 'Liam P.',    date: '1 week ago',  avatarBg: '#f5d99a', stars: 5, quote: "The scallops were sweet and properly seared. Risotto came together easier than I expected — felt like a proper restaurant plate at home." },
+        { initials: 'AB', name: 'Anna B.',    date: '3 weeks ago', avatarBg: '#bbf06a', stars: 4, quote: "Risotto needed an extra splash of stock toward the end but the flavours were spot on. Worth the surcharge." },
+        { initials: 'TJ', name: 'Theo J.',    date: '6 weeks ago', avatarBg: '#d6e8c4', stars: 5, quote: "Browned butter scallops with that lemon risotto — restaurant-level dish for two. Will absolutely re-order on a Friday." },
+      ],
+      'lobster-tail-linguine': [
+        { initials: 'JR', name: 'Jordan R.',  date: '4 days ago',  avatarBg: '#d6e8c4', stars: 5, quote: "Made this for our first date night since the baby arrived. Portion was perfect for two and I actually got to sit down and eat with my partner." },
+        { initials: 'MO', name: 'Mira O.',    date: '2 weeks ago', avatarBg: '#f5d99a', stars: 5, quote: "Lobster was a pleasant surprise — it cooked beautifully. Better than the linguine I had at a steakhouse last month." },
+        { initials: 'NS', name: 'Noah S.',    date: '1 month ago', avatarBg: '#bbf06a', stars: 5, quote: "Generous lobster tail and the white-wine sauce was elegant without being heavy. Tarragon was a brilliant call." },
+      ],
+      'honey-balsamic-duck-breast': [
+        { initials: 'HC', name: 'Hannah C.',  date: '3 weeks ago', avatarBg: '#bbf06a', stars: 5, quote: "I'd never cooked duck before. The instructions made it foolproof — crispy skin, pink centre, the figs paired beautifully with the wild rice." },
+        { initials: 'TY', name: 'Tariq Y.',   date: '1 month ago', avatarBg: '#d6e8c4', stars: 4, quote: "Slightly more involved than the other meals but absolutely worth it. Felt like a real treat." },
+        { initials: 'AV', name: 'Aria V.',    date: '2 weeks ago', avatarBg: '#f5d99a', stars: 5, quote: "Honey-balsamic glaze was glossy and properly balanced — sweet but not cloying. Wild rice soaked up everything." },
+      ],
+      'pan-seared-salmon-en-papillote': [
+        { initials: 'NO', name: 'Noor O.',    date: '1 week ago',  avatarBg: '#f5d99a', stars: 5, quote: "The parchment-paper trick blew my mind. Salmon stayed moist, the kitchen barely smelled. Date-night hero." },
+        { initials: 'RV', name: 'Rosa V.',    date: '2 weeks ago', avatarBg: '#bbf06a', stars: 5, quote: "Lighter than the other date-night picks, which we loved. The champagne cream is something I'd happily make on its own." },
+        { initials: 'CN', name: 'Caleb N.',   date: '5 weeks ago', avatarBg: '#d6e8c4', stars: 5, quote: "Dill, butter, salmon, parchment — somehow felt fancy and effortless at the same time. Perfectly portioned." },
+      ],
+      'tagliatelle-al-tartufo': [
+        { initials: 'GP', name: 'Gabe P.',    date: '5 days ago',  avatarBg: '#d6e8c4', stars: 5, quote: "Truffle and burrata is unbeatable. 25 minutes start to finish — felt indulgent without feeling like a project." },
+        { initials: 'ZH', name: 'Zoe H.',     date: '3 weeks ago', avatarBg: '#f5d99a', stars: 5, quote: "Restaurant-grade pasta night. We poured a glass of wine, played a record, ate at the table like proper adults." },
+        { initials: 'FA', name: 'Fern A.',    date: '6 weeks ago', avatarBg: '#bbf06a', stars: 5, quote: "Egg yolk on top is the right kind of decadent. Pecorino made it. Already booked it for next week." },
+      ],
+      'lemon-caper-branzino': [
+        { initials: 'PS', name: 'Priya S.',   date: '1 week ago',  avatarBg: '#bbf06a', stars: 5, quote: "We'd never have thought to pair this with the saffron couscous — it was genuinely a restaurant-level moment at the kitchen table." },
+        { initials: 'IK', name: 'Ivan K.',    date: '4 weeks ago', avatarBg: '#d6e8c4', stars: 4, quote: "Branzino was lovely. Capers added the right pop of brine. A repeat order for sure." },
+        { initials: 'LD', name: 'Lola D.',    date: '2 weeks ago', avatarBg: '#f5d99a', stars: 5, quote: "Charred lemon with the saffron couscous — it tasted like a Mediterranean holiday. Cooked in 30 minutes flat." },
+      ],
+      'truffle-burrata-ravioli': [
+        { initials: 'DW', name: 'Dani W.',    date: '2 days ago',  avatarBg: '#f5d99a', stars: 5, quote: "Twenty minutes flat. Ravioli was beautiful, brown butter was nutty and warm. Easiest 'special occasion' meal we've made." },
+        { initials: 'SF', name: 'Sasha F.',   date: '2 weeks ago', avatarBg: '#bbf06a', stars: 5, quote: "Crispy sage put it over the top. We're going to add this to our regular date-night rotation." },
+        { initials: 'RH', name: 'Rae H.',     date: '5 weeks ago', avatarBg: '#d6e8c4', stars: 5, quote: "Burrata centre was lush and the truffle was generous. We split a glass of prosecco and made an evening of it." },
+      ],
+      'brown-butter-lobster-risotto': [
+        { initials: 'OM', name: 'Owen M.',    date: '1 week ago',  avatarBg: '#d6e8c4', stars: 5, quote: "The crème fraîche-tarragon combination was unexpected and brilliant. Lobster was generous for the price." },
+        { initials: 'CR', name: 'Cara R.',    date: '3 weeks ago', avatarBg: '#f5d99a', stars: 5, quote: "I usually find risotto tedious but this was a joy. The brown butter does the heavy lifting." },
+        { initials: 'JN', name: 'Jaya N.',    date: '6 weeks ago', avatarBg: '#bbf06a', stars: 4, quote: "Took me a touch longer than the recipe said but the flavour pay-off was real. Tarragon is the secret weapon." },
+      ],
+      'bordelaise-beef-tenderloin': [
+        { initials: 'MK', name: 'Marco K.',   date: '6 days ago',  avatarBg: '#bbf06a', stars: 5, quote: "Bordelaise sauce reduced exactly as the recipe said it would. Tenderloin came out medium-rare and the truffle pommes were incredible." },
+        { initials: 'EL', name: 'Eve L.',     date: '1 month ago', avatarBg: '#d6e8c4', stars: 5, quote: "Felt like the kind of dinner you'd photograph. Watercress brought a peppery freshness that balanced everything." },
+        { initials: 'HG', name: 'Henri G.',   date: '2 weeks ago', avatarBg: '#f5d99a', stars: 5, quote: "French bistro at home. The tenderloin was tender enough to cut with a fork — never going back to chain restaurants for steak nights." },
+      ],
+    };
+
+    const GENERIC_PDP_REVIEWS = [
+      { initials: 'SM', name: 'Sam M.',      date: '1 week ago',  avatarBg: '#bbf06a', stars: 5, quote: "Easy to follow, ingredients were fresh, the whole family enjoyed it. We'll order it again next time it's available." },
+      { initials: 'AR', name: 'Alex R.',     date: '3 weeks ago', avatarBg: '#d6e8c4', stars: 4, quote: "Solid weeknight dinner. Came together in under 30 minutes and the leftovers were great for lunch the next day." },
+      { initials: 'PT', name: 'Pat T.',      date: '1 month ago', avatarBg: '#f5d99a', stars: 5, quote: "Big portions and lots of flavour. Great pick if you want something straightforward but satisfying." },
+    ];
+
+    function buildPdpRatingChipHtml(rating) {
+      if (!rating) return '';
+      return (
+        '<button type="button" class="pdp-rating-chip" id="pdpRatingChip" aria-label="Rated ' + rating.value +
+        ' out of 5, jump to reviews">' +
+          '<span class="star" aria-hidden="true">★</span>' +
+          '<span class="value">' + rating.value + '</span>' +
+          '<span class="count">' + rating.count + ' reviews</span>' +
+        '</button>'
+      );
+    }
+
+    function buildPdpReviewsSectionHtml(slug, rating) {
+      if (!rating) return '';
+      const reviews = PDP_REVIEWS_BY_SLUG[slug] || GENERIC_PDP_REVIEWS;
+      const star = '<svg width="11" height="11" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+      const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      const cards = reviews.map(rv => (
+        '<article class="pdp-review-card">' +
+          '<div class="pdp-review-card__head">' +
+            '<span class="pdp-review-card__avatar" style="background:' + rv.avatarBg + '">' + escapeHtml(rv.initials) + '</span>' +
+            '<div class="pdp-review-card__meta">' +
+              '<div class="pdp-review-card__name">' + escapeHtml(rv.name) + '</div>' +
+              '<div class="pdp-review-card__date">' + escapeHtml(rv.date) + '</div>' +
+            '</div>' +
+            '<div class="pdp-review-card__stars" aria-label="' + rv.stars + ' out of 5 stars">' + star.repeat(rv.stars) + '</div>' +
+          '</div>' +
+          '<p class="pdp-review-card__quote">"' + escapeHtml(rv.quote) + '"</p>' +
+        '</article>'
+      )).join('');
+      return (
+        '<section class="pdp-reviews-section" id="pdpReviewsSection" aria-labelledby="pdpReviewsHeading">' +
+          '<div class="pdp-reviews-section__head">' +
+            '<h2 class="pdp-reviews-section__title" id="pdpReviewsHeading">Customer reviews</h2>' +
+            '<span class="pdp-reviews-section__rating">' +
+              '<span class="star" aria-hidden="true">★</span>' +
+              '<span>' + rating.value + '</span>' +
+              '<span class="count">(' + rating.count + ')</span>' +
+            '</span>' +
+          '</div>' +
+          cards +
+          '<button type="button" class="pdp-reviews-more" aria-label="See all reviews">More reviews</button>' +
+        '</section>'
+      );
+    }
+
+    function pdpRatingFor(slug, name) {
+      // Use the premium-widget seed for the 10 Date Night meals so the chip on
+      // the PDP matches the chip in the nested page. Everything else uses the
+      // storefront seed (which can return null ~20% of the time).
+      if (PDP_REVIEWS_BY_SLUG[slug] && typeof window.__pipRatingFor === 'function') {
+        return window.__pipRatingFor(name || slug);
+      }
+      if (typeof window.__storeRatingFor === 'function') {
+        return window.__storeRatingFor(slug);
+      }
+      return null;
+    }
+
     function renderPdp() {
       if (!pdpState) return;
       const { cfg, slug, meta, selectedSwap, selectedAddOns, doubleSelected, existingVariantId } = pdpState;
@@ -48969,7 +49211,10 @@
         }
       }
 
+      const pdpRating = pdpRatingFor(slug, cfg.name);
+
       pdpBody.innerHTML = `
+        ${buildPdpRatingChipHtml(pdpRating)}
         <h1 class="pdp-title" id="pdpTitle">${cfg.name}</h1>
         <p class="pdp-subtitle">${cfg.subtitle}</p>
         ${buildPdpQuickInfoHtml(quickInfoMeta)}
@@ -48989,7 +49234,24 @@
           ${addOnCardsHtml}
         </div>
         <p class="pdp-section-disclaimer">You'll receive the right amount of this item to go with the recipe.</p>
+
+        ${buildPdpReviewsSectionHtml(slug, pdpRating)}
       `;
+
+      // Wire the chip → smooth scroll to reviews section.
+      const chip = pdpBody.querySelector('#pdpRatingChip');
+      const reviewsSection = pdpBody.querySelector('#pdpReviewsSection');
+      if (chip && reviewsSection) {
+        chip.addEventListener('click', () => {
+          const scrollArea = pdpBody.closest('.pdp-scroll-area');
+          if (scrollArea && typeof scrollArea.scrollTo === 'function') {
+            const offset = reviewsSection.offsetTop - 16;
+            scrollArea.scrollTo({ top: offset, behavior: 'smooth' });
+          } else {
+            reviewsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
 
       pdpAddBtn.textContent = existingVariantId ? 'Update' : 'Add to box';
       updatePdpFooter();
@@ -49563,6 +49825,7 @@
         if (slug) el.dataset.slug = slug;
         el.dataset.unitPrice = unitPrice.toFixed(2);
         el.dataset.kind = kind;
+        if (servings) el.dataset.servings = String(servings);
         if (surcharge) el.dataset.surcharge = 'true';
         const servingsBlock = servings
           ? `<div class="product-item__servings" role="text" aria-label="${servings} servings">${SVG_SERVINGS}<span class="product-item__servings-text">${servings} serv</span></div>`
@@ -50060,7 +50323,20 @@
           const kind = item.dataset.kind || 'meal';
           totalMeals += qty;
           if (kind === 'specialty') {
-            specialtyTotal += unit * qty;
+            // Two specialty conventions exist:
+            //   - Legacy rows (e.g. the customization-tutorial pcv-cart-row):
+            //     data-unit-price is the all-servings absolute price and there
+            //     is no data-servings attribute. Sum as-is.
+            //   - PIP-added rows: data-unit-price is per-serving and
+            //     data-servings is set. The cart row label shows
+            //     (unitPrice − PLAN) × servings, so mirror that here.
+            const servings = parseInt(item.dataset.servings, 10);
+            if (servings > 0) {
+              const perServingSurcharge = Math.max(0, unit - PLAN_MEAL_PRICE);
+              specialtyTotal += perServingSurcharge * servings * qty;
+            } else {
+              specialtyTotal += unit * qty;
+            }
             specialtyCount += qty;
           } else {
             mealsSubtotal += unit * qty;
@@ -50091,7 +50367,8 @@
         recalcInitialized = true;
 
         const shippingCost = SHIPPING; /* FREE_SHIPPING: disabled — was: freeShippingUnlocked ? 0 : SHIPPING */
-        const benefitDiscount = totalMeals > 0 ? 12.98 : 0;
+        // Benefit: 10% off the Specialties & custom subtotal.
+        const benefitDiscount = specialtyTotal * 0.10;
         const total = Math.max(0, goodsSubtotal + shippingCost - benefitDiscount);
 
         const $ = (id) => document.getElementById(id);
@@ -50133,7 +50410,25 @@
         if (mealsValue) mealsValue.textContent = '$' + mealsSubtotal.toFixed(2);
 
         const benefitRow = $('summary-benefit-row');
-        if (benefitRow) benefitRow.hidden = totalMeals === 0;
+        const benefitValue = $('summary-benefit-value');
+        const benefitLabel = $('summary-benefit-label');
+        if (benefitRow) benefitRow.hidden = specialtyCount === 0;
+        if (benefitLabel) benefitLabel.textContent = '10% off Specialties';
+        if (benefitValue) benefitValue.textContent = '-$' + benefitDiscount.toFixed(2);
+
+        // Savings banner: shows the dynamic discount when there are specialties,
+        // otherwise reads "Rewards available" as a passive nudge.
+        const savingsBanner = $('cart-savings-banner');
+        const savingsBannerText = $('cart-savings-banner-text');
+        if (savingsBanner && savingsBannerText) {
+          if (specialtyCount > 0) {
+            savingsBannerText.textContent = '$' + benefitDiscount.toFixed(2) + ' saved!';
+            savingsBanner.setAttribute('aria-label', '$' + benefitDiscount.toFixed(2) + ' saved. Check benefits.');
+          } else {
+            savingsBannerText.textContent = 'Rewards available';
+            savingsBanner.setAttribute('aria-label', 'Rewards available. Check benefits.');
+          }
+        }
 
         if (specialtyRow) specialtyRow.hidden = specialtyCount === 0;
         if (specialtyLabel) specialtyLabel.textContent = specialtyCount + ' Specialties & custom';
@@ -51230,6 +51525,8 @@
         const count = raw >= 1000 ? (raw / 1000).toFixed(1) + 'k' : String(raw);
         return { value, count };
       }
+      // Expose for PDP rating chip — uses the same seed as the storefront card.
+      window.__storeRatingFor = ratingFor;
 
       function renderRating(card) {
         if (!card || card.dataset.ratingApplied === '1') return;
