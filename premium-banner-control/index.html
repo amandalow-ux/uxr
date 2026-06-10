@@ -2779,6 +2779,10 @@
       gap: 8px;
     }
     .premium-irish-page .pip-rating .stars { display: flex; gap: 2px; }
+    /* Reviews header sits on the dark green panel — keep stars white here only.
+       Per-testimonial cards (white bg) and product card rating chips (cream bg)
+       still inherit the inline black fill. */
+    .premium-irish-page .pip-reviews .pip-rating .stars svg { fill: #fff; }
     .premium-irish-page .pip-rating .score {
       font-size: 14px;
       font-weight: 700;
@@ -12137,10 +12141,6 @@
               <article class="your-meals-card" data-meal-id="ym-m1" data-product="garlic-herb-butter-scallops">
                 <div class="your-meals-card__img-wrap">
                   <img src="images/real/garlic-herb-butter-scallops.jpg" alt="Garlic Herb Butter Scallops">
-                  <div class="hp-2x-badge">
-                    <svg class="hp-2x-badge__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4L20 12M16 12H20V8M12 20L4 12M8 12H4V16"/></svg>
-                    <span class="hp-2x-badge__text">2 x Scallops</span>
-                  </div>
                 </div>
                 <div class="your-meals-card__body">
                   <div>
@@ -12149,12 +12149,11 @@
                   </div>
                   <div class="your-meals-card__meta">
                     <span><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 12.5A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11Zm.75-8.75h-1.5v4.06l3.22 1.94.77-1.28-2.49-1.49V4.75Z"/></svg>30 min</span>
-                    <span><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg>840 kcal</span>
-                    <span><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg>52g protein</span>
+                    <span><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1S3 6 3 10a5 5 0 0 0 10 0c0-2-1-3-1.5-3.5C11 7 10 7.5 10 6c0-2-2-5-2-5Z"/></svg>620 kcal</span>
+                    <span><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 5.5a2 2 0 0 1 2-2h.5l1-1h3l1 1H11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-.5l-1 1h-3l-1-1H5a2 2 0 0 1-2-2v-5Z"/></svg>30g protein</span>
                   </div>
                   <div class="your-meals-card__tags">
                     <span class="your-meals-card__tag your-meals-card__tag--green">Specialty</span>
-                    <span class="your-meals-card__tag your-meals-card__tag--price" data-surcharge="+$6.99">+$6.99 per serving</span>
                   </div>
                 </div>
                 <div class="your-meals-card__cta-wrap">
@@ -12174,7 +12173,7 @@
                     <div class="plan-line">
                       <span class="servings-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 1.5c-2.5 0-5 1.25-5 3.75V15h10v-1.75c0-2.5-2.5-3.75-5-3.75Z"/></svg></span>
                       <span class="servings-count">2</span>
-                      <span class="plan-text">+$6.99 per serving</span>
+                      <span class="plan-text">Included in plan</span>
                     </div>
                     <button type="button" class="add-btn your-meals-card__add" aria-label="Add Garlic Herb Butter Scallops to box">Add</button>
                   </div>
@@ -13682,7 +13681,7 @@
               <div class="cart-header__title-container">
                 <div class="cart-header__section-title" data-zest-component="SectionTitle">
                   <h1 class="cart-header__title">Your order</h1>
-                  <span class="cart-header__badge" id="cart-header-count" data-zest-component="Badge">6</span>
+                  <span class="cart-header__badge" id="cart-header-count" data-zest-component="Badge">3</span>
                 </div>
                 <p class="cart-header__cutoff">Edit by Wed, May 7</p>
               </div>
@@ -13707,11 +13706,11 @@
             <div class="products-list" data-zest-component="custom" data-zest-note="ProductsList">
               <div class="cart-header__section-title" data-zest-component="SectionTitle">
                 <h2 class="cart-header__title">Meals</h2>
-                <span class="cart-header__badge" id="cart-meals-count" data-zest-component="Badge">6</span>
+                <span class="cart-header__badge" id="cart-meals-count" data-zest-component="Badge">3</span>
               </div>
 
               <div class="products-list__items" role="list" id="cart-items-list">
-                <div class="product-item" data-zest-component="ProductItem" data-meal-id="m1" data-slug="garlic-herb-butter-scallops" data-unit-price="16.98" data-kind="specialty" data-surcharge="true" data-custom-state='{"swapId":"default","doubleSelected":true,"addOnIds":[]}'>
+                <div class="product-item" data-zest-component="ProductItem" data-meal-id="m1" data-slug="garlic-herb-butter-scallops" data-unit-price="9.99" data-kind="meal">
                   <div class="product-item__inner">
                     <button type="button" class="product-item__thumbnail-btn" aria-label="Open Garlic Herb Butter Scallops details">
                       <img class="product-item__thumbnail" src="images/real/garlic-herb-butter-scallops.jpg" alt="Garlic Herb Butter Scallops">
@@ -13724,19 +13723,6 @@
                   <div class="product-item__title-container">
                     <div class="product-item__row">
                       <span class="product-item__name" data-testid="product-item-name">Garlic Herb Butter Scallops</span>
-                    </div>
-                    <!-- CUSTOMISATION_ROW_FEATURE_DISABLED: customisation row for m1
-                    <div class="product-item__custom-row">
-                      <p class="product-item__custom product-item__custom--editable" data-testid="product-item-custom" role="button" tabindex="0" aria-label="Edit customization for Garlic Herb Butter Scallops"><svg class="product-item__custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4L20 12M16 12H20V8M12 20L4 12M8 12H4V16"/></svg>2 x Sea Scallops</p>
-                      <button type="button" class="product-item__custom-remove" aria-label="Remove customization for Garlic Herb Butter Scallops" data-testid="product-item-custom-remove">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-                      </button>
-                      <span class="product-item__price" data-testid="product-item-price">+$13.98</span>
-                    </div>
-                    CUSTOMISATION_ROW_FEATURE_DISABLED -->
-                    <div class="product-item__custom-row">
-                      <p class="product-item__custom" data-testid="product-item-custom"><svg class="product-item__custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 4L20 12M16 12H20V8M12 20L4 12M8 12H4V16"/></svg>2 x Sea Scallops</p>
-                      <span class="product-item__price" data-testid="product-item-price">+$13.98</span>
                     </div>
                     <div class="number-stepper" role="group" aria-label="Quantity" data-zest-component="NumberStepper">
                       <button type="button" class="number-stepper__button stepper-dec" aria-label="Decrease">
@@ -13922,49 +13908,44 @@
               <h2 class="price-summary__title">Order total</h2>
 
               <!-- Savings reassurance banner -->
-              <button type="button" class="benefit-banner benefit-banner--success" data-zest-component="BannerMessage" data-zest-variant="benefits" data-zest-type="static" aria-label="$12.98 saved. Check benefits." onclick="showToast('Benefits detail')">
+              <button type="button" id="cart-savings-banner" class="benefit-banner benefit-banner--success" data-zest-component="BannerMessage" data-zest-variant="benefits" data-zest-type="static" aria-label="Rewards available. Check benefits." onclick="showToast('Benefits detail')">
                 <span class="benefit-banner__icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM7.29285 15.2929L15.2928 7.29291L16.7071 8.70712L8.70706 16.7071L7.29285 15.2929ZM9.5 11C10.3284 11 11 10.3284 11 9.5C11 8.67157 10.3284 8 9.5 8C8.67157 8 8 8.67157 8 9.5C8 10.3284 8.67157 11 9.5 11ZM14.5 16C15.3284 16 16 15.3284 16 14.5C16 13.6716 15.3284 13 14.5 13C13.6716 13 13 13.6716 13 14.5C13 15.3284 13.6716 16 14.5 16Z" fill="currentColor"/></svg>
                 </span>
-                <span class="benefit-banner__text">$12.98 saved!</span>
+                <span class="benefit-banner__text" id="cart-savings-banner-text">Rewards available</span>
                 <span class="benefit-banner__cta">Check benefits</span>
               </button>
 
               <div class="price-row" data-testid="price-row-meals">
-                <span class="price-row__title" id="summary-meals-label">4 Meals for 2 people</span>
-                <span class="price-row__price" id="summary-meals-value">$71.92</span>
+                <span class="price-row__title" id="summary-meals-label">3 Meals for 2 people</span>
+                <span class="price-row__price" id="summary-meals-value">$45.95</span>
               </div>
-              <div class="price-row" id="summary-benefit-row" data-testid="price-row-benefit">
+              <div class="price-row" id="summary-specialty-row" data-testid="price-row-specialty">
+                <span class="price-row__title" id="summary-specialty-label">0 Specialties &amp; custom</span>
+                <span class="price-row__price" id="summary-specialty-value">$0.00</span>
+              </div>
+              <div class="price-row" id="summary-benefit-row" data-testid="price-row-benefit" hidden>
                 <span class="price-row__title price-row__title--benefit">
                   <span class="price-row__benefit-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M7 4h10v2h2.5a1.5 1.5 0 0 1 1.5 1.5V9a4 4 0 0 1-4 4h-.3a5 5 0 0 1-3.7 3.9V19h3v2H8v-2h3v-2.1A5 5 0 0 1 7.3 13H7a4 4 0 0 1-4-4V7.5A1.5 1.5 0 0 1 4.5 6H7V4Zm0 4H4.5v1a2.5 2.5 0 0 0 2.5 2.5V8Zm10 3.5A2.5 2.5 0 0 0 19.5 9V8H17v3.5Z" fill="currentColor"/>
                     </svg>
                   </span>
-                  <span>1 Benefit</span>
+                  <span id="summary-benefit-label">10% off Specialties</span>
                 </span>
-                <span class="price-row__price price-row__price--discount" id="summary-benefit-value">-$12.98</span>
-              </div>
-              <div class="price-row" id="summary-specialty-row" data-testid="price-row-specialty">
-                <span class="price-row__title" id="summary-specialty-label">2 Specialties &amp; custom</span>
-                <span class="price-row__price" id="summary-specialty-value">$32.96</span>
+                <span class="price-row__price price-row__price--discount" id="summary-benefit-value">-$0.00</span>
               </div>
               <div class="price-row" id="summary-addons-row" data-testid="price-row-addons" hidden>
                 <span class="price-row__title" id="summary-addons-label">Add-ons</span>
                 <span class="price-row__price" id="summary-addons-value">$0.00</span>
               </div>
-              <!-- FREE_SHIPPING_FEATURE_DISABLED: Shipping price row
               <div class="price-row" data-testid="price-row-shipping">
                 <span class="price-row__title">Shipping</span>
-                <span class="price-row__price" id="shipping-value">
-                  <span id="shipping-original" class="price-row__price--strikethrough">$10.99</span>
-                  <span id="shipping-free" class="price-row__price--free">FREE</span>
-                </span>
+                <span class="price-row__price" id="shipping-value">$10.99</span>
               </div>
-              FREE_SHIPPING_FEATURE_DISABLED -->
               <div class="price-row price-row--total" data-testid="price-row-total">
                 <span class="price-row__title">Total</span>
-                <span class="price-row__price" id="cart-total">$91.90</span>
+                <span class="price-row__price" id="cart-total">$56.94</span>
               </div>
 
               <!-- HF_CASH_FEATURE_DISABLED: HelloFresh Cash reassurance banner + applied rows
@@ -14124,26 +14105,7 @@
             <h1 class="pip-title" id="premium-irish-title">A cut above in flavour</h1>
             <p class="pip-subtitle">Treat yourself to premium recipes featuring Sirloin or Ribeye steak.</p>
 
-            <div class="pip-grid" id="pipRecipeGridTop"></div>
-
-            <section class="pip-reviews" aria-labelledby="pipReviewsHeading">
-              <div class="pip-eyebrow">Customer reviews</div>
-              <h2 class="pip-heading" id="pipReviewsHeading">What people are saying</h2>
-              <div class="pip-rating">
-                <div class="stars" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                </div>
-                <span class="score">4.8</span>
-                <span class="count">from 1,964 reviews</span>
-              </div>
-              <div class="pip-hscroll" id="pipReviewsScroll"></div>
-            </section>
-
-            <div class="pip-grid" id="pipRecipeGridBottom"></div>
+            <div class="pip-grid" id="pipRecipeGrid"></div>
 
             <div class="pip-farm">
               <div class="pip-farm__img">
@@ -43967,28 +43929,20 @@
       const backFloat = document.getElementById('pipBackFloating');
       const backSticky = document.getElementById('pipBackSticky');
       const scroll = document.getElementById('pipScroll');
-      const gridTop = document.getElementById('pipRecipeGridTop');
-      const gridBottom = document.getElementById('pipRecipeGridBottom');
-      const reviewsScroll = document.getElementById('pipReviewsScroll');
+      const grid = document.getElementById('pipRecipeGrid');
       if (!page || !viewAll) return;
 
-      const reviews = [
-        { initials: 'CM', name: 'Carolyn M.',  location: 'Portland, OR',   avatarBg: '#bbf06a', quote: 'The grass-fed sirloin was honestly the best steak I\'ve cooked at home in years. You can taste the difference - it just feels lighter and cleaner than supermarket beef.', tag: 'Steak & Parmesan Potatoes' },
-        { initials: 'DR', name: 'Daniel R.',  location: 'Boston, MA',     avatarBg: '#d6e8c4', quote: 'I\'m a busy dad of two and these premium recipes have made weeknight dinners feel special again. The pork tenderloin came out perfectly - my kids even asked for seconds.', tag: 'Hoisin Pork Tenderloin' },
-        { initials: 'NA', name: 'Nadia A.',   location: 'San Diego, CA',  avatarBg: '#f5d99a', quote: 'Worth every cent of the upgrade. The beef meatballs were so tender and flavourful - way beyond what I usually expect from a meal kit. Will absolutely re-order.', tag: 'Beef Meatballs with Onion Gravy' },
-      ];
-
       const recipes = [
-        { slug: 'hoisin-pork-tenderloin',           unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Hoisin Pork Tenderloin',           sub: 'with Jasmine Rice & Bok Choy',            time: '30 min', calories: '650 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/hoisin-pork-tenderloin.jpg' },
-        { slug: 'beef-meatballs-onion-gravy',       unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Beef Meatballs with Onion Gravy',  sub: 'with Mashed Potatoes & Green Beans',      time: '35 min', calories: '720 kcal', protein: '34g protein', price: '+$3.99', img: 'images/real/beef-meatballs-onion-gravy.jpg' },
-        { slug: 'steak-parmesan-potatoes',          unitPrice: 13.98, badge: 'BESTSELLER', highlight: 'time',     name: 'Steak & Parmesan Potatoes',        sub: 'with Broccolini & Herb Butter',           time: '30 min', calories: '710 kcal', protein: '42g protein', price: '+$3.99', img: 'images/real/steak-parmesan-potatoes.jpg' },
-        { slug: 'crispy-parmesan-chicken',          unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'protein',  name: 'Crispy Parmesan Chicken',          sub: 'with Roasted Potatoes & Garlicky Greens', time: '30 min', calories: '720 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/crispy-parmesan-chicken.jpg' },
-        { slug: 'sesame-soy-beef-bowls',            unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'calories', name: 'Sesame Soy Beef Bowls',            sub: 'with Jasmine Rice & Pickled Cucumber',    time: '25 min', calories: '610 kcal', protein: '36g protein', price: '+$3.99', img: 'images/real/sesame-soy-beef-bowls.jpg' },
-        { slug: 'almond-crusted-dijon-chicken',     unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: 'Almond-Crusted Dijon Chicken',     sub: 'with Roasted Sweet Potato & Arugula',     time: '35 min', calories: '680 kcal', protein: '40g protein', price: '+$3.99', img: 'images/real/almond-crusted-dijon-chicken.jpg' },
-        { slug: 'honey-dijon-dill-steak',           unitPrice: 13.98, badge: 'BESTSELLER', highlight: null,       name: 'Honey Dijon Dill Steak',           sub: 'with Roasted Potatoes & Green Beans',     time: '35 min', calories: '680 kcal', protein: '44g protein', price: '+$3.99', img: 'images/real/honey-dijon-dill-steak.jpg' },
-        { slug: 'beef-mushroom-shepherds-pie',      unitPrice: 13.98, badge: 'PREMIUM',    highlight: null,       name: "Beef & Mushroom Shepherd's Pie",   sub: 'with Cheddar-Topped Mash & Peas',          time: '40 min', calories: '760 kcal', protein: '36g protein', price: '+$3.99', img: 'images/real/beef-mushroom-shepherds-pie.jpg' },
-        { slug: 'sundried-tomato-stuffed-chicken',  unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'protein',  name: 'Sun-Dried Tomato Stuffed Chicken', sub: 'with Creamy Orzo & Wilted Spinach',        time: '40 min', calories: '720 kcal', protein: '44g protein', price: '+$3.99', img: 'images/real/sundried-tomato-stuffed-chicken.jpg' },
-        { slug: 'herbed-steak-apple-kale-salad',    unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'calories', name: 'Herbed Steak over Apple & Kale Salad', sub: 'with Toasted Pecans & Dijon Vinaigrette', time: '30 min', calories: '590 kcal', protein: '38g protein', price: '+$3.99', img: 'images/real/herbed-steak-apple-kale-salad.jpg' },
+        { slug: 'hoisin-pork-tenderloin',           unitPrice: 16.98, badge: 'PREMIUM',    highlight: null,       name: 'Hoisin Pork Tenderloin',           sub: 'with Jasmine Rice & Bok Choy',            time: '30 min', calories: '650 kcal', protein: '38g protein', price: '+$6.99',  img: 'images/real/hoisin-pork-tenderloin.jpg' },
+        { slug: 'beef-meatballs-onion-gravy',       unitPrice: 16.98, badge: 'PREMIUM',    highlight: null,       name: 'Beef Meatballs with Onion Gravy',  sub: 'with Mashed Potatoes & Green Beans',      time: '35 min', calories: '720 kcal', protein: '34g protein', price: '+$6.99',  img: 'images/real/beef-meatballs-onion-gravy.jpg' },
+        { slug: 'steak-parmesan-potatoes',          unitPrice: 22.98, badge: 'BESTSELLER', highlight: 'time',     name: 'Steak & Parmesan Potatoes',        sub: 'with Broccolini & Herb Butter',           time: '30 min', calories: '710 kcal', protein: '42g protein', price: '+$12.99', img: 'images/real/steak-parmesan-potatoes.jpg' },
+        { slug: 'crispy-parmesan-chicken',          unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'protein',  name: 'Crispy Parmesan Chicken',          sub: 'with Roasted Potatoes & Garlicky Greens', time: '30 min', calories: '720 kcal', protein: '38g protein', price: '+$3.99',  img: 'images/real/crispy-parmesan-chicken.jpg' },
+        { slug: 'sesame-soy-beef-bowls',            unitPrice: 16.98, badge: 'PREMIUM',    highlight: 'calories', name: 'Sesame Soy Beef Bowls',            sub: 'with Jasmine Rice & Pickled Cucumber',    time: '25 min', calories: '610 kcal', protein: '36g protein', price: '+$6.99',  img: 'images/real/sesame-soy-beef-bowls.jpg' },
+        { slug: 'almond-crusted-dijon-chicken',     unitPrice: 14.98, badge: 'PREMIUM',    highlight: null,       name: 'Almond-Crusted Dijon Chicken',     sub: 'with Roasted Sweet Potato & Arugula',     time: '35 min', calories: '680 kcal', protein: '40g protein', price: '+$4.99',  img: 'images/real/almond-crusted-dijon-chicken.jpg' },
+        { slug: 'honey-dijon-dill-steak',           unitPrice: 22.98, badge: 'BESTSELLER', highlight: null,       name: 'Honey Dijon Dill Steak',           sub: 'with Roasted Potatoes & Green Beans',     time: '35 min', calories: '680 kcal', protein: '44g protein', price: '+$12.99', img: 'images/real/honey-dijon-dill-steak.jpg' },
+        { slug: 'beef-mushroom-shepherds-pie',      unitPrice: 16.98, badge: 'PREMIUM',    highlight: null,       name: "Beef & Mushroom Shepherd's Pie",   sub: 'with Cheddar-Topped Mash & Peas',          time: '40 min', calories: '760 kcal', protein: '36g protein', price: '+$6.99',  img: 'images/real/beef-mushroom-shepherds-pie.jpg' },
+        { slug: 'sundried-tomato-stuffed-chicken',  unitPrice: 13.98, badge: 'PREMIUM',    highlight: 'protein',  name: 'Sun-Dried Tomato Stuffed Chicken', sub: 'with Creamy Orzo & Wilted Spinach',        time: '40 min', calories: '720 kcal', protein: '44g protein', price: '+$3.99',  img: 'images/real/sundried-tomato-stuffed-chicken.jpg' },
+        { slug: 'herbed-steak-apple-kale-salad',    unitPrice: 16.98, badge: 'PREMIUM',    highlight: 'calories', name: 'Herbed Steak over Apple & Kale Salad', sub: 'with Toasted Pecans & Dijon Vinaigrette', time: '30 min', calories: '590 kcal', protein: '38g protein', price: '+$6.99',  img: 'images/real/herbed-steak-apple-kale-salad.jpg' },
       ];
 
       const plusIcon  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
@@ -44026,32 +43980,10 @@
       }
 
       function renderRecipes() {
-        if (gridTop) gridTop.innerHTML = recipes.slice(0, 4).map(recipeHtml).join('');
-        if (gridBottom) gridBottom.innerHTML = recipes.slice(4).map(recipeHtml).join('');
-      }
-
-      function renderReviews() {
-        if (!reviewsScroll) return;
-        const star = '<svg width="12" height="12" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
-        const stars = star.repeat(5);
-        reviewsScroll.innerHTML = reviews.map(rv => `
-          <article class="pip-testimonial">
-            <div class="pip-testimonial__head">
-              <div class="pip-testimonial__avatar" style="background:${rv.avatarBg}">${escapeHtml(rv.initials)}</div>
-              <div class="pip-testimonial__meta">
-                <div class="pip-testimonial__name">${escapeHtml(rv.name)}</div>
-                <div class="pip-testimonial__location">${escapeHtml(rv.location)}</div>
-              </div>
-              <div class="pip-testimonial__stars" aria-label="5 out of 5 stars">${stars}</div>
-            </div>
-            <p class="pip-testimonial__quote">"${escapeHtml(rv.quote)}"</p>
-            <span class="pip-testimonial__tag">${escapeHtml(rv.tag)}</span>
-          </article>
-        `).join('');
+        if (grid) grid.innerHTML = recipes.map(recipeHtml).join('');
       }
 
       renderRecipes();
-      renderReviews();
 
       function openPage() {
         page.hidden = false;
@@ -44084,7 +44016,7 @@
       }
 
       // Card body click → open PDP
-      [gridTop, gridBottom].forEach(g => g && g.addEventListener('click', (e) => {
+      grid && grid.addEventListener('click', (e) => {
         if (e.target.closest('.pip-recipe__add') || e.target.closest('.pip-recipe__stepper')) return;
         const card = e.target.closest('.pip-recipe');
         if (!card) return;
@@ -44097,10 +44029,10 @@
         const cartRow = document.querySelector(`.product-item[data-slug="${CSS.escape(slug)}"]`);
         const variantId = cartRow ? cartRow.dataset.mealId : null;
         window.openPdp(slug, variantId ? { existingVariantId: variantId } : undefined);
-      }));
+      });
 
       // Stepper dec / inc + add button
-      [gridTop, gridBottom].forEach(g => g && g.addEventListener('click', (e) => {
+      grid && grid.addEventListener('click', (e) => {
         const card = e.target.closest('.pip-recipe');
         if (!card) return;
 
@@ -44151,16 +44083,19 @@
           const name = cfg ? cfg.name : (card.querySelector('.pip-recipe__name')?.textContent || slug);
           const image = cfg ? cfg.image : (card.querySelector('img')?.getAttribute('src') || '');
           const surcharge = unitPrice > 9.99;
+          const badgeEl = card.querySelector('.pip-recipe__badge');
+          const premiumLabel = (badgeEl?.textContent || 'PREMIUM').trim();
           window.__cart.addOrIncrement({
             id: slug, slug, name, image, unitPrice,
-            servings: 2, kind: 'meal',
+            servings: 2, kind: surcharge ? 'specialty' : 'meal',
             surcharge, showPrice: surcharge,
-            customSummary: ''
+            customSummary: '',
+            premiumLabel
           });
           if (typeof window.__syncStoreCardsFromCart === 'function') window.__syncStoreCardsFromCart();
           if (typeof showOrderSavedToast === 'function') showOrderSavedToast();
         }
-      }));
+      });
     })();
 
     /* ==================================================
@@ -49377,7 +49312,7 @@
       const SVG_PLUS  = '<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 3h2v4h4v2H9v4H7V9H3V7h4z"/></svg>';
       const SVG_SERVINGS = '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6ZM3 22a9 9 0 0 1 18 0h-2a7 7 0 0 0-14 0H3Z"/></svg>';
 
-      function buildCartItem({ id, slug, name, image, unitPrice, qty, servings, kind, surcharge, customSummary, showPrice }) {
+      function buildCartItem({ id, slug, name, image, unitPrice, qty, servings, kind, surcharge, customSummary, showPrice, premiumLabel }) {
         const el = document.createElement('div');
         el.className = 'product-item';
         el.setAttribute('data-zest-component', 'ProductItem');
@@ -49385,6 +49320,7 @@
         if (slug) el.dataset.slug = slug;
         el.dataset.unitPrice = unitPrice.toFixed(2);
         el.dataset.kind = kind;
+        if (servings) el.dataset.servings = String(servings);
         if (surcharge) el.dataset.surcharge = 'true';
         const servingsBlock = servings
           ? `<div class="product-item__servings" role="text" aria-label="${servings} servings">${SVG_SERVINGS}<span class="product-item__servings-text">${servings} serv</span></div>`
@@ -49426,8 +49362,9 @@
             ${priceHtml}
           </div>`;
         } else if (priceText && surcharge) {
+          const labelText = (premiumLabel || 'PREMIUM').toUpperCase();
           subtitleRow = `<div class="product-item__premium-row">
-            <span class="product-item__premium-label">PREMIUM</span>
+            <span class="product-item__premium-label">${labelText}</span>
             <span class="product-item__price" data-testid="product-item-price">${priceText}</span>
           </div>`;
         } else if (priceText) {
@@ -49610,7 +49547,7 @@
         bindCustomizationControls(item);
       };
 
-      function addOrIncrement({ id, slug, name, image, unitPrice, servings, kind, surcharge, customSummary, showPrice, pairings, customState }) {
+      function addOrIncrement({ id, slug, name, image, unitPrice, servings, kind, surcharge, customSummary, showPrice, pairings, customState, premiumLabel }) {
         const existing = findItemById(id);
         if (existing) {
           const qtyEl = existing.querySelector('.qty');
@@ -49624,6 +49561,7 @@
             surcharge: !!surcharge,
             customSummary: customSummary || '',
             showPrice: !!showPrice,
+            premiumLabel: premiumLabel || ''
           });
           if (customState) {
             try { row.dataset.customState = JSON.stringify(customState); } catch (err) {}
@@ -49883,7 +49821,20 @@
           const kind = item.dataset.kind || 'meal';
           totalMeals += qty;
           if (kind === 'specialty') {
-            specialtyTotal += unit * qty;
+            // Two specialty conventions exist:
+            //   - Legacy rows (e.g. the customization-tutorial pcv-cart-row):
+            //     data-unit-price is the all-servings absolute price and there
+            //     is no data-servings attribute. Sum as-is.
+            //   - PIP-added rows: data-unit-price is per-serving and
+            //     data-servings is set. The cart row label shows
+            //     (unitPrice − PLAN) × servings, so mirror that here.
+            const servings = parseInt(item.dataset.servings, 10);
+            if (servings > 0) {
+              const perServingSurcharge = Math.max(0, unit - PLAN_MEAL_PRICE);
+              specialtyTotal += perServingSurcharge * servings * qty;
+            } else {
+              specialtyTotal += unit * qty;
+            }
             specialtyCount += qty;
           } else {
             mealsSubtotal += unit * qty;
@@ -49912,7 +49863,8 @@
         recalcInitialized = true;
         FREE_SHIPPING_FEATURE_DISABLED */
         const shippingCost = 10.99;
-        const benefitDiscount = totalMeals > 0 ? 12.98 : 0;
+        // Benefit: 10% off the Specialties & custom subtotal.
+        const benefitDiscount = specialtyTotal * 0.10;
         const total = Math.max(0, goodsSubtotal + shippingCost - benefitDiscount);
 
         const $ = (id) => document.getElementById(id);
@@ -49956,7 +49908,25 @@
         if (mealsValue) mealsValue.textContent = '$' + mealsSubtotal.toFixed(2);
 
         const benefitRow = $('summary-benefit-row');
-        if (benefitRow) benefitRow.hidden = totalMeals === 0;
+        const benefitValue = $('summary-benefit-value');
+        const benefitLabel = $('summary-benefit-label');
+        if (benefitRow) benefitRow.hidden = specialtyCount === 0;
+        if (benefitLabel) benefitLabel.textContent = '10% off Specialties';
+        if (benefitValue) benefitValue.textContent = '-$' + benefitDiscount.toFixed(2);
+
+        // Savings banner: shows the dynamic discount when there are specialties,
+        // otherwise reads "Rewards available" as a passive nudge.
+        const savingsBanner = $('cart-savings-banner');
+        const savingsBannerText = $('cart-savings-banner-text');
+        if (savingsBanner && savingsBannerText) {
+          if (specialtyCount > 0) {
+            savingsBannerText.textContent = '$' + benefitDiscount.toFixed(2) + ' saved!';
+            savingsBanner.setAttribute('aria-label', '$' + benefitDiscount.toFixed(2) + ' saved. Check benefits.');
+          } else {
+            savingsBannerText.textContent = 'Rewards available';
+            savingsBanner.setAttribute('aria-label', 'Rewards available. Check benefits.');
+          }
+        }
 
         if (specialtyRow) specialtyRow.hidden = specialtyCount === 0;
         if (specialtyLabel) specialtyLabel.textContent = specialtyCount + ' Specialties & custom';
