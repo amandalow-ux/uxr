@@ -49563,6 +49563,7 @@
         if (slug) el.dataset.slug = slug;
         el.dataset.unitPrice = unitPrice.toFixed(2);
         el.dataset.kind = kind;
+        if (servings) el.dataset.servings = String(servings);
         if (surcharge) el.dataset.surcharge = 'true';
         const servingsBlock = servings
           ? `<div class="product-item__servings" role="text" aria-label="${servings} servings">${SVG_SERVINGS}<span class="product-item__servings-text">${servings} serv</span></div>`
@@ -50060,7 +50061,20 @@
           const kind = item.dataset.kind || 'meal';
           totalMeals += qty;
           if (kind === 'specialty') {
-            specialtyTotal += unit * qty;
+            // Two specialty conventions exist:
+            //   - Legacy rows (e.g. the customization-tutorial pcv-cart-row):
+            //     data-unit-price is the all-servings absolute price and there
+            //     is no data-servings attribute. Sum as-is.
+            //   - PIP-added rows: data-unit-price is per-serving and
+            //     data-servings is set. The cart row label shows
+            //     (unitPrice − PLAN) × servings, so mirror that here.
+            const servings = parseInt(item.dataset.servings, 10);
+            if (servings > 0) {
+              const perServingSurcharge = Math.max(0, unit - PLAN_MEAL_PRICE);
+              specialtyTotal += perServingSurcharge * servings * qty;
+            } else {
+              specialtyTotal += unit * qty;
+            }
             specialtyCount += qty;
           } else {
             mealsSubtotal += unit * qty;
