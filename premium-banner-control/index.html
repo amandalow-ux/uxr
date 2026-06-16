@@ -2109,11 +2109,11 @@
     }
     .premium-section-head h3 {
       font-family: var(--font-family-primary);
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 700;
       color: #fff;
       margin: 0 0 6px 0;
-      line-height: 1.2;
+      line-height: 1.33;
       letter-spacing: -0.01em;
     }
     .premium-section-head .nav {
@@ -2161,7 +2161,7 @@
     .premium-video {
       flex-shrink: 0;
       width: 220px;
-      aspect-ratio: 16 / 9;
+      height: 300px;
       overflow: hidden;
       border-radius: 12px;
       scroll-snap-align: start;
@@ -2195,20 +2195,25 @@
       display: flex;
       flex-direction: column;
       gap: 0;
-      width: 280px;
+      width: 290px;
       height: 300px;
       scroll-snap-align: start;
       border-radius: 12px;
       overflow: hidden;
-      background: #EFE9DE;
+      background: #efe9de;
     }
     .premium-quote .img {
-      flex: 1;
+      width: 100%;
+      height: 150px;
       overflow: hidden;
+      border-radius: 12px 12px 0 0;
+      flex-shrink: 0;
     }
     .premium-quote .img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .premium-quote .quote {
-      background: #EFE9DE;
+      width: 100%;
+      flex: 1;
+      background: #efe9de;
       padding: 16px;
       display: flex;
       flex-direction: column;
@@ -2216,12 +2221,11 @@
     }
     .premium-quote .quote p {
       font-family: var(--font-family-primary);
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 700;
-      color: var(--color-brand-foreground-default);
-      line-height: 1.35;
+      color: var(--color-neutral-foreground-strongest);
+      line-height: 1.25;
       margin: 0;
-      letter-spacing: -0.01em;
     }
     .premium-view-all {
       position: relative;
@@ -2407,7 +2411,7 @@
     .premium-irish-page .pip-hero {
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 280px;
+      aspect-ratio: 1 / 1;
       z-index: 1;
     }
     .premium-irish-page .pip-hero video {
@@ -2510,7 +2514,7 @@
       z-index: 4;
     }
     .premium-irish-page .pip-scroll::-webkit-scrollbar { display: none; }
-    .premium-irish-page .pip-spacer { height: 170px; }
+    .premium-irish-page .pip-spacer { height: 283px; }
     .premium-irish-page .pip-panel {
       background: #024426;
       border-radius: 24px 24px 0 0;
@@ -2862,116 +2866,94 @@
       padding: 3px 8px;
       border-radius: 20px;
     }
-    .premium-irish-page .pip-farm {
-      margin-top: 40px;
-      border-radius: 20px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .premium-irish-page .pip-farm__img {
-      position: relative;
-      aspect-ratio: 16/9;
+    .premium-irish-page .pip-story {
+      margin-top: 24px;
+      border-radius: 12px;
       overflow: hidden;
     }
-    .premium-irish-page .pip-farm__img img {
+    .premium-irish-page .pip-story__img {
+      aspect-ratio: 375/295;
+      overflow: hidden;
+    }
+    .premium-irish-page .pip-story__img img {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
     }
-    .premium-irish-page .pip-farm__badge {
-      position: absolute;
-      bottom: 10px; left: 12px;
-      font-size: 11px;
-      font-weight: 600;
-      color: #fff;
-      background: rgba(0,0,0,0.45);
-      backdrop-filter: blur(6px);
-      padding: 3px 9px;
-      border-radius: 20px;
-    }
-    .premium-irish-page .pip-farm__body {
-      padding: 20px 16px 24px;
-    }
-    .premium-irish-page .pip-farm__eyebrow {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.9px;
-      color: #67c98a;
-      margin-bottom: 6px;
-    }
-    .premium-irish-page .pip-farm__title {
-      font-size: 19px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.2;
-      margin-bottom: 14px;
-      font-family: var(--font-family-primary);
-    }
-    .premium-irish-page .pip-farm__p {
-      font-size: 13px;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-    .premium-irish-page .pip-farm__features {
+    .premium-irish-page .pip-story__body {
+      background: #faf8f3;
+      padding: 24px 16px 16px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin: 20px 0;
+      gap: 16px;
     }
-    .premium-irish-page .pip-feature {
+    .premium-irish-page .pip-story__eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      color: #067a46;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .premium-irish-page .pip-story__title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #242424;
+      line-height: 1.2;
+      margin: 0;
+      font-family: var(--font-family-primary);
+    }
+    .premium-irish-page .pip-story__p {
+      font-size: 14px;
+      color: #242424;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .premium-irish-page .pip-story__p strong {
+      font-weight: 700;
+    }
+    .premium-irish-page .pip-story__bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px 0;
+    }
+    .premium-irish-page .pip-story__bullet {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 16px;
     }
-    .premium-irish-page .pip-feature__icon {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: rgba(103,201,138,0.15);
+    .premium-irish-page .pip-story__bullet-icon {
+      width: 32px; height: 32px;
+      border-radius: 999px;
+      background: #056835;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: #67c98a;
-    }
-    .premium-irish-page .pip-feature__title {
-      font-size: 13px;
-      font-weight: 700;
       color: #fff;
+    }
+    .premium-irish-page .pip-story__bullet-icon svg {
+      width: 20px; height: 20px;
+    }
+    .premium-irish-page .pip-story__bullet-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #242424;
+      line-height: 1.25;
       margin-bottom: 2px;
+      font-family: var(--font-family-primary);
     }
-    .premium-irish-page .pip-feature__desc {
-      font-size: 12px;
-      color: rgba(255,255,255,0.55);
+    .premium-irish-page .pip-story__bullet-desc {
+      font-size: 14px;
+      color: #242424;
       line-height: 1.5;
-    }
-    .premium-irish-page .pip-quote {
-      margin-top: 20px;
-      padding: 16px;
-      background: rgba(103,201,138,0.08);
-      border-left: 3px solid #67c98a;
-      border-radius: 0 12px 12px 0;
-    }
-    .premium-irish-page .pip-quote p {
-      font-size: 13px;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.6;
-      font-style: italic;
-      margin-bottom: 8px;
-    }
-    .premium-irish-page .pip-quote cite {
-      font-size: 11px;
-      color: rgba(255,255,255,0.45);
-      font-style: normal;
-      font-weight: 600;
     }
     .premium-irish-page .pip-bottom-gradient {
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 40px;
-      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 100%);
+      background: linear-gradient(to bottom, transparent 0%, rgba(3,67,39,0.5) 100%);
       pointer-events: none;
       z-index: 3;
     }
@@ -12629,8 +12611,8 @@
             <section class="premium-section" data-zest-component="custom" data-zest-note="Premium experience mosaic">
               <div class="premium-section-head">
                 <div class="premium-section-head__copy">
-                  <h3>A cut above in flavour</h3>
-                  <p class="premium-section-sub">Treat yourself to premium recipes featuring Sirloin or Ribeye steak.</p>
+                  <h3>Premium cuts, rich flavor</h3>
+                  <p class="premium-section-sub">Tender, juicy and full of flavor.</p>
                 </div>
                 <div class="nav" aria-hidden="true">
                   <button type="button" aria-label="Previous" data-premium-prev disabled>
@@ -12643,39 +12625,44 @@
               </div>
 
               <div class="premium-carousel" data-premium-carousel>
-                <!-- Cooking video tile — stock video of steaks being cooked in a pan -->
                 <div class="premium-video">
-                  <video src="https://c.stocksy.com/a/Zz8500/y2/1226209.mp4" autoplay loop muted playsinline aria-label="Steaks being cooked in a pan"></video>
+                  <video src="images/premium/aov-lift-2x3.mp4" autoplay loop muted playsinline preload="auto" aria-label="Premium steak sizzling"></video>
                 </div>
 
                 <div class="premium-stack">
-                  <div class="tile"><img src="images/pw 1.png" alt="Premium Irish beef dish"></div>
-                  <div class="tile"><img src="images/pw 2.png" alt="Premium Irish beef plated"></div>
+                  <div class="tile"><img src="images/premium/beef-tile-1.jpg" alt="Premium beef with roasted potatoes"></div>
+                  <div class="tile"><img src="images/premium/beef-tile-2.jpg" alt="Premium sirloin with green beans"></div>
                 </div>
 
-                <!-- Customer quote tile, image on left, quote on right -->
+                <!-- Quote tile — image top, copy bottom -->
                 <div class="premium-quote">
-                  <div class="img"><img src="images/pw 3.png" alt="Premium Irish beef plated"></div>
+                  <div class="img"><img src="images/premium/beef-tile-3.jpg" alt="Premium steak with kale and polenta"></div>
                   <div class="quote">
-                    <p>"This is one of the best things I have ever had on HelloFresh! The steak and seasoning were so on point"</p>
+                    <p>Turn a routine weeknight dinner into a premium feast.</p>
                   </div>
                 </div>
 
                 <div class="premium-stack">
-                  <div class="tile"><img src="images/pw 4.png" alt="Premium Irish beef plated"></div>
-                  <div class="tile premium-view-all" role="button" tabindex="0" aria-label="View all recipes">
-                    <img src="images/pw 5.png" alt="">
+                  <div class="tile"><img src="images/premium/beef-tile-4.jpg" alt="Sirloin with chimichurri and salad"></div>
+                  <div class="tile premium-view-all" role="button" tabindex="0" aria-label="Check meals">
+                    <img src="images/premium/beef-tile-5.jpg" alt="">
                     <div class="overlay">
                       <div class="circle">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 4h12a1 1 0 0 1 1 1v15.5a.5.5 0 0 1-.777.416L12 17.2l-6.223 3.716A.5.5 0 0 1 5 20.5V5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                          <path d="M7 10H5V12H7V10Z" fill="currentColor"/>
+                          <path d="M5 14H7V16H5V14Z" fill="currentColor"/>
+                          <path d="M16 10H9V12H16V10Z" fill="currentColor"/>
+                          <path d="M9 14H16V16H9V14Z" fill="currentColor"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9384 2.44949L3.68784 5.99996H1L20 6V20H1V8.64961L0 4.91756L18.3526 0L19.9603 5.99996H17.8897L16.9384 2.44949ZM3 8H18V18H3V8Z" fill="currentColor"/>
+                        </svg>
                       </div>
-                      <div class="label">View all recipes</div>
+                      <div class="label">Check meals</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <button type="button" class="premium-cta" id="premiumSelectMealsCta" data-zest-component="Button" data-zest-variant="secondary">Select your premium meals</button>
+              <button type="button" class="premium-cta" id="premiumSelectMealsCta" data-zest-component="Button" data-zest-variant="secondary">Select meals</button>
             </section>
 
             <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="miso-salmon-ramen" data-price="12.99" data-customizable="true" data-filters="soups-salads asian seafood high-protein under-30 wheat" data-sort-time="25" data-sort-calories="640" data-sort-protein="36">
@@ -14076,7 +14063,7 @@
            ================================================ -->
       <div class="premium-irish-page" id="premium-irish-page" role="dialog" aria-modal="true" aria-labelledby="premium-irish-title" hidden>
         <div class="pip-hero" aria-hidden="true">
-          <video src="https://c.stocksy.com/a/Zz8500/y2/1226209.mp4" autoplay loop muted playsinline></video>
+          <video src="images/premium/aov-lift-1x1.mp4" autoplay loop muted playsinline></video>
         </div>
 
         <div class="pip-statusbar" aria-hidden="true">
@@ -14102,55 +14089,41 @@
         <div class="pip-scroll" id="pipScroll">
           <div class="pip-spacer"></div>
           <div class="pip-panel">
-            <h1 class="pip-title" id="premium-irish-title">A cut above in flavour</h1>
-            <p class="pip-subtitle">Treat yourself to premium recipes featuring Sirloin or Ribeye steak.</p>
+            <h1 class="pip-title" id="premium-irish-title">A cut above in flavor</h1>
+            <p class="pip-subtitle">Treat yourself to premium cuts, like sirloin or grass-fed ribeye steak.<br><br>Upgrade your plate to enjoy rich flavors and juicy tenderness in every single bite.<br><br><strong>It's time to taste how great midweek can be.</strong></p>
 
             <div class="pip-grid" id="pipRecipeGrid"></div>
 
-            <div class="pip-farm">
-              <div class="pip-farm__img">
-                <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=800&h=500&fit=crop" alt="Connolly family farm">
-                <div class="pip-farm__badge">County Tipperary, Ireland</div>
+            <div class="pip-story">
+              <div class="pip-story__img">
+                <img src="images/premium-storytelling.jpg" alt="Premium steak sizzling in a pan">
               </div>
-              <div class="pip-farm__body">
-                <div class="pip-farm__eyebrow">Our farming partner</div>
-                <h2 class="pip-farm__title">The Connolly family farm, est. 1887</h2>
-                <p class="pip-farm__p">Four generations of the Connolly family have raised cattle on the same 300 acres of rolling Tipperary pasture. What began as a modest holding in the late 19th century has grown into one of Ireland's most respected grass-fed beef operations - without ever losing the values it was built on.</p>
-                <p class="pip-farm__p">The herd graze freely on natural grass year-round, benefiting from Ireland's mild Atlantic climate and some of the richest soil in Europe. No hormones, no routine antibiotics - just time, space, and the land doing what it does best.</p>
-                <div class="pip-farm__features">
-                  <div class="pip-feature">
-                    <div class="pip-feature__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 4.17-2.84 7.67-6.71 8.66L12 22l-2.29-2.34C5.84 18.67 3 15.17 3 11a9 9 0 0 1 9-9z"/><path d="M12 6v6l3 2"/></svg></div>
+              <div class="pip-story__body">
+                <div>
+                  <div class="pip-story__eyebrow">Bring the steakhouse home</div>
+                  <h2 class="pip-story__title">Our Premium Steaks Collection</h2>
+                </div>
+                <p class="pip-story__p">Skip the reservations and create a steakhouse-worthy experience right at home. Discover our premium recipe collection and the top-tier cuts, carefully selected to take center stage at your next dinner.<br><br>Our classic sirloin delivers the perfect balance of deep flavor and tenderness, ideal for a sizzling, golden sear. As an indulgent alternative, our grass-fed ribeye offers exceptional marbling, melt-in-your-mouth texture, and bold, robust flavor.<br><br><strong>Whichever cut you choose, an amazing meal awaits!</strong></p>
+                <div class="pip-story__bullets">
+                  <div class="pip-story__bullet">
+                    <div class="pip-story__bullet-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
                     <div>
-                      <div class="pip-feature__title">100% grass-fed &amp; finished</div>
-                      <div class="pip-feature__desc">Cattle graze on open pasture from birth, producing naturally leaner, more flavourful beef.</div>
+                      <div class="pip-story__bullet-title">The Lean, Sizzling Sirloin</div>
+                      <div class="pip-story__bullet-desc">A classic on menus everywhere, this cut is lean yet tender, and rich with flavor.</div>
                     </div>
                   </div>
-                  <div class="pip-feature">
-                    <div class="pip-feature__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-                    <div>
-                      <div class="pip-feature__title">Slow-raised, never rushed</div>
-                      <div class="pip-feature__desc">The herd mature at their natural pace - longer than industry standard - for superior tenderness and depth of flavour.</div>
+                  <div class="pip-story__bullet">
+                    <div class="pip-story__bullet-icon">
+                      <svg viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.0002 12.5175H12.0006C12.0006 12.5175 11.9965 11.908 12.0006 11.5175C12.0042 11.1771 12.0079 10.8439 12.0124 10.5175C12.0503 7.78942 12.1498 5.5276 12.787 3.39984C13.3805 1.41814 14.4493 0.540016 16.0002 0.178363C16.3138 0.105239 16.6471 0.0532302 17.0001 0.0174829C17.3886 -0.0218536 18 0.0174829 18 0.0174829V20H16.0002V12.5175ZM16.0002 10.5175H14.0127C14.0521 7.80548 14.1519 5.8131 14.7027 3.97365C14.9709 3.07815 15.2974 2.70034 15.5663 2.50056C15.6807 2.41561 15.821 2.33586 16.0002 2.26488V10.5175Z" fill="currentColor"/><path d="M0 7.01746V0.0174561H1.9998V6.01746H2.99969V0.0174561H4.99949V6.01746H5.99939V0.0174561H7.99919V7.01746C7.99919 8.12203 7.10385 9.01746 5.99939 9.01746H4.99949V20H2.99969V9.01746H1.9998C0.89534 9.01746 0 8.12203 0 7.01746Z" fill="currentColor"/></svg>
                     </div>
-                  </div>
-                  <div class="pip-feature">
-                    <div class="pip-feature__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
                     <div>
-                      <div class="pip-feature__title">Family-owned for 4 generations</div>
-                      <div class="pip-feature__desc">Every decision is still made by the Connolly family, with a long-term view on land stewardship and animal welfare.</div>
-                    </div>
-                  </div>
-                  <div class="pip-feature">
-                    <div class="pip-feature__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                    <div>
-                      <div class="pip-feature__title">Bord Bia certified</div>
-                      <div class="pip-feature__desc">Independently audited under Ireland's Origin Green sustainability programme - verified from farm to fork.</div>
+                      <div class="pip-story__bullet-title">Melt-In-Your-Mouth Ribeye</div>
+                      <div class="pip-story__bullet-desc">The ultimate steakhouse splurge—its rich fattiness delivers a juicy, indulgent experience in every bite.</div>
                     </div>
                   </div>
                 </div>
-                <blockquote class="pip-quote">
-                  <p>"We don't chase volume. We raise cattle the way my grandfather did - slowly, carefully, and with respect for the land. You taste that in every cut."</p>
-                  <cite>- Séan Connolly, 4th generation farmer</cite>
-                </blockquote>
               </div>
             </div>
           </div>
@@ -51044,19 +51017,24 @@
     body.uxr-embed .device-scale { margin: 0 auto; }
 
     /* Mobile viewports — strip the bezel chrome and scale the 393×852
-       prototype to fill viewport width. Height overflows and the page
-       scrolls vertically so all content remains reachable. */
+       prototype to fit BOTH viewport width and height. Vertically center
+       so the whole device frame (including the sticky bottom CTA) is
+       always visible regardless of the tester's browser chrome. */
     @media (max-width: 768px) {
       html, body {
-        height: auto !important;
-        min-height: 100vh;
-        overflow: visible !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
       }
       body.uxr-embed {
         background: var(--color-elevation-base, #fff);
-        height: auto !important;
-        min-height: 100vh;
-        overflow: visible !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
       /* Reserve the SCALED footprint of just the screen (393×852),
          not the frame-plus-bezel (421×880). */
@@ -51091,14 +51069,19 @@
   <script>
     (function uxrEmbedBootstrap() {
       const SCREEN_W = 393;
+      const SCREEN_H = 852;
       const MOBILE_QUERY = '(max-width: 768px)';
 
-      // Recompute --device-scale against the actual screen width (393)
-      // when mobile mode is active. Width-only fit so the prototype fills
-      // the viewport edge-to-edge and the page scrolls vertically.
+      // Recompute --device-scale against the actual screen size (393×852)
+      // when mobile mode is active. Fit to BOTH dimensions so the entire
+      // device frame stays inside the viewport — including the sticky
+      // bottom Continue CTA — regardless of browser chrome.
       function uxrFitMobile() {
         if (!matchMedia(MOBILE_QUERY).matches) return;
-        const scale = window.innerWidth / SCREEN_W;
+        const scale = Math.min(
+          window.innerWidth / SCREEN_W,
+          window.innerHeight / SCREEN_H
+        );
         document.documentElement.style.setProperty('--device-scale', scale);
       }
 
