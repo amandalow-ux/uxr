@@ -2171,6 +2171,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: 60% center;
       display: block;
     }
     .premium-stack {
@@ -2307,13 +2308,14 @@
     .premium-irish-page .pip-hero {
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 280px;
+      aspect-ratio: 1 / 1;
       z-index: 1;
     }
     .premium-irish-page .pip-hero video {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: 60% center;
       display: block;
     }
     .premium-irish-page .pip-statusbar {
@@ -2410,7 +2412,7 @@
       z-index: 4;
     }
     .premium-irish-page .pip-scroll::-webkit-scrollbar { display: none; }
-    .premium-irish-page .pip-spacer { height: 170px; }
+    .premium-irish-page .pip-spacer { height: 283px; }
     .premium-irish-page .pip-panel {
       background: #024426;
       border-radius: 24px 24px 0 0;
@@ -2673,27 +2675,30 @@
       margin-bottom: 16px;
     }
     .premium-irish-page .pip-reviews {
-      margin-top: 32px;
+      margin-top: 24px;
       margin-bottom: 24px;
+      background: #faf8f3;
+      border-radius: 12px;
+      padding: 24px 16px 16px;
     }
     .premium-irish-page .pip-reviews .pip-rating {
       margin-bottom: 16px;
     }
     .premium-irish-page .pip-reviews .pip-eyebrow {
-      color: rgba(255,255,255,0.55);
+      color: #067a46;
     }
     .premium-irish-page .pip-eyebrow {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
-      color: rgba(255,255,255,0.5);
+      color: #067a46;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
     }
     .premium-irish-page .pip-heading {
-      font-size: 18px;
-      font-weight: 800;
-      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      color: #242424;
       margin-bottom: 8px;
       line-height: 1.2;
       font-family: var(--font-family-primary);
@@ -2704,18 +2709,15 @@
       gap: 8px;
     }
     .premium-irish-page .pip-rating .stars { display: flex; gap: 2px; }
-    /* Reviews header sits on the dark green panel — keep stars white here only.
-       Per-testimonial cards (white bg) and product card rating chips (cream bg)
-       still inherit the inline black fill. */
-    .premium-irish-page .pip-reviews .pip-rating .stars svg { fill: #fff; }
+    .premium-irish-page .pip-reviews .pip-rating .stars svg { fill: #1d1d1d; }
     .premium-irish-page .pip-rating .score {
       font-size: 14px;
       font-weight: 700;
-      color: #fff;
+      color: #242424;
     }
     .premium-irish-page .pip-rating .count {
       font-size: 12px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(36,36,36,0.6);
     }
     .premium-irish-page .pip-hscroll {
       display: flex;
@@ -2727,8 +2729,8 @@
     }
     .premium-irish-page .pip-hscroll::-webkit-scrollbar { display: none; }
     .premium-irish-page .pip-testimonial {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #fff;
+      border: 1px solid rgba(36,36,36,0.08);
       border-radius: 16px;
       padding: 16px;
       flex-shrink: 0;
@@ -2759,11 +2761,11 @@
     .premium-irish-page .pip-testimonial__name {
       font-size: 13px;
       font-weight: 700;
-      color: #fff;
+      color: #242424;
     }
     .premium-irish-page .pip-testimonial__location {
       font-size: 11px;
-      color: rgba(255,255,255,0.45);
+      color: rgba(36,36,36,0.55);
       margin-top: 1px;
     }
     .premium-irish-page .pip-testimonial__stars {
@@ -2773,7 +2775,7 @@
     }
     .premium-irish-page .pip-testimonial__quote {
       font-size: 13px;
-      color: rgba(255,255,255,0.8);
+      color: #242424;
       line-height: 1.55;
       margin: 0;
     }
@@ -2782,21 +2784,20 @@
       margin-top: 10px;
       font-size: 10px;
       font-weight: 600;
-      color: rgba(255,255,255,0.5);
-      background: rgba(255,255,255,0.08);
+      color: rgba(36,36,36,0.6);
+      background: rgba(36,36,36,0.06);
       padding: 3px 8px;
       border-radius: 20px;
     }
     .premium-irish-page .pip-farm {
-      margin-top: 40px;
-      border-radius: 20px;
+      margin-top: 24px;
+      border-radius: 12px;
       overflow: hidden;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #faf8f3;
     }
     .premium-irish-page .pip-farm__img {
       position: relative;
-      aspect-ratio: 16/9;
+      aspect-ratio: 375/295;
       overflow: hidden;
     }
     .premium-irish-page .pip-farm__img img {
@@ -2816,79 +2817,88 @@
       border-radius: 20px;
     }
     .premium-irish-page .pip-farm__body {
-      padding: 20px 16px 24px;
+      background: #faf8f3;
+      padding: 24px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
     .premium-irish-page .pip-farm__eyebrow {
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.9px;
-      color: #67c98a;
-      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+      color: #067a46;
+      margin-bottom: 2px;
     }
     .premium-irish-page .pip-farm__title {
-      font-size: 19px;
-      font-weight: 800;
-      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      color: #242424;
       line-height: 1.2;
-      margin-bottom: 14px;
+      margin: 0;
       font-family: var(--font-family-primary);
     }
     .premium-irish-page .pip-farm__p {
-      font-size: 13px;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.6;
-      margin-bottom: 12px;
+      font-size: 14px;
+      color: #242424;
+      line-height: 1.5;
+      margin: 0;
     }
     .premium-irish-page .pip-farm__features {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin: 20px 0;
+      gap: 16px;
+      padding: 16px 0;
     }
     .premium-irish-page .pip-feature {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 16px;
     }
     .premium-irish-page .pip-feature__icon {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: rgba(103,201,138,0.15);
+      width: 32px; height: 32px;
+      border-radius: 999px;
+      background: #056835;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: #67c98a;
+      color: #fff;
+    }
+    .premium-irish-page .pip-feature__icon svg {
+      width: 20px; height: 20px;
     }
     .premium-irish-page .pip-feature__title {
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 700;
-      color: #fff;
+      color: #242424;
+      line-height: 1.25;
       margin-bottom: 2px;
+      font-family: var(--font-family-primary);
     }
     .premium-irish-page .pip-feature__desc {
-      font-size: 12px;
-      color: rgba(255,255,255,0.55);
+      font-size: 14px;
+      color: #242424;
       line-height: 1.5;
     }
     .premium-irish-page .pip-quote {
-      margin-top: 20px;
+      margin-top: 4px;
       padding: 16px;
-      background: rgba(103,201,138,0.08);
-      border-left: 3px solid #67c98a;
+      background: rgba(6,122,70,0.08);
+      border-left: 3px solid #067a46;
       border-radius: 0 12px 12px 0;
     }
     .premium-irish-page .pip-quote p {
-      font-size: 13px;
-      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      color: #242424;
       line-height: 1.6;
       font-style: italic;
       margin-bottom: 8px;
     }
     .premium-irish-page .pip-quote cite {
-      font-size: 11px;
-      color: rgba(255,255,255,0.45);
+      font-size: 12px;
+      color: rgba(36,36,36,0.65);
       font-style: normal;
       font-weight: 600;
     }
@@ -2896,7 +2906,7 @@
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 40px;
-      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 100%);
+      background: linear-gradient(to bottom, transparent 0%, rgba(3,67,39,0.5) 100%);
       pointer-events: none;
       z-index: 3;
     }
@@ -6954,6 +6964,11 @@
 
     .cart-scroll {
       flex: 1;
+      /* min-height: 0 lets this flex item shrink below its intrinsic content
+         height. Without it, when cart content is taller than the available
+         middle slot, the flex column overflows and the sticky Continue CTA
+         gets clipped by the parent's overflow: hidden. */
+      min-height: 0;
       overflow-y: auto;
       padding: var(--spacing-md);
       -webkit-overflow-scrolling: touch;
@@ -12768,7 +12783,7 @@
             <section class="premium-section" data-zest-component="custom" data-zest-note="Premium experience mosaic">
               <div class="premium-section-head">
                 <div class="premium-section-head__copy">
-                  <h3>A night in, elevated</h3>
+                  <h3>Date night in, elevated</h3>
                   <p class="premium-section-sub">Romantic recipes featuring steak, seafood, and decadent sides.</p>
                 </div>
                 <div class="nav" aria-hidden="true">
@@ -12796,25 +12811,31 @@
                 <div class="premium-quote">
                   <div class="img"><img src="images/real/herbed-steak-apple-kale-salad.jpg" alt="Herbed steak with apple kale salad — premium date night meal"></div>
                   <div class="quote">
-                    <p>"We cooked it together with a glass of wine and it was the most fun date we've had in months."</p>
+                    <p>"The marinade and the cut were both incredible. We cooked it together with a glass of wine — best date in months."</p>
                   </div>
                 </div>
 
                 <div class="premium-stack">
                   <div class="tile"><img src="images/real/soy-glazed-salmon-with-rice.jpg" alt="Soy-glazed salmon with rice — premium date night meal"></div>
-                  <div class="tile premium-view-all" role="button" tabindex="0" aria-label="View all recipes">
+                  <div class="tile premium-view-all" role="button" tabindex="0" aria-label="Check meals">
                     <img src="images/real/honey-dijon-dill-steak.jpg" alt="">
                     <div class="overlay">
                       <div class="circle">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 4h12a1 1 0 0 1 1 1v15.5a.5.5 0 0 1-.777.416L12 17.2l-6.223 3.716A.5.5 0 0 1 5 20.5V5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                          <path d="M7 10H5V12H7V10Z" fill="currentColor"/>
+                          <path d="M5 14H7V16H5V14Z" fill="currentColor"/>
+                          <path d="M16 10H9V12H16V10Z" fill="currentColor"/>
+                          <path d="M9 14H16V16H9V14Z" fill="currentColor"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9384 2.44949L3.68784 5.99996H1L20 6V20H1V8.64961L0 4.91756L18.3526 0L19.9603 5.99996H17.8897L16.9384 2.44949ZM3 8H18V18H3V8Z" fill="currentColor"/>
+                        </svg>
                       </div>
-                      <div class="label">View all recipes</div>
+                      <div class="label">Check meals</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <button type="button" class="premium-cta" id="premiumSelectMealsCta" data-zest-component="Button" data-zest-variant="secondary">Plan your date night</button>
+              <button type="button" class="premium-cta" id="premiumSelectMealsCta" data-zest-component="Button" data-zest-variant="secondary">Select meals</button>
             </section>
 
             <article class="product-card" data-zest-component="Card" data-zest-variant="meal" data-product="miso-salmon-ramen" data-price="12.99" data-customizable="true" data-filters="soups-salads asian seafood high-protein under-30 wheat" data-sort-time="25" data-sort-calories="640" data-sort-protein="36">
@@ -14219,7 +14240,7 @@
           <div class="pip-spacer"></div>
           <div class="pip-panel">
             <h1 class="pip-title" id="premium-irish-title">Date night, made restaurant-easy</h1>
-            <p class="pip-subtitle">Romantic recipes designed for two — premium ingredients, simple steps, restaurant-worthy results.</p>
+            <p class="pip-subtitle">Romantic recipes designed for two, featuring premium ingredients and simple steps.<br><br>Pour the wine, light a candle, and plate something you'd both happily order at a restaurant.<br><br><strong>Tonight, the reservation is at home.</strong></p>
 
             <div class="pip-grid" id="pipRecipeGridTop"></div>
 
@@ -14244,13 +14265,12 @@
 
             <div class="pip-farm">
               <div class="pip-farm__img">
-                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=500&fit=crop" alt="Chef Marco Rossi plating a romantic dinner">
-                <div class="pip-farm__badge">Designed by Chef Marco Rossi</div>
+                <img src="https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?w=800&h=500&fit=crop" alt="Portrait of Chef Marco Rossi in his restaurant kitchen">
               </div>
               <div class="pip-farm__body">
-                <div class="pip-farm__eyebrow">Our date night curator</div>
+                <div class="pip-farm__eyebrow">Curated by Chef Marco Rossi</div>
                 <h2 class="pip-farm__title">Restaurant magic, on your kitchen table</h2>
-                <p class="pip-farm__p">Every recipe in this collection was shaped by Chef Marco Rossi, head chef at a Michelin-recognised trattoria in Florence and a long-time HelloFresh culinary partner. His brief: a menu you'd happily order on an anniversary, but easy enough to cook between glasses of wine.</p>
+                <p class="pip-farm__p">Every recipe in this collection was shaped by Marco, who has spent 22 years cooking in professional kitchens. His brief: a menu you'd happily order on an anniversary, but easy enough to cook between glasses of wine.</p>
                 <p class="pip-farm__p">No fussy techniques, no obscure ingredients. Just considered pairings, restaurant-grade proteins, and pre-portioned for two — so you can spend less time prepping and more time across the table from someone who matters.</p>
                 <div class="pip-farm__features">
                   <div class="pip-feature">
@@ -51598,19 +51618,24 @@
     body.uxr-embed .device-scale { margin: 0 auto; }
 
     /* Mobile viewports — strip the bezel chrome and scale the 393×852
-       prototype to fill viewport width. Height overflows and the page
-       scrolls vertically so all content remains reachable. */
+       prototype to fit BOTH viewport width and height. Vertically center
+       so the whole device frame (including the sticky bottom CTA) is
+       always visible regardless of the tester's browser chrome. */
     @media (max-width: 768px) {
       html, body {
-        height: auto !important;
-        min-height: 100vh;
-        overflow: visible !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
       }
       body.uxr-embed {
         background: var(--color-elevation-base, #fff);
-        height: auto !important;
-        min-height: 100vh;
-        overflow: visible !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
       /* Reserve the SCALED footprint of just the screen (393×852),
          not the frame-plus-bezel (421×880). */
@@ -51645,14 +51670,19 @@
   <script>
     (function uxrEmbedBootstrap() {
       const SCREEN_W = 393;
+      const SCREEN_H = 852;
       const MOBILE_QUERY = '(max-width: 768px)';
 
-      // Recompute --device-scale against the actual screen width (393)
-      // when mobile mode is active. Width-only fit so the prototype fills
-      // the viewport edge-to-edge and the page scrolls vertically.
+      // Recompute --device-scale against the actual screen size (393×852)
+      // when mobile mode is active. Fit to BOTH dimensions so the entire
+      // device frame stays inside the viewport — including the sticky
+      // bottom Continue CTA — regardless of browser chrome.
       function uxrFitMobile() {
         if (!matchMedia(MOBILE_QUERY).matches) return;
-        const scale = window.innerWidth / SCREEN_W;
+        const scale = Math.min(
+          window.innerWidth / SCREEN_W,
+          window.innerHeight / SCREEN_H
+        );
         document.documentElement.style.setProperty('--device-scale', scale);
       }
 
