@@ -2160,7 +2160,10 @@
     .premium-carousel::-webkit-scrollbar { display: none; }
     .premium-video {
       flex-shrink: 0;
-      width: 220px;
+      /* Narrowed from 220 → 200 so the 3rd block (quote tile) peeks ~16px
+         past the right edge of the screen at scroll=0. UXR feedback: users
+         weren't realising the widget scrolled past the first page. */
+      width: 200px;
       height: 300px;
       overflow: hidden;
       border-radius: 12px;

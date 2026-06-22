@@ -2151,7 +2151,7 @@
     .premium-carousel {
       display: flex;
       gap: 8px;
-      padding: 16px var(--spacing-md) 16px;
+      padding: 16px var(--spacing-md);
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-padding-left: 16px;
@@ -2160,7 +2160,11 @@
     .premium-carousel::-webkit-scrollbar { display: none; }
     .premium-video {
       flex-shrink: 0;
-      width: 220px;
+      /* Narrowed from 220 → 200 so the 3rd block (quote tile) peeks ~16px
+         past the right edge of the screen at scroll=0. UXR feedback: users
+         weren't realising the widget scrolled past the first page; the peek
+         signals there is more to see. */
+      width: 200px;
       height: 300px;
       overflow: hidden;
       border-radius: 12px;
@@ -2215,20 +2219,78 @@
       flex: 0 0 50%;
       min-height: 0;
       background: #EFE9DE;
-      padding: 16px;
+      padding: 12px 14px 8px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      gap: 10px;
       box-sizing: border-box;
+    }
+    .premium-quote__head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .premium-quote__avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-family-secondary);
+      font-size: 10px;
+      font-weight: 700;
+      color: #1d1d1d;
+      flex-shrink: 0;
+    }
+    .premium-quote__meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+      min-width: 0;
+      flex: 1;
+    }
+    .premium-quote__name-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+    }
+    .premium-quote__name {
+      font-family: var(--font-family-secondary);
+      font-size: 12px;
+      font-weight: 700;
+      color: #1d1d1d;
+      white-space: nowrap;
+    }
+    .premium-quote__stars {
+      display: flex;
+      gap: 1px;
+      align-items: center;
+      color: #1d1d1d;
+      flex-shrink: 0;
+    }
+    .premium-quote__stars svg { width: 10px; height: 10px; }
+    .premium-quote__recipe {
+      font-family: var(--font-family-secondary);
+      font-size: 11px;
+      color: #666;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .premium-quote .quote p {
       font-family: var(--font-family-primary);
       font-size: 14px;
       font-weight: 700;
       color: var(--color-brand-foreground-default);
-      line-height: 1.35;
+      line-height: 1.3;
       margin: 0;
       letter-spacing: -0.01em;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
     .premium-view-all {
       position: relative;
@@ -2437,8 +2499,78 @@
     .premium-irish-page .pip-subtitle {
       font-size: 14px;
       color: rgba(255,255,255,0.75);
-      margin: 0 0 24px;
+      margin: 0 0 20px;
       line-height: 1.5;
+    }
+    /* Chef attribution strip on the nested page — clickable banner that
+       scrolls to the pip-farm section ("Restaurant magic, on your kitchen
+       table") at the bottom. Sits below the subtitle to surface Marco's
+       credentials before users hit the meal grid. */
+    .premium-irish-page .pip-chef-strip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 14px 14px;
+      margin: 0 0 24px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+      transition: background 160ms ease, border-color 160ms ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .premium-irish-page .pip-chef-strip:hover,
+    .premium-irish-page .pip-chef-strip:focus-visible {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      outline: none;
+    }
+    .premium-irish-page .pip-chef-strip:active {
+      background: rgba(255, 255, 255, 0.14);
+    }
+    .premium-irish-page .pip-chef-strip__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .premium-irish-page .pip-chef-strip__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .premium-irish-page .pip-chef-strip__text {
+      flex: 1;
+      min-width: 0;
+      font-family: var(--font-family-secondary);
+      font-size: 13px;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .premium-irish-page .pip-chef-strip__text strong {
+      color: #fff;
+      font-weight: 700;
+      display: block;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+    .premium-irish-page .pip-chef-strip__cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .premium-irish-page .pip-chef-strip__cta svg {
+      width: 16px;
+      height: 16px;
     }
     .premium-irish-page .pip-grid {
       display: flex;
@@ -12783,8 +12915,8 @@
             <section class="premium-section" data-zest-component="custom" data-zest-note="Premium experience mosaic">
               <div class="premium-section-head">
                 <div class="premium-section-head__copy">
-                  <h3>Date night in, elevated</h3>
-                  <p class="premium-section-sub">Romantic recipes featuring steak, seafood, and decadent sides.</p>
+                  <h3>Restaurant-grade meals, for special occasions</h3>
+                  <p class="premium-section-sub">A 10-recipe collection curated by Chef Marco Rossi.</p>
                 </div>
                 <div class="nav" aria-hidden="true">
                   <button type="button" aria-label="Previous" data-premium-prev disabled>
@@ -12797,26 +12929,45 @@
               </div>
 
               <div class="premium-carousel" data-premium-carousel>
-                <!-- Date night video tile — matches the premium nested page hero -->
+                <!-- Food-focused video tile — wild-mushroom lasagne close-up.
+                     UXR feedback: prior lifestyle clip was doing little to
+                     draw users in. -->
                 <div class="premium-video">
-                  <video src="https://videos.pexels.com/video-files/7580012/7580012-sd_960_540_25fps.mp4" autoplay loop muted playsinline aria-label="Premium date night hero video"></video>
+                  <video src="images/premium/premium-lasagne-hero.mp4" autoplay loop muted playsinline preload="auto" aria-label="Wild mushroom lasagne being plated"></video>
                 </div>
 
                 <div class="premium-stack">
-                  <div class="tile"><img src="images/real/garlic-herb-butter-scallops.jpg" alt="Garlic herb butter scallops — premium date night meal"></div>
-                  <div class="tile"><img src="images/real/steak-parmesan-potatoes.jpg" alt="Steak with parmesan potatoes — premium date night meal"></div>
+                  <div class="tile"><img src="images/real/steak-parmesan-potatoes.jpg" alt="Bordelaise beef tenderloin — premium meal"></div>
+                  <div class="tile"><img src="images/premium/premium-lasagne.webp" alt="Wild mushroom lasagne — premium meal"></div>
                 </div>
 
-                <!-- Customer quote tile, image on left, quote on right -->
+                <!-- Customer quote tile — meal-specific review tied to the
+                     Lobster Tail Linguine image above. -->
                 <div class="premium-quote">
-                  <div class="img"><img src="images/real/herbed-steak-apple-kale-salad.jpg" alt="Herbed steak with apple kale salad — premium date night meal"></div>
+                  <div class="img"><img src="images/real/creamy-lemon-garlic-shrimp-linguine.jpg" alt="Lobster tail linguine — premium date night meal"></div>
                   <div class="quote">
-                    <p>"The marinade and the cut were both incredible. We cooked it together with a glass of wine — best date in months."</p>
+                    <div class="premium-quote__head">
+                      <span class="premium-quote__avatar" style="background:#bbf06a">NS</span>
+                      <div class="premium-quote__meta">
+                        <div class="premium-quote__name-row">
+                          <span class="premium-quote__name">Noah S.</span>
+                          <span class="premium-quote__stars" aria-label="5 out of 5 stars">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                          </span>
+                        </div>
+                        <span class="premium-quote__recipe">Lobster Tail Linguine</span>
+                      </div>
+                    </div>
+                    <p>"Generous lobster tail and the white-wine sauce was elegant without being heavy. Tarragon was a brilliant call."</p>
                   </div>
                 </div>
 
                 <div class="premium-stack">
-                  <div class="tile"><img src="images/real/soy-glazed-salmon-with-rice.jpg" alt="Soy-glazed salmon with rice — premium date night meal"></div>
+                  <div class="tile"><img src="images/real/soy-glazed-salmon-with-rice.jpg" alt="Pan-seared salmon en papillote — premium date night meal"></div>
                   <div class="tile premium-view-all" role="button" tabindex="0" aria-label="Check meals">
                     <img src="images/real/honey-dijon-dill-steak.jpg" alt="">
                     <div class="overlay">
@@ -14213,7 +14364,7 @@
            ================================================ -->
       <div class="premium-irish-page" id="premium-irish-page" role="dialog" aria-modal="true" aria-labelledby="premium-irish-title" hidden>
         <div class="pip-hero" aria-hidden="true">
-          <video src="https://videos.pexels.com/video-files/7580012/7580012-sd_960_540_25fps.mp4" autoplay loop muted playsinline></video>
+          <video src="images/premium/premium-lasagne-hero.mp4" autoplay loop muted playsinline></video>
         </div>
 
         <div class="pip-statusbar" aria-hidden="true">
@@ -14233,14 +14384,27 @@
           <button type="button" id="pipBackSticky" aria-label="Back">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </button>
-          <h2>Date night, made restaurant-easy</h2>
+          <h2>Restaurant-grade meals, when the night calls for it</h2>
         </div>
 
         <div class="pip-scroll" id="pipScroll">
           <div class="pip-spacer"></div>
           <div class="pip-panel">
-            <h1 class="pip-title" id="premium-irish-title">Date night, made restaurant-easy</h1>
-            <p class="pip-subtitle">Romantic recipes designed for two, featuring premium ingredients and simple steps.<br><br>Pour the wine, light a candle, and plate something you'd both happily order at a restaurant.<br><br><strong>Tonight, the reservation is at home.</strong></p>
+            <h1 class="pip-title" id="premium-irish-title">Restaurant-grade meals, when the night calls for it</h1>
+            <p class="pip-subtitle">Ten chef-curated recipes built around premium proteins, considered pairings, and simple steps.<br><br>Pour the wine, light a candle, and plate something you'd both happily order out — perfect for an anniversary, a Friday in, or any night that deserves a little more.<br><br><strong>Tonight, the reservation is at home.</strong></p>
+
+            <button type="button" class="pip-chef-strip" id="pipChefStripBtn" aria-label="Read Chef Marco Rossi's story">
+              <div class="pip-chef-strip__avatar">
+                <img src="https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?w=160&h=160&fit=crop" alt="">
+              </div>
+              <div class="pip-chef-strip__text">
+                <strong>Curated by Chef Marco Rossi</strong>
+                22 years in professional kitchens
+              </div>
+              <span class="pip-chef-strip__cta" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </span>
+            </button>
 
             <div class="pip-grid" id="pipRecipeGridTop"></div>
 
@@ -14256,22 +14420,22 @@
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d1d1d"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 </div>
                 <span class="score">4.7</span>
-                <span class="count">Date Night average · 1,184 reviews</span>
+                <span class="count">Collection average · 1,184 reviews</span>
               </div>
               <div class="pip-hscroll" id="pipReviewsScroll"></div>
             </section>
 
             <div class="pip-grid" id="pipRecipeGridBottom"></div>
 
-            <div class="pip-farm">
+            <div class="pip-farm" id="pipFarmSection">
               <div class="pip-farm__img">
                 <img src="https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?w=800&h=500&fit=crop" alt="Portrait of Chef Marco Rossi in his restaurant kitchen">
               </div>
               <div class="pip-farm__body">
                 <div class="pip-farm__eyebrow">Curated by Chef Marco Rossi</div>
                 <h2 class="pip-farm__title">Restaurant magic, on your kitchen table</h2>
-                <p class="pip-farm__p">Every recipe in this collection was shaped by Marco, who has spent 22 years cooking in professional kitchens. His brief: a menu you'd happily order on an anniversary, but easy enough to cook between glasses of wine.</p>
-                <p class="pip-farm__p">No fussy techniques, no obscure ingredients. Just considered pairings, restaurant-grade proteins, and pre-portioned for two — so you can spend less time prepping and more time across the table from someone who matters.</p>
+                <p class="pip-farm__p">Every recipe in this collection was shaped by Marco, who has spent 22 years cooking in professional kitchens. His brief: dishes you'd happily order at a fine-dining restaurant, but easy enough to plate at home on a weeknight.</p>
+                <p class="pip-farm__p">No fussy techniques, no obscure ingredients. Just considered pairings, restaurant-grade proteins, and pre-portioned for two — so you can spend less time prepping and more time at the table.</p>
                 <div class="pip-farm__features">
                   <div class="pip-feature">
                     <div class="pip-feature__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
@@ -14284,7 +14448,7 @@
                     <div class="pip-feature__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
                     <div>
                       <div class="pip-feature__title">Ready in 35 minutes or less</div>
-                      <div class="pip-feature__desc">Built for an evening, not a project. Pour the wine, light a candle, dinner is ready before the playlist ends.</div>
+                      <div class="pip-feature__desc">Built for an evening, not a project. Chef-level results before the playlist ends.</div>
                     </div>
                   </div>
                   <div class="pip-feature">
@@ -14303,7 +14467,7 @@
                   </div>
                 </div>
                 <blockquote class="pip-quote">
-                  <p>"A great date night isn't about complication — it's about cooking something you're proud of, then actually being present at the table. That's what I built this menu for."</p>
+                  <p>"A great meal at home isn't about complication — it's about cooking something you're proud of, then actually being present at the table. That's what I built this menu for."</p>
                   <cite>- Chef Marco Rossi, culinary partner</cite>
                 </blockquote>
               </div>
@@ -44111,16 +44275,16 @@
       if (!page || !viewAll) return;
 
       const recipes = [
-        { slug: 'truffle-butter-filet-mignon',    unitPrice: 16.98, badge: 'DATE NIGHT', name: 'Truffle Butter Filet Mignon',     sub: 'with Garlic Mash & Asparagus',            time: '35 min', calories: '720 kcal', protein: '42g protein', price: '+$6.99',  img: 'images/real/beef-meatballs-onion-gravy.jpg' },
-        { slug: 'seared-scallops-lemon-risotto',  unitPrice: 16.98, badge: 'DATE NIGHT', name: 'Seared Scallops & Lemon Risotto', sub: 'with Browned Butter & Chives',             time: '30 min', calories: '640 kcal', protein: '28g protein', price: '+$6.99',  img: 'images/real/creamy-mushroom-gemelli.jpg' },
-        { slug: 'lobster-tail-linguine',           unitPrice: 22.98, badge: 'BESTSELLER', highlight: 'time', name: 'Lobster Tail Linguine',            sub: 'with White Wine, Garlic & Tarragon',       time: '25 min', calories: '690 kcal', protein: '32g protein', price: '+$12.99', img: 'images/real/hoisin-pork-tenderloin.jpg' },
-        { slug: 'honey-balsamic-duck-breast',      unitPrice: 16.98, badge: 'DATE NIGHT', highlight: 'protein', name: 'Honey-Balsamic Duck Breast',       sub: 'with Roasted Figs & Wild Rice',           time: '35 min', calories: '710 kcal', protein: '38g protein', price: '+$6.99',  img: 'images/real/crispy-parmesan-chicken.jpg' },
-        { slug: 'pan-seared-salmon-en-papillote', unitPrice: 16.98, badge: 'DATE NIGHT', highlight: 'calories', name: 'Pan-Seared Salmon en Papillote',  sub: 'with Champagne Cream & Dill',             time: '30 min', calories: '580 kcal', protein: '34g protein', price: '+$6.99',  img: 'images/real/sesame-soy-beef-bowls.jpg' },
-        { slug: 'tagliatelle-al-tartufo',          unitPrice: 13.98, badge: 'DATE NIGHT', name: 'Tagliatelle al Tartufo',           sub: 'with Black Truffle, Pecorino & Egg Yolk', time: '25 min', calories: '660 kcal', protein: '20g protein', price: '+$3.99',  img: 'images/real/creamy-mushroom-gemelli.jpg' },
-        { slug: 'lemon-caper-branzino',            unitPrice: 14.98, badge: 'DATE NIGHT', name: 'Lemon-Caper Branzino',             sub: 'with Saffron Couscous & Charred Lemon',   time: '30 min', calories: '590 kcal', protein: '36g protein', price: '+$4.99',  img: 'images/real/creamy-lemon-garlic-shrimp-linguine.jpg' },
+        { slug: 'truffle-butter-filet-mignon',    unitPrice: 16.98, badge: "CHEF'S PICK", name: 'Truffle Butter Filet Mignon',     sub: 'with Garlic Mash & Asparagus',            time: '35 min', calories: '720 kcal', protein: '42g protein', price: '+$6.99',  img: 'images/real/beef-meatballs-onion-gravy.jpg' },
+        { slug: 'seared-scallops-lemon-risotto',  unitPrice: 16.98, badge: "CHEF'S PICK", name: 'Seared Scallops & Lemon Risotto', sub: 'with Browned Butter & Chives',             time: '30 min', calories: '640 kcal', protein: '28g protein', price: '+$6.99',  img: 'images/real/creamy-mushroom-gemelli.jpg' },
+        { slug: 'lobster-tail-linguine',           unitPrice: 22.98, badge: 'BESTSELLER', highlight: 'time', name: 'Lobster Tail Linguine',            sub: 'with White Wine, Garlic & Tarragon',       time: '25 min', calories: '690 kcal', protein: '32g protein', price: '+$12.99', img: 'images/real/creamy-lemon-garlic-shrimp-linguine.jpg' },
+        { slug: 'wild-mushroom-lasagne',           unitPrice: 14.98, badge: 'BESTSELLER', highlight: 'time', name: 'Wild Mushroom Lasagne',           sub: 'with Béchamel, Thyme & Aged Parmesan',     time: '30 min', calories: '690 kcal', protein: '22g protein', price: '+$4.99',  img: 'images/premium/premium-lasagne.webp' },
+        { slug: 'pan-seared-salmon-en-papillote', unitPrice: 16.98, badge: "CHEF'S PICK", highlight: 'calories', name: 'Pan-Seared Salmon en Papillote',  sub: 'with Champagne Cream & Dill',             time: '30 min', calories: '580 kcal', protein: '34g protein', price: '+$6.99',  img: 'images/real/sesame-soy-beef-bowls.jpg' },
+        { slug: 'tagliatelle-al-tartufo',          unitPrice: 13.98, badge: "CHEF'S PICK", name: 'Tagliatelle al Tartufo',           sub: 'with Black Truffle, Pecorino & Egg Yolk', time: '25 min', calories: '660 kcal', protein: '20g protein', price: '+$3.99',  img: 'images/real/creamy-mushroom-gemelli.jpg' },
+        { slug: 'lemon-caper-branzino',            unitPrice: 14.98, badge: "CHEF'S PICK", name: 'Lemon-Caper Branzino',             sub: 'with Saffron Couscous & Charred Lemon',   time: '30 min', calories: '590 kcal', protein: '36g protein', price: '+$4.99',  img: 'images/real/creamy-lemon-garlic-shrimp-linguine.jpg' },
         { slug: 'truffle-burrata-ravioli',         unitPrice: 13.98, badge: 'BESTSELLER', highlight: 'time', name: 'Black Truffle & Burrata Ravioli',  sub: 'with Brown Butter & Crispy Sage',         time: '20 min', calories: '720 kcal', protein: '24g protein', price: '+$3.99',  img: 'images/real/creamy-pesto-pasta-burrata.jpg' },
-        { slug: 'brown-butter-lobster-risotto',    unitPrice: 22.98, badge: 'DATE NIGHT', highlight: 'protein', name: 'Brown-Butter Lobster Risotto',    sub: 'with Tarragon & Crème Fraîche',           time: '35 min', calories: '740 kcal', protein: '34g protein', price: '+$12.99', img: 'images/real/creamy-shrimp-bacon-spaghetti.jpg' },
-        { slug: 'bordelaise-beef-tenderloin',      unitPrice: 16.98, badge: 'DATE NIGHT', name: 'Bordelaise Beef Tenderloin',       sub: 'with Truffle Pommes & Watercress',        time: '35 min', calories: '700 kcal', protein: '40g protein', price: '+$6.99',  img: 'images/real/steak-parmesan-potatoes.jpg' },
+        { slug: 'brown-butter-lobster-risotto',    unitPrice: 22.98, badge: "CHEF'S PICK", highlight: 'protein', name: 'Brown-Butter Lobster Risotto',    sub: 'with Tarragon & Crème Fraîche',           time: '35 min', calories: '740 kcal', protein: '34g protein', price: '+$12.99', img: 'images/real/creamy-shrimp-bacon-spaghetti.jpg' },
+        { slug: 'bordelaise-beef-tenderloin',      unitPrice: 16.98, badge: "CHEF'S PICK", name: 'Bordelaise Beef Tenderloin',       sub: 'with Truffle Pommes & Watercress',        time: '35 min', calories: '700 kcal', protein: '40g protein', price: '+$6.99',  img: 'images/real/steak-parmesan-potatoes.jpg' },
       ];
 
       const reviews = [
@@ -44223,9 +44387,22 @@
         `;
       }
 
+      // Featured order matches the widget carousel (scallops → lobster
+       // linguine → salmon → bordelaise tenderloin). UXR feedback: users
+       // expected the meals featured on the widget to lead the nested page.
+      const FEATURED_SLUGS = [
+        'seared-scallops-lemon-risotto',
+        'lobster-tail-linguine',
+        'pan-seared-salmon-en-papillote',
+        'bordelaise-beef-tenderloin',
+      ];
       function renderRecipes() {
-        if (gridTop) gridTop.innerHTML = recipes.slice(0, 4).map(recipeHtml).join('');
-        if (gridBottom) gridBottom.innerHTML = recipes.slice(4).map(recipeHtml).join('');
+        const bySlug = Object.fromEntries(recipes.map(r => [r.slug, r]));
+        const featured = FEATURED_SLUGS.map(s => bySlug[s]).filter(Boolean);
+        const featuredSet = new Set(FEATURED_SLUGS);
+        const rest = recipes.filter(r => !featuredSet.has(r.slug));
+        if (gridTop) gridTop.innerHTML = featured.map(recipeHtml).join('');
+        if (gridBottom) gridBottom.innerHTML = rest.map(recipeHtml).join('');
       }
 
       function renderReviews() {
@@ -44272,6 +44449,22 @@
       if (selectMealsCta) selectMealsCta.addEventListener('click', openPage);
       backFloat && backFloat.addEventListener('click', closePage);
       backSticky && backSticky.addEventListener('click', closePage);
+
+      // Chef attribution banner → smooth-scrolls to the pip-farm storytelling
+       // section at the bottom of the nested page. We compute the offset
+       // manually because scrollIntoView fights the sticky header transitions.
+      const chefStripBtn = document.getElementById('pipChefStripBtn');
+      const chefFarmSection = document.getElementById('pipFarmSection');
+      if (chefStripBtn && chefFarmSection && scroll) {
+        chefStripBtn.addEventListener('click', () => {
+          const scrollTop = scroll.scrollTop;
+          const target = chefFarmSection.getBoundingClientRect().top
+            - scroll.getBoundingClientRect().top
+            + scrollTop
+            - 60; // small breathing room under the sticky header
+          scroll.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+        });
+      }
 
       if (scroll) {
         scroll.addEventListener('scroll', () => {
